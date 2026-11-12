@@ -6,8 +6,10 @@ import type { Card, CardId, ObjectId, Stack, StackObject } from "../core/types";
 import { buildHtml, pruneAssets } from "../export/build";
 import { importStack } from "../export/import";
 import { mount, type Mounted } from "../player/player";
+import { FONT_CSS } from "../player/fonts";
 import { PLAYER_CSS } from "../player/style";
 import playerJs from "../../dist-player/player.js?raw";
+import { openAbout, openWelcome, wasWelcomed } from "./about";
 import type { Ctx, Mode } from "./ctx";
 import { h } from "./dom";
 import { prepareImage } from "./images";
@@ -22,7 +24,7 @@ const SOFT_LIMIT = 10 * 1024 * 1024;
 
 export async function start(root: HTMLElement): Promise<void> {
   const style = document.createElement("style");
-  style.textContent = PLAYER_CSS;
+  style.textContent = FONT_CSS + PLAYER_CSS;
   document.head.append(style);
 
   const saved = await loadStack();
@@ -33,6 +35,8 @@ export async function start(root: HTMLElement): Promise<void> {
   let mode: Mode = "edit";
   let status = saved ? "Restored from autosave" : "Loaded the Haunted House template";
   let player: Mounted | null = null;
+  let panelTab: "cards" | "inspect" = "cards";
+  let lastSel: ObjectId | null = null;
   let saveState = saved ? "Saved" : "Not saved yet";
   let saveTimer: number | undefined;
 
@@ -136,12 +140,18 @@ export async function start(root: HTMLElement): Promise<void> {
     if (f) void doImport(f);
   } });
 
+  const quickStart = (): void => openWelcome({
+    blank: () => loadNew(BLANK, "Started a blank stack"),
+    template: () => { const t = TEMPLATES[0]; if (t) loadNew(t.stack, "Loaded the Haunted House template"); },
+  });
+
   const top = h("header", { class: "top" });
   const strip = h("aside", { class: "left", "aria-label": "Cards" });
   const work = h("main", { class: "work" });
   const side = h("aside", { class: "right", "aria-label": "Inspector" });
   const bar = h("footer", { class: "status" });
-  root.replaceChildren(top, strip, work, side, bar, imageInput, importInput);
+  const tabs = h("nav", { class: "tabs", "aria-label": "Panels" });
+  root.replaceChildren(top, strip, work, tabs, side, bar, imageInput, importInput);
 
   const btn = (label: string, title: string, fn: () => void, extra: Record<string, unknown> = {}): HTMLElement =>
     h("button", { class: "tool", title, "aria-label": title, onclick: fn, ...extra }, label);
@@ -160,6 +170,14 @@ export async function start(root: HTMLElement): Promise<void> {
     player?.destroy();
     player = null;
     const playing = mode === "play";
+    // On phones the side panels share one slot: jump to the inspector when something is selected.
+    if (selId && selId !== lastSel) panelTab = "inspect";
+    lastSel = selId;
+    root.dataset["tab"] = panelTab;
+    root.classList.toggle("playing", playing);
+    tabs.replaceChildren(
+      h("button", { class: `tool${panelTab === "cards" ? " on" : ""}`, "aria-pressed": String(panelTab === "cards"), onclick: () => { panelTab = "cards"; render(); } }, "Cards"),
+      h("button", { class: `tool${panelTab === "inspect" ? " on" : ""}`, "aria-pressed": String(panelTab === "inspect"), onclick: () => { panelTab = "inspect"; render(); } }, "Edit object"));
     top.replaceChildren(
       h("span", { class: "logo" }, "STACKYARD"),
       h("input", { class: "title", type: "text", "aria-label": "Stack title", value: stack().title, onchange: (e: Event) => ctx.dispatch({ type: "setTitle", title: (e.target as HTMLInputElement).value }) }),
@@ -183,6 +201,7 @@ export async function start(root: HTMLElement): Promise<void> {
         h("option", { value: "" }, "New from…"), h("option", { value: "blank" }, "Blank stack"),
         ...TEMPLATES.map((t) => h("option", { value: t.id }, t.label))),
       btn("Import", "Import an exported .html", () => importInput.click()),
+      btn("About", "About Stackyard and its license", () => openAbout(quickStart)),
       btn("Export HTML", "Export one self-contained HTML file", () => void doExport(), { class: "tool primary" }));
 
     strip.replaceChildren(renderStrip(ctx));
@@ -229,4 +248,5 @@ export async function start(root: HTMLElement): Promise<void> {
     else if (/\.(html?|json)$/i.test(f.name)) void doImport(f);
   });
   render();
+  if (!saved && !wasWelcomed()) quickStart();
 }

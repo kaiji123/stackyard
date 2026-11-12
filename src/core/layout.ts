@@ -24,3 +24,8 @@ export function fitScale(viewW: number, viewH: number): number {
   const s = Math.min(viewW / CANVAS_W, viewH / CANVAS_H);
   return Number.isFinite(s) && s > 0 ? s : 1;
 }
+
+/** True when two rectangles share area. Touching edges do not count as overlap. */
+export function intersects(a: Rect, b: Rect): boolean {
+  return a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
+}

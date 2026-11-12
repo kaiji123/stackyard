@@ -1,6 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "title": "How to Carve a Pumpkin",
+  "skin": "plain",
   "start": "pick",
   "cards": [
     {

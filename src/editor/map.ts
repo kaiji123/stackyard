@@ -66,7 +66,7 @@ export function renderMap(ctx: Ctx): HTMLElement {
 
   const issues = diagnose(stack);
   return h("div", { class: "work-map" },
-    h("p", { class: "hint" }, "Arrows show where buttons lead. Red = unreachable, amber = no way out. Click a card to edit it."),
+    h("p", { class: "hint" }, stack.cards.length < 2 ? "Add a second card, then give a button a “Go to card…” action. Arrows will appear here." : "Arrows show where buttons lead. Red = unreachable, amber = no way out. Click a card to edit it."),
     h("div", { class: "map-scroll" }, svg),
     h("p", { class: "hint" }, issues.length === 0 ? "✔ The stack doctor found nothing to fix." : `${issues.length} thing(s) for the stack doctor to flag (see the right panel).`));
 }

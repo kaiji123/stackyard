@@ -19,7 +19,8 @@ export const TEMPLATES: readonly Template[] = [
 ];
 
 export const BLANK: Stack = {
-  schemaVersion: 1,
+  schemaVersion: 2,
+  skin: "plain",
   title: "My first stack",
   start: "c1",
   cards: [{ id: "c1", name: "Card 1", objects: [] }],

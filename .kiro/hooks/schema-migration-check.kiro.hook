@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "name": "Schema change needs a migration",
+  "description": "When the schema or migrations change, regenerate docs/schema.md and fail if a bumped schemaVersion has no migration.",
+  "version": "1",
+  "when": { "type": "fileEdited", "patterns": ["src/core/types.ts", "src/core/migrate.ts"] },
+  "then": { "type": "runCommand", "command": "npm run schema-doc" }
+}

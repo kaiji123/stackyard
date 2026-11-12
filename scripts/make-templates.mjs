@@ -12,7 +12,7 @@ const card = (id, name, objects) => ({ id, name, objects });
 const go = (c) => ({ type: "goto", card: c });
 const show = (o) => ({ type: "show", object: o });
 const hide = (o) => ({ type: "hide", object: o });
-const stack = (title, start, cards) => ({ schemaVersion: 1, title, start, cards, assets: {} });
+const stack = (title, start, cards, skin = "plain") => ({ schemaVersion: 2, title, skin, start, cards, assets: {} });
 
 const title = (id, s) => T(id, 72, 28, 680, 70, s, { size: 40, bold: true });
 const body = (id, s, y = 120, h = 220) => T(id, 72, y, 660, h, s, { size: 26 });
@@ -41,10 +41,10 @@ const haunted = stack("Haunted House Escape Room", "gate", [
     title("study_t", "The Study"),
     body("study_b", "A dusty desk. Something glints\nin the top drawer.", 120, 140),
     T("study_dark", 72, 290, 660, 50, "Too dark to see anything.", { size: 22, visible: false }),
-    T("study_key", 72, 290, 660, 50, "You found a rusty key!", { size: 22, bold: true, visible: false }),
+    T("study_key", 72, 350, 660, 50, "You found a rusty key!", { size: 22, bold: true, visible: false }),
     B("study_desk", 72, 450, 220, 64, "Open drawer", [
       { type: "if", cond: { flag: "lampOn" },
-        then: [{ type: "addItem", item: "key" }, show("study_key"), hide("study_desk")],
+        then: [{ type: "addItem", item: "key" }, hide("study_dark"), show("study_key"), hide("study_desk")],
         else: [show("study_dark")] },
     ]),
     B("study_back", 512, 450, 220, 64, "Back to hall", [go("hall")]),
@@ -111,6 +111,9 @@ const tutorial = stack("How to Carve a Pumpkin", "pick", [
   step("carve", "Carve", 5, "Carve slowly", "Use a small saw. Cut with short, gentle\nstrokes and push the pieces out from\nthe inside."),
   step("light", "Light", 6, "Light it up", "Put in a battery candle and replace the\nlid. Place your pumpkin by the door.\nHappy Halloween!", true),
 ]);
+
+haunted.skin = "haunted";
+story.skin = "haunted";
 
 mkdirSync("templates", { recursive: true });
 const out = { "haunted-house": haunted, "ghost-story": story, "pumpkin-tutorial": tutorial };

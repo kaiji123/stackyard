@@ -28,7 +28,7 @@ describe("export / import", () => {
       const doc = parse(html);
       expect([...doc.querySelectorAll("script")].map((x) => x.type)).toEqual(["application/json", ""]);
       expect(doc.querySelectorAll("img[onerror], [onerror], [onclick]").length).toBe(0);
-      expect(doc.title).toBe(s.title.replace(/[\u0000-\u001f\u007f\u2028\u2029]/g, " ").replace(/\s+/g, " ").trim());
+      expect(doc.title).toBe(s.title.replace(/[\u0000-\u001f\u007f\u2028\u2029]/g, " ").replace(/[ \t\n\f\r]+/g, " ").replace(/^ | $/g, ""));
       expect(doc.head.querySelectorAll("title").length).toBe(1);
     }), { numRuns: 60 });
   });

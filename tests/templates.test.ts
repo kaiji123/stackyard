@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { diagnose } from "../src/core/doctor";
 import { initState, click, visibleObjects } from "../src/core/engine";
+import { liveTextOverlaps, staticTextOverlaps } from "../src/core/overlap";
 import { validateStack } from "../src/core/validate";
 
 const files = readdirSync("templates").filter((f) => f.endsWith(".json"));
@@ -17,6 +18,15 @@ describe("templates", () => {
       const r = validateStack(doc);
       expect(r.ok).toBe(true);
       if (r.ok) expect(diagnose(r.stack).filter((i) => i.severity !== "info")).toEqual([]);
+    });
+  }
+
+  for (const f of files) {
+    it(`${f}: no two text boxes overlap, on any card, in any state`, () => {
+      const r = validateStack(JSON.parse(readFileSync(`templates/${f}`, "utf8")));
+      if (!r.ok) throw new Error("invalid");
+      expect(staticTextOverlaps(r.stack)).toEqual([]);
+      expect(liveTextOverlaps(r.stack).overlaps).toEqual([]);
     });
   }
 

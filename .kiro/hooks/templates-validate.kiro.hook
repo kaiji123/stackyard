@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "name": "Validate templates on save",
+  "description": "Validates each template against the schema, runs the stack doctor (no errors or warnings) and checks that no two text boxes overlap.",
+  "version": "1",
+  "when": { "type": "fileEdited", "patterns": ["templates/*.json", "scripts/make-templates.mjs"] },
+  "then": { "type": "runCommand", "command": "npx vitest run tests/templates.test.ts" }
+}

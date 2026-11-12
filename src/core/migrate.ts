@@ -5,8 +5,11 @@ type Rec = Readonly<Record<string, unknown>>;
 /** A migration upgrades a document from version N to N+1. Must be pure. */
 export type Migration = (doc: Rec) => Rec;
 
-/** Keyed by the version being migrated FROM. Empty until the schema first changes after v1. */
-export const MIGRATIONS: Readonly<Record<number, Migration>> = {};
+/** Keyed by the version being migrated FROM. */
+export const MIGRATIONS: Readonly<Record<number, Migration>> = {
+  // v1 -> v2: stacks gain a `skin`. Existing stacks keep their plain look.
+  1: (doc) => ({ ...doc, skin: "plain" }),
+};
 
 export type MigrateResult =
   | { readonly ok: true; readonly doc: unknown }

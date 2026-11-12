@@ -1,6 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "title": "Haunted House Escape Room",
+  "skin": "haunted",
   "start": "gate",
   "cards": [
     {
@@ -236,7 +237,7 @@
           "kind": "text",
           "id": "study_key",
           "x": 72,
-          "y": 290,
+          "y": 350,
           "w": 660,
           "h": 50,
           "visible": false,
@@ -264,6 +265,10 @@
                 {
                   "type": "addItem",
                   "item": "key"
+                },
+                {
+                  "type": "hide",
+                  "object": "study_dark"
                 },
                 {
                   "type": "show",

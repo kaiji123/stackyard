@@ -1,11 +1,12 @@
 import { allActions, dangling, edges, reachable } from "./graph";
+import { liveTextOverlaps } from "./overlap";
 import type { CardId, Cond, ObjectId, Stack } from "./types";
 
 export interface Issue {
   readonly severity: "error" | "warning" | "info";
   readonly code:
     | "unreachable-card" | "dangling-target" | "empty-button" | "flag-never-set"
-    | "item-never-added" | "dead-end" | "missing-asset";
+    | "item-never-added" | "dead-end" | "missing-asset" | "text-overlap";
   readonly message: string;
   readonly card?: CardId;
   readonly object?: ObjectId;
@@ -36,6 +37,15 @@ export function diagnose(stack: Stack): readonly Issue[] {
 
   for (const d of dangling(stack)) {
     issues.push({ severity: "error", code: "dangling-target", card: d.card, object: d.object, message: `An action on "${name(d.card)}" points at a missing ${d.kind}.` });
+  }
+
+  const snippet = (card: CardId, id: ObjectId): string => {
+    const o = stack.cards.find((c) => c.id === card)?.objects.find((x) => x.id === id);
+    const t = o?.kind === "text" ? o.text.replace(/\s+/g, " ").trim() : "";
+    return `“${t.length > 24 ? `${t.slice(0, 24)}…` : t}”`;
+  };
+  for (const o of liveTextOverlaps(stack).overlaps) {
+    issues.push({ severity: "warning", code: "text-overlap", card: o.card, object: o.a, message: `Texts overlap on "${name(o.card)}": ${snippet(o.card, o.a)} and ${snippet(o.card, o.b)}. Move one so both stay readable.` });
   }
 
   const flagsSet = new Set<string>();

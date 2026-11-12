@@ -122,6 +122,7 @@ export const arbStack: fc.Arbitrary<Stack> = fc
     return fc.record({
       schemaVersion: fc.constant(SCHEMA_VERSION),
       title: arbText,
+      skin: fc.constantFrom("plain", "haunted"),
       start: fc.constantFrom(...cardIds),
       cards: fc.tuple(...cards),
       assets: fc.record({
@@ -172,7 +173,7 @@ export function resolveSeed(stack: Stack, s: CommandSeed, fresh: number): Comman
   });
   const newObj = mk(`n${fresh}`);
   switch (s.kind) {
-    case 0: return { type: "setTitle", title: s.text };
+    case 0: return s.bool ? { type: "setTitle", title: s.text } : { type: "setSkin", skin: s.a % 2 === 0 ? "plain" : "haunted" };
     case 1: return { type: "setStart", card };
     case 2: return { type: "addCard", index: s.a % 7 - 1, card: { id: `n${fresh}`, name: s.text, objects: [mk(`n${fresh}o`)] } };
     case 3: return { type: "deleteCard", card };

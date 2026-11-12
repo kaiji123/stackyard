@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "name": "Update write-up",
+  "description": "Manual: refresh KIRO_LOG.md from spec task progress and recent property-test findings.",
+  "version": "1",
+  "when": { "type": "userTriggered" },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Read every .kiro/specs/*/tasks.md and git log. Update KIRO_LOG.md: tick finished work, add any new bug found by a property test (with the shrunk counterexample and the fix), and note which Kiro features were used (specs, hooks, steering, MCP). Only record things that really happened; do not invent usage."
+  }
+}

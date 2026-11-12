@@ -1,6 +1,6 @@
 /** Stackyard document model. Pure data, JSON-serializable, no DOM. */
 
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 export const CANVAS_W = 800;
 export const CANVAS_H = 600;
 
@@ -80,9 +80,13 @@ export interface Asset {
   readonly data: string;
 }
 
+export type Skin = "plain" | "haunted";
+
 export interface Stack {
   readonly schemaVersion: number;
   readonly title: string;
+  /** Visual theme applied by the player. Added in schema v2. */
+  readonly skin: Skin;
   readonly start: CardId;
   readonly cards: readonly Card[];
   readonly assets: Readonly<Record<AssetId, Asset>>;

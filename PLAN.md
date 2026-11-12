@@ -209,13 +209,15 @@ Record the bugs PBT finds in `KIRO_LOG.md`.
 
 Tracked in `KIRO_LOG.md` and `.kiro/specs/*/tasks.md`.
 
-- [x] Steering, scaffold, PLAN.md
-- [x] `/core`: model, commands + undo, action engine, graph, doctor, migrations (properties 3-8)
-- [x] Player (~3 KB gz) + single-file export/import with strict CSP (properties 1-2)
-- [x] Editor: card strip, canvas drag/resize, inspector, no-code action editor, play mode, stack map, doctor panel, IndexedDB autosave, import/export, images (downscaled)
-- [x] 3 templates (Haunted House is winnable end-to-end in a test)
-- [x] Playwright e2e: editor flows, offline `file://` export, CSP blocks injected script
-- [ ] Hooks: schema doc, player size budget, templates validation, export smoke test
-- [ ] Design pass: OFL pixel fonts, haunted skin, onboarding, mobile editor
-- [ ] Cross-browser matrix (Firefox/WebKit), iOS/Android by hand
-- [ ] Specs 3-5 written down, README, GitHub Pages deploy
+- [x] Steering (5 files), scaffold, PLAN.md, README, MIT license shown in the About dialog
+- [x] `/core`: model, commands + undo, action engine, graph, doctor, migrations (schema v2), text-overlap check
+- [x] Player (~3 KB gz) + single-file export/import with strict CSP; OFL pixel fonts embedded
+- [x] Editor: strip, canvas, inspector, no-code actions, play, stack map, doctor, autosave, import/export, images
+- [x] Haunted skin, quick start, empty states, phone layout
+- [x] 3 templates (escape room winnable in a test; no overlapping text anywhere)
+- [x] Playwright e2e on Chromium, Firefox, WebKit and emulated iPhone 13 / Pixel 7
+- [x] Hooks: core tests, schema/migration, player size, templates, export smoke (manual), write-up (manual)
+- [x] Specs 1-5, Playwright MCP config, GitHub Pages workflow, examples/
+- [ ] Real-device checks (iOS Safari, Android Chrome): docs/TESTING.md
+- [ ] Link mode, drag-to-reorder cards, sound action
+- [ ] Push to GitHub, enable Pages, set license in About, demo video, Devpost text, blog post

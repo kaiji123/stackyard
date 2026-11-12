@@ -72,6 +72,7 @@ export function mount(root: HTMLElement, stack: Stack, embedded = false): Mounte
   const stage = document.createElement("div");
   stage.className = "sy-stage";
   stage.setAttribute("role", "group");
+  if (stack.skin === "haunted") stage.classList.add("sy-haunted");
   host.append(stage);
   root.replaceChildren(host);
 
@@ -90,6 +91,23 @@ export function mount(root: HTMLElement, stack: Stack, embedded = false): Mounte
       renderObject(stack, o, () => { state = click(stack, state, o.id); draw(); })));
     if (prevFocus) stage.querySelector<HTMLElement>(`[data-id="${CSS.escape(prevFocus)}"]`)?.focus();
   };
+
+  // Haunted skin: a fading ghost trail behind the pointer (skipped for reduced-motion users).
+  let lastGhost = 0;
+  const trail = (e: PointerEvent): void => {
+    if (e.timeStamp - lastGhost < 70 || host.querySelectorAll(".sy-ghost").length > 14) return;
+    lastGhost = e.timeStamp;
+    const g = document.createElement("div");
+    g.className = "sy-ghost";
+    g.style.left = `${e.clientX}px`;
+    g.style.top = `${e.clientY}px`;
+    g.addEventListener("animationend", () => g.remove());
+    host.append(g);
+  };
+  const calm = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (stack.skin === "haunted" && !calm) {
+    host.addEventListener("pointermove", trail);
+  }
 
   const onResize = (): void => fit();
   window.addEventListener("resize", onResize);

@@ -1,4 +1,5 @@
 import { clampRect, fitScale, MIN_SIZE, type Rect } from "../core/layout";
+import { liveTextOverlaps } from "../core/overlap";
 import type { StackObject } from "../core/types";
 import { CANVAS_H, CANVAS_W } from "../core/types";
 import { renderObject } from "../player/player";
@@ -61,7 +62,7 @@ function drag(ctx: Ctx, e: PointerEvent, o: StackObject, corner: Corner | null):
 export function renderStage(ctx: Ctx): HTMLElement {
   const stack = ctx.stack();
   const sel = ctx.sel();
-  const stage = h("div", { class: "sy-stage edit" });
+  const stage = h("div", { class: `sy-stage edit${stack.skin === "haunted" ? " sy-haunted" : ""}` });
   for (const o of ctx.card().objects) {
     const el = renderObject(stack, o);
     el.classList.add("ed-obj");
@@ -76,9 +77,29 @@ export function renderStage(ctx: Ctx): HTMLElement {
     place(box, sel);
     stage.append(box);
   }
+  // Warn on the canvas: texts that can be visible together and overlap, and text that does not fit its box.
+  const cardId = ctx.card().id;
+  const clash = new Set(liveTextOverlaps(stack).overlaps.filter((o) => o.card === cardId).flatMap((o) => [o.a, o.b]));
+  stage.querySelectorAll<HTMLElement>(".sy-text").forEach((el) => {
+    if (clash.has(el.dataset["id"] ?? "")) {
+      el.classList.add("ed-overlap");
+      el.title = "This text overlaps another text. Move or resize one of them.";
+    }
+  });
+  const markCutOff = (): void => stage.querySelectorAll<HTMLElement>(".sy-text").forEach((el) => {
+    const cut = el.scrollHeight > el.clientHeight + 1;
+    el.classList.toggle("ed-overflow", cut);
+    if (cut) el.title = "This text does not fit its box. Make the box taller or the text smaller.";
+  });
   stage.addEventListener("pointerdown", () => { if (ctx.sel()) ctx.selectObject(null); });
 
-  const wrap = h("div", { class: "stage-wrap" }, stage);
+  const empty = ctx.card().objects.length === 0
+    ? h("div", { class: "empty-hint" },
+      h("p", { class: "big" }, "This card is empty"),
+      h("p", null, "Add Text, a Button or an Image from the top bar."),
+      h("p", null, "You can also paste or drop a picture here."))
+    : null;
+  const wrap = h("div", { class: "stage-wrap" }, stage, empty);
   const work = h("div", { class: "work-edit" }, wrap);
   const fit = (): void => {
     const r = work.getBoundingClientRect();
@@ -92,6 +113,7 @@ export function renderStage(ctx: Ctx): HTMLElement {
   wrap.style.height = `${CANVAS_H * scale}px`;
   stage.style.transform = `scale(${scale})`;
   new ResizeObserver(fit).observe(work);
-  requestAnimationFrame(fit);
+  requestAnimationFrame(() => { fit(); markCutOff(); });
+  void document.fonts?.ready.then(markCutOff); // glyph widths change once the pixel fonts arrive
   return work;
 }

@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "name": "Export smoke test",
+  "description": "Manual: export every template from the editor and open it over file:// while offline in Playwright. Fails on any network request or console error.",
+  "version": "1",
+  "when": { "type": "userTriggered" },
+  "then": { "type": "runCommand", "command": "npm run smoke" }
+}

@@ -134,6 +134,7 @@ export function validateStack(doc: unknown): ValidationResult {
   if (!isRec(doc)) return { ok: false, errors: ["stack must be an object"] };
   if (doc["schemaVersion"] !== SCHEMA_VERSION) errs.push(`schemaVersion must be ${SCHEMA_VERSION}`);
   if (!isStr(doc["title"])) errs.push("title must be a string");
+  if (doc["skin"] !== "plain" && doc["skin"] !== "haunted") errs.push("skin must be plain or haunted");
   if (!isStr(doc["start"])) errs.push("start must be a string");
   const cards = doc["cards"];
   if (!Array.isArray(cards) || cards.length === 0) {

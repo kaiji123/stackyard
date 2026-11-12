@@ -1,7 +1,7 @@
 import { clampRect } from "./layout";
 import { nextId, usedIds } from "./ids";
 import type {
-  Action, Asset, AssetId, Card, CardId, ObjectId, SimpleAction, Stack, StackObject, TextAlign,
+  Action, Asset, AssetId, Card, CardId, ObjectId, SimpleAction, Skin, Stack, StackObject, TextAlign,
 } from "./types";
 
 /** Editable fields of an object. Fields that do not apply to the object's kind are ignored. */
@@ -21,6 +21,7 @@ export interface ObjectPatch {
 
 export type Command =
   | { readonly type: "setTitle"; readonly title: string }
+  | { readonly type: "setSkin"; readonly skin: Skin }
   | { readonly type: "setStart"; readonly card: CardId }
   | { readonly type: "addAsset"; readonly id: AssetId; readonly asset: Asset }
   | { readonly type: "addCard"; readonly card: Card; readonly index: number }
@@ -125,6 +126,8 @@ export function applyCommand(stack: Stack, cmd: Command): Stack {
   switch (cmd.type) {
     case "setTitle":
       return cmd.title === stack.title ? stack : { ...stack, title: cmd.title };
+    case "setSkin":
+      return cmd.skin === stack.skin ? stack : { ...stack, skin: cmd.skin };
     case "setStart":
       return stack.cards.some((c) => c.id === cmd.card) && cmd.card !== stack.start ? { ...stack, start: cmd.card } : stack;
     case "addAsset":

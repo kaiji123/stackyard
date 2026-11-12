@@ -1,6 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "title": "The Lantern Road",
+  "skin": "haunted",
   "start": "road",
   "cards": [
     {

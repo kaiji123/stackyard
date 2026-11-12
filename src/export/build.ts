@@ -1,3 +1,4 @@
+import { FONT_CSS } from "../player/fonts";
 import { PLAYER_CSS } from "../player/style";
 import type { Stack } from "../core/types";
 
@@ -43,6 +44,7 @@ export async function buildHtml(stack: Stack, playerJs: string): Promise<string>
     "img-src data:",
     "media-src data:",
     "style-src 'unsafe-inline'",
+    "font-src data:",
     `script-src 'sha256-${hash}'`,
     "base-uri 'none'",
     "form-action 'none'",
@@ -50,11 +52,12 @@ export async function buildHtml(stack: Stack, playerJs: string): Promise<string>
   const data = escapeJson(JSON.stringify(pruneAssets(stack)));
   return `<!doctype html>
 <html lang="en"><head>
+<!-- Made with Stackyard (MIT License). Embedded fonts Silkscreen and VT323: SIL Open Font License 1.1. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="${csp}">
 <title>${escapeHtml(stack.title.replace(CONTROL, " "))}</title>
-<style>html,body{margin:0;height:100%;background:#1b1426}${PLAYER_CSS}</style>
+<style>html,body{margin:0;height:100%;background:#1b1426;overscroll-behavior:none;-webkit-tap-highlight-color:transparent}${FONT_CSS}${PLAYER_CSS}</style>
 </head><body>
 <div id="stack"></div>
 <script type="application/json" id="stack-data">${data}</script>

@@ -1,6 +1,6 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
-import { migrate, type Migration } from "../../src/core/migrate";
+import { MIGRATIONS, migrate, type Migration } from "../../src/core/migrate";
 import { SCHEMA_VERSION } from "../../src/core/types";
 import { validateStack } from "../../src/core/validate";
 import { arbStack } from "../arbitraries";
@@ -65,5 +65,27 @@ describe("migrate", () => {
     expect(migrate({ schemaVersion: SCHEMA_VERSION + 1 }).ok).toBe(false);
     expect(migrate({ schemaVersion: 0 }).ok).toBe(false);
     expect(migrate([]).ok).toBe(false);
+  });
+});
+
+describe("real migrations", () => {
+  it("v1 documents gain a plain skin and validate as the current version", () => {
+    fc.assert(fc.property(arbStack, (s) => {
+      const { skin: _skin, ...rest } = s;
+      const v1 = JSON.parse(JSON.stringify({ ...rest, schemaVersion: 1 }));
+      const before = JSON.stringify(v1);
+      const r = migrate(v1);
+      expect(JSON.stringify(v1)).toBe(before); // input untouched
+      expect(r.ok).toBe(true);
+      if (r.ok) {
+        expect(r.doc).toMatchObject({ schemaVersion: SCHEMA_VERSION, skin: "plain" });
+        expect(validateStack(r.doc).ok).toBe(true);
+        expect(migrate(r.doc)).toEqual(r); // idempotent
+      }
+    }));
+  });
+
+  it("has a migration for every version below the current one", () => {
+    for (let v = 1; v < SCHEMA_VERSION; v++) expect(MIGRATIONS[v]).toBeTypeOf("function");
   });
 });
