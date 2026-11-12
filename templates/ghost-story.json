@@ -1,0 +1,356 @@
+{
+  "schemaVersion": 1,
+  "title": "The Lantern Road",
+  "start": "road",
+  "cards": [
+    {
+      "id": "road",
+      "name": "The Road",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "road_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "The Lantern Road",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "road_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 220,
+          "visible": true,
+          "actions": [],
+          "text": "Night. The fog is thick. Far ahead,\nlanterns float above the road.\n\nWhat do you do?",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "road_a",
+          "x": 72,
+          "y": 450,
+          "w": 320,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "lights"
+            }
+          ],
+          "label": "Follow the lights"
+        },
+        {
+          "kind": "button",
+          "id": "road_b2",
+          "x": 420,
+          "y": 450,
+          "w": 312,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "home"
+            }
+          ],
+          "label": "Turn back home"
+        }
+      ]
+    },
+    {
+      "id": "lights",
+      "name": "The Lights",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "lights_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "The Lights",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "lights_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 220,
+          "visible": true,
+          "actions": [],
+          "text": "The lanterns lead to an iron gate.\nBehind it, someone is humming.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "lights_a",
+          "x": 72,
+          "y": 450,
+          "w": 320,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "gate"
+            }
+          ],
+          "label": "Open the gate"
+        },
+        {
+          "kind": "button",
+          "id": "lights_b2",
+          "x": 420,
+          "y": 450,
+          "w": 312,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "run"
+            }
+          ],
+          "label": "Run!"
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "name": "The Gate",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "gate_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "The Gate",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "gate_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 220,
+          "visible": true,
+          "actions": [],
+          "text": "A girl in a grey dress turns around.\n\"You are the first to stay,\" she says.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "gate_a",
+          "x": 72,
+          "y": 450,
+          "w": 320,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "friend"
+            }
+          ],
+          "label": "Take her hand"
+        },
+        {
+          "kind": "button",
+          "id": "gate_b2",
+          "x": 420,
+          "y": 450,
+          "w": 312,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "run"
+            }
+          ],
+          "label": "Step back"
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "name": "Ending: Home",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "home_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "Safe at home",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "home_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 220,
+          "visible": true,
+          "actions": [],
+          "text": "You lock the door. The lanterns outside\nflicker out one by one. You never find\nout what they wanted.\n\nThe end.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "home_again",
+          "x": 72,
+          "y": 450,
+          "w": 260,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "road"
+            }
+          ],
+          "label": "Start over"
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "name": "Ending: Lost",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "run_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "Lost in the fog",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "run_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 220,
+          "visible": true,
+          "actions": [],
+          "text": "You run until the road disappears.\nThe lanterns circle you, patient and\nsilent.\n\nThe end.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "run_again",
+          "x": 72,
+          "y": 450,
+          "w": 260,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "road"
+            }
+          ],
+          "label": "Start over"
+        }
+      ]
+    },
+    {
+      "id": "friend",
+      "name": "Ending: Friend",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "friend_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "A new friend",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "friend_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 220,
+          "visible": true,
+          "actions": [],
+          "text": "Her hand is cold, but she smiles.\nFrom then on, the lanterns light your way.\n\nThe end.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "friend_again",
+          "x": 72,
+          "y": 450,
+          "w": 260,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "road"
+            }
+          ],
+          "label": "Start over"
+        }
+      ]
+    }
+  ],
+  "assets": {}
+}

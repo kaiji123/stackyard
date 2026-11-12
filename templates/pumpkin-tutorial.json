@@ -1,0 +1,462 @@
+{
+  "schemaVersion": 1,
+  "title": "How to Carve a Pumpkin",
+  "start": "pick",
+  "cards": [
+    {
+      "id": "pick",
+      "name": "Pick",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "pick_n",
+          "x": 72,
+          "y": 28,
+          "w": 200,
+          "h": 40,
+          "visible": true,
+          "actions": [],
+          "text": "Step 1 of 6",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "pick_t",
+          "x": 72,
+          "y": 70,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "Pick your pumpkin",
+          "fontSize": 38,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "pick_b",
+          "x": 72,
+          "y": 160,
+          "w": 660,
+          "h": 230,
+          "visible": true,
+          "actions": [],
+          "text": "Choose one with a flat bottom and a\nstrong green stem. Smooth skin is\neasiest to carve.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "pick_next",
+          "x": 512,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "next"
+            }
+          ],
+          "label": "Next"
+        }
+      ]
+    },
+    {
+      "id": "lid",
+      "name": "Lid",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "lid_n",
+          "x": 72,
+          "y": 28,
+          "w": 200,
+          "h": 40,
+          "visible": true,
+          "actions": [],
+          "text": "Step 2 of 6",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "lid_t",
+          "x": 72,
+          "y": 70,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "Cut the lid",
+          "fontSize": 38,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "lid_b",
+          "x": 72,
+          "y": 160,
+          "w": 660,
+          "h": 230,
+          "visible": true,
+          "actions": [],
+          "text": "Cut a circle around the stem, angled\ninward so the lid will not fall in.\nAsk a grown-up to help with the knife.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "lid_prev",
+          "x": 72,
+          "y": 450,
+          "w": 200,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "prev"
+            }
+          ],
+          "label": "Back"
+        },
+        {
+          "kind": "button",
+          "id": "lid_next",
+          "x": 512,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "next"
+            }
+          ],
+          "label": "Next"
+        }
+      ]
+    },
+    {
+      "id": "scoop",
+      "name": "Scoop",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "scoop_n",
+          "x": 72,
+          "y": 28,
+          "w": 200,
+          "h": 40,
+          "visible": true,
+          "actions": [],
+          "text": "Step 3 of 6",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "scoop_t",
+          "x": 72,
+          "y": 70,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "Scoop it out",
+          "fontSize": 38,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "scoop_b",
+          "x": 72,
+          "y": 160,
+          "w": 660,
+          "h": 230,
+          "visible": true,
+          "actions": [],
+          "text": "Use a big spoon to pull out the seeds\nand strings. Scrape the inside wall\nuntil it is about 3 cm thick.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "scoop_prev",
+          "x": 72,
+          "y": 450,
+          "w": 200,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "prev"
+            }
+          ],
+          "label": "Back"
+        },
+        {
+          "kind": "button",
+          "id": "scoop_next",
+          "x": 512,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "next"
+            }
+          ],
+          "label": "Next"
+        }
+      ]
+    },
+    {
+      "id": "draw",
+      "name": "Draw",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "draw_n",
+          "x": 72,
+          "y": 28,
+          "w": 200,
+          "h": 40,
+          "visible": true,
+          "actions": [],
+          "text": "Step 4 of 6",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "draw_t",
+          "x": 72,
+          "y": 70,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "Draw the face",
+          "fontSize": 38,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "draw_b",
+          "x": 72,
+          "y": 160,
+          "w": 660,
+          "h": 230,
+          "visible": true,
+          "actions": [],
+          "text": "Sketch eyes, a nose and a grin with a\nmarker. Keep shapes simple: triangles\nand squares are the safest.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "draw_prev",
+          "x": 72,
+          "y": 450,
+          "w": 200,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "prev"
+            }
+          ],
+          "label": "Back"
+        },
+        {
+          "kind": "button",
+          "id": "draw_next",
+          "x": 512,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "next"
+            }
+          ],
+          "label": "Next"
+        }
+      ]
+    },
+    {
+      "id": "carve",
+      "name": "Carve",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "carve_n",
+          "x": 72,
+          "y": 28,
+          "w": 200,
+          "h": 40,
+          "visible": true,
+          "actions": [],
+          "text": "Step 5 of 6",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "carve_t",
+          "x": 72,
+          "y": 70,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "Carve slowly",
+          "fontSize": 38,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "carve_b",
+          "x": 72,
+          "y": 160,
+          "w": 660,
+          "h": 230,
+          "visible": true,
+          "actions": [],
+          "text": "Use a small saw. Cut with short, gentle\nstrokes and push the pieces out from\nthe inside.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "carve_prev",
+          "x": 72,
+          "y": 450,
+          "w": 200,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "prev"
+            }
+          ],
+          "label": "Back"
+        },
+        {
+          "kind": "button",
+          "id": "carve_next",
+          "x": 512,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "next"
+            }
+          ],
+          "label": "Next"
+        }
+      ]
+    },
+    {
+      "id": "light",
+      "name": "Light",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "light_n",
+          "x": 72,
+          "y": 28,
+          "w": 200,
+          "h": 40,
+          "visible": true,
+          "actions": [],
+          "text": "Step 6 of 6",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "light_t",
+          "x": 72,
+          "y": 70,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "Light it up",
+          "fontSize": 38,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "light_b",
+          "x": 72,
+          "y": 160,
+          "w": 660,
+          "h": 230,
+          "visible": true,
+          "actions": [],
+          "text": "Put in a battery candle and replace the\nlid. Place your pumpkin by the door.\nHappy Halloween!",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "light_prev",
+          "x": 72,
+          "y": 450,
+          "w": 200,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "prev"
+            }
+          ],
+          "label": "Back"
+        },
+        {
+          "kind": "button",
+          "id": "light_next",
+          "x": 512,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "pick"
+            }
+          ],
+          "label": "Start over"
+        }
+      ]
+    }
+  ],
+  "assets": {}
+}

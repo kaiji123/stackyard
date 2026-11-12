@@ -1,0 +1,451 @@
+{
+  "schemaVersion": 1,
+  "title": "Haunted House Escape Room",
+  "start": "gate",
+  "cards": [
+    {
+      "id": "gate",
+      "name": "The Gate",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "gate_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "The Haunted House",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "gate_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 220,
+          "visible": true,
+          "actions": [],
+          "text": "The door slams shut behind you.\n\nFind the key, face the ghost,\nand get out before midnight.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "gate_go",
+          "x": 72,
+          "y": 440,
+          "w": 260,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "hall"
+            }
+          ],
+          "label": "Step inside"
+        }
+      ]
+    },
+    {
+      "id": "hall",
+      "name": "The Hall",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "hall_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "The Hall",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "hall_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 180,
+          "visible": true,
+          "actions": [],
+          "text": "It is dark. You feel a lamp on a table,\na study to the left, and a cellar door\nwith a heavy lock.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "hall_lit",
+          "x": 72,
+          "y": 310,
+          "w": 660,
+          "h": 50,
+          "visible": false,
+          "actions": [],
+          "text": "The lamp glows. Shapes appear on the walls.",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "hall_locked",
+          "x": 72,
+          "y": 360,
+          "w": 660,
+          "h": 50,
+          "visible": false,
+          "actions": [],
+          "text": "The cellar door is locked.",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "hall_lamp",
+          "x": 72,
+          "y": 450,
+          "w": 200,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "setFlag",
+              "flag": "lampOn",
+              "value": true
+            },
+            {
+              "type": "show",
+              "object": "hall_lit"
+            },
+            {
+              "type": "hide",
+              "object": "hall_lamp"
+            }
+          ],
+          "label": "Light lamp"
+        },
+        {
+          "kind": "button",
+          "id": "hall_study",
+          "x": 292,
+          "y": 450,
+          "w": 200,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "study"
+            }
+          ],
+          "label": "Study"
+        },
+        {
+          "kind": "button",
+          "id": "hall_cellar",
+          "x": 512,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "if",
+              "cond": {
+                "item": "key"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "card": "cellar"
+                }
+              ],
+              "else": [
+                {
+                  "type": "show",
+                  "object": "hall_locked"
+                }
+              ]
+            }
+          ],
+          "label": "Cellar door"
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "name": "The Study",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "study_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "The Study",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "study_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 140,
+          "visible": true,
+          "actions": [],
+          "text": "A dusty desk. Something glints\nin the top drawer.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "study_dark",
+          "x": 72,
+          "y": 290,
+          "w": 660,
+          "h": 50,
+          "visible": false,
+          "actions": [],
+          "text": "Too dark to see anything.",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "study_key",
+          "x": 72,
+          "y": 290,
+          "w": 660,
+          "h": 50,
+          "visible": false,
+          "actions": [],
+          "text": "You found a rusty key!",
+          "fontSize": 22,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "study_desk",
+          "x": 72,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "if",
+              "cond": {
+                "flag": "lampOn"
+              },
+              "then": [
+                {
+                  "type": "addItem",
+                  "item": "key"
+                },
+                {
+                  "type": "show",
+                  "object": "study_key"
+                },
+                {
+                  "type": "hide",
+                  "object": "study_desk"
+                }
+              ],
+              "else": [
+                {
+                  "type": "show",
+                  "object": "study_dark"
+                }
+              ]
+            }
+          ],
+          "label": "Open drawer"
+        },
+        {
+          "kind": "button",
+          "id": "study_back",
+          "x": 512,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "hall"
+            }
+          ],
+          "label": "Back to hall"
+        }
+      ]
+    },
+    {
+      "id": "cellar",
+      "name": "The Cellar",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "cellar_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "The Cellar",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "cellar_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 160,
+          "visible": true,
+          "actions": [],
+          "text": "A pale ghost floats in front of the\nladder. \"Show me a light,\" it whispers.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "cellar_no",
+          "x": 72,
+          "y": 300,
+          "w": 660,
+          "h": 50,
+          "visible": false,
+          "actions": [],
+          "text": "The ghost laughs. It is too dark to find the ladder.",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "cellar_lamp",
+          "x": 72,
+          "y": 450,
+          "w": 280,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "if",
+              "cond": {
+                "flag": "lampOn"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "card": "exit"
+                }
+              ],
+              "else": [
+                {
+                  "type": "show",
+                  "object": "cellar_no"
+                }
+              ]
+            }
+          ],
+          "label": "Raise the lamp"
+        },
+        {
+          "kind": "button",
+          "id": "cellar_up",
+          "x": 512,
+          "y": 450,
+          "w": 220,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "hall"
+            }
+          ],
+          "label": "Go upstairs"
+        }
+      ]
+    },
+    {
+      "id": "exit",
+      "name": "Escaped!",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "exit_t",
+          "x": 72,
+          "y": 28,
+          "w": 680,
+          "h": 70,
+          "visible": true,
+          "actions": [],
+          "text": "You escaped!",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left"
+        },
+        {
+          "kind": "text",
+          "id": "exit_b",
+          "x": 72,
+          "y": 120,
+          "w": 660,
+          "h": 220,
+          "visible": true,
+          "actions": [],
+          "text": "The ghost fades. Cold air, then dawn.\n\nThe end.",
+          "fontSize": 26,
+          "bold": false,
+          "align": "left"
+        },
+        {
+          "kind": "button",
+          "id": "exit_again",
+          "x": 72,
+          "y": 450,
+          "w": 260,
+          "h": 64,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "gate"
+            }
+          ],
+          "label": "Play again"
+        }
+      ]
+    }
+  ],
+  "assets": {}
+}

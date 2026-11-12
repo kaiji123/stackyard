@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "name": "Core property tests on save",
+  "description": "When core code or its tests change, run the vitest suite and report any failing fast-check seed and shrunk counterexample.",
+  "version": "1",
+  "when": { "type": "fileEdited", "patterns": ["src/core/**/*.ts", "tests/**/*.ts"] },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Run `npx vitest run` and `npm run typecheck`. If a property fails, report the fast-check seed and shrunk counterexample, add the counterexample as a regression test in tests/core/regressions.test.ts, then fix the cause. Never hard-code a seed."
+  }
+}

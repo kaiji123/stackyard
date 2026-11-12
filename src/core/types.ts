@@ -1,0 +1,89 @@
+/** Stackyard document model. Pure data, JSON-serializable, no DOM. */
+
+export const SCHEMA_VERSION = 1;
+export const CANVAS_W = 800;
+export const CANVAS_H = 600;
+
+export type CardId = string;
+export type ObjectId = string;
+export type AssetId = string;
+
+/** A condition is either a flag that is set, or an item that is in the inventory. */
+export type Cond = { readonly flag: string } | { readonly item: string };
+
+/** Actions that cannot contain other actions. */
+export type SimpleAction =
+  | { readonly type: "goto"; readonly card: CardId }
+  | { readonly type: "next" }
+  | { readonly type: "prev" }
+  | { readonly type: "back" }
+  | { readonly type: "show"; readonly object: ObjectId }
+  | { readonly type: "hide"; readonly object: ObjectId }
+  | { readonly type: "setFlag"; readonly flag: string; readonly value: boolean }
+  | { readonly type: "addItem"; readonly item: string };
+
+/** One level of nesting only: `then`/`else` hold simple actions. */
+export interface IfAction {
+  readonly type: "if";
+  readonly cond: Cond;
+  readonly then: readonly SimpleAction[];
+  readonly else: readonly SimpleAction[];
+}
+
+export type Action = SimpleAction | IfAction;
+
+export interface ObjectBase {
+  readonly id: ObjectId;
+  readonly x: number;
+  readonly y: number;
+  readonly w: number;
+  readonly h: number;
+  /** Initial visibility. Runtime show/hide actions override it. */
+  readonly visible: boolean;
+  /** Run when the object is clicked in play mode. */
+  readonly actions: readonly Action[];
+}
+
+export type TextAlign = "left" | "center" | "right";
+
+export interface TextObject extends ObjectBase {
+  readonly kind: "text";
+  readonly text: string;
+  readonly fontSize: number;
+  readonly bold: boolean;
+  readonly align: TextAlign;
+}
+
+export interface ImageObject extends ObjectBase {
+  readonly kind: "image";
+  readonly asset: AssetId;
+  readonly alt: string;
+}
+
+export interface ButtonObject extends ObjectBase {
+  readonly kind: "button";
+  readonly label: string;
+}
+
+export type StackObject = TextObject | ImageObject | ButtonObject;
+
+export interface Card {
+  readonly id: CardId;
+  readonly name: string;
+  /** Array order is z-order: last is on top. */
+  readonly objects: readonly StackObject[];
+}
+
+export interface Asset {
+  /** e.g. "image/webp". Data is the base64 payload, never a URL. */
+  readonly mime: string;
+  readonly data: string;
+}
+
+export interface Stack {
+  readonly schemaVersion: number;
+  readonly title: string;
+  readonly start: CardId;
+  readonly cards: readonly Card[];
+  readonly assets: Readonly<Record<AssetId, Asset>>;
+}
