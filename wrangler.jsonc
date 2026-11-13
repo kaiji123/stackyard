@@ -1,0 +1,9 @@
+// Cloudflare deploy for the editor: static files only, no Worker code.
+// Build with `npm run build` first; this uploads dist/ as-is.
+{
+  "name": "stackyard",
+  "compatibility_date": "2026-11-10",
+  "assets": {
+    "directory": "./dist"
+  }
+}
