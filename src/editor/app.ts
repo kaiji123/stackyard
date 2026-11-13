@@ -2,7 +2,8 @@ import {
   exec, execBatch, newHistory, redo, replaceStack, undo, type Command, type History,
 } from "../core/commands";
 import { nextId, usedIds } from "../core/ids";
-import type { Card, CardId, ObjectId, Stack, StackObject } from "../core/types";
+import { clampRect, freeSpot, type Rect } from "../core/layout";
+import { CANVAS_H, CANVAS_W, type Card, type CardId, type ObjectId, type Stack, type StackObject } from "../core/types";
 import { buildHtml, pruneAssets } from "../export/build";
 import { fileSlug } from "../export/filename";
 import { importStack } from "../export/import";
@@ -27,6 +28,8 @@ import { renderStrip } from "./strip";
 import { BLANK, loadTemplate, TEMPLATE_LIST } from "./templates";
 
 const SOFT_LIMIT = 10 * 1024 * 1024;
+/** How long a status message stays before only the save state is left. */
+const STATUS_MS = 8000;
 
 export async function start(root: HTMLElement): Promise<void> {
   const style = document.createElement("style");
@@ -101,7 +104,7 @@ export async function start(root: HTMLElement): Promise<void> {
       const id = nextId("o", used);
       const bgnd = first.w === 200 && first.h === 150;
       // Backgrounds fill the card on the bottom layer; sprites are 256 px in the middle, ready to move.
-      const rect = bgnd ? { x: 0, y: 0, w: 800, h: 600 } : { x: 272, y: 172, w: 256, h: 256 };
+      const rect = bgnd ? { x: 0, y: 0, w: 800, h: 600 } : spotFor(256, 256, { x: 272, y: 172, w: 256, h: 256 });
       const obj: StackObject = {
         kind: "image", id, asset: assetId, alt: r.alt, crisp: true, visible: true, actions: [], motion: "none", ...rect,
       };
@@ -177,7 +180,7 @@ export async function start(root: HTMLElement): Promise<void> {
         const k = Math.min(1, 480 / img.w, 360 / img.h);
         const w = Math.max(16, Math.round(img.w * k)), hh = Math.max(16, Math.round(img.h * k));
         const obj: StackObject = {
-          kind: "image", id, asset: assetId, alt: "", crisp: img.kept, x: 80, y: 80, w, h: hh, visible: true, motion: "none", actions: [],
+          kind: "image", id, asset: assetId, alt: "", crisp: img.kept, visible: true, motion: "none", actions: [], ...spotFor(w, hh, { x: 80, y: 80, w, h: hh }),
         };
         ctx.batch([{ type: "addAsset", id: assetId, asset: { mime: img.mime, data: img.data } }, { type: "addObject", card: card().id, object: obj }]);
         selId = id;
@@ -250,12 +253,20 @@ export async function start(root: HTMLElement): Promise<void> {
   // Esc inside real fullscreen is consumed by the browser; it tells us through this event.
   document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement && fullscreenOn) exitPlay(); });
 
+  /** Free room on the current card for a new object, so it doesn't land on top of another one. */
+  const spotFor = (w: number, hh: number, fallback: Rect): Rect => {
+    const isBackground = (o: StackObject): boolean => o.kind === "image" && o.w * o.h >= CANVAS_W * CANVAS_H * 0.6;
+    return freeSpot(card().objects.filter((o) => !isBackground(o)), w, hh) ?? clampRect(fallback);
+  };
   const addObject = (kind: "text" | "button"): void => {
     const id = nextId("o", usedIds(stack()));
-    const base = { id, x: 100, y: 100, visible: true, actions: [], motion: "none" } as const;
+    const [w, hh] = kind === "text" ? [440, 110] : [220, 64];
+    // A full card: step each new box down and right from (100, 100) so it never hides the last one exactly.
+    const k = (card().objects.length % 10) * 24;
+    const base = { id, visible: true, actions: [], motion: "none", ...spotFor(w, hh, { x: 100 + k, y: 100 + k, w, h: hh }) } as const;
     const obj: StackObject = kind === "text"
-      ? { ...base, kind, w: 440, h: 110, text: "New text", fontSize: 28, bold: false, align: "left", tone: "dark" }
-      : { ...base, kind, w: 220, h: 64, label: "Button" };
+      ? { ...base, kind, text: "New text", fontSize: 28, bold: false, align: "left", tone: "dark" }
+      : { ...base, kind, label: "Button" };
     ctx.dispatch({ type: "addObject", card: card().id, object: obj });
     selId = id;
     render();
@@ -347,15 +358,25 @@ export async function start(root: HTMLElement): Promise<void> {
   const tabs = h("nav", { class: "tabs", "aria-label": "Panels" });
   root.replaceChildren(top, strip, work, tabs, side, bar, imageInput, importInput);
 
-  const btn = (label: string, title: string, fn: () => void, extra: Record<string, unknown> = {}): HTMLElement =>
-    h("button", { class: "tool", title, "aria-label": title, onclick: fn, ...extra }, label);
+  const btn = (label: string | HTMLElement[], title: string, fn: () => void, extra: Record<string, unknown> = {}): HTMLElement =>
+    h("button", { class: "tool", title, "aria-label": title, onclick: fn, ...extra }, ...(typeof label === "string" ? [label] : label));
+  /** Icon plus a word; the word hides on narrower screens (the button keeps its aria-label and tooltip). */
+  const icon = (glyph: string, word: string): HTMLElement[] => [h("span", { "aria-hidden": "true" }, glyph), h("span", { class: "lbl" }, ` ${word}`)];
   const modeBtn = (m: Mode, label: string): HTMLElement =>
     btn(label, label, () => ctx.setMode(m), { "aria-pressed": mode === m ? "true" : "false", class: `tool mode${mode === m ? " on" : ""}` });
 
+  // A status message ("Added…", "Imported…") clears itself after a while; the save state stays.
+  let statusShown = "";
+  let statusTimer = 0;
   const paint = (): void => {
+    if (status !== statusShown) {
+      statusShown = status;
+      clearTimeout(statusTimer);
+      if (status) statusTimer = window.setTimeout(() => { if (status === statusShown) { status = ""; paint(); } }, STATUS_MS);
+    }
     const size = sizeBytes();
     bar.replaceChildren(
-      h("span", null, `${status} · ${saveState}`),
+      h("span", null, status ? `${status} · ${saveState}` : saveState),
       h("span", { class: size > SOFT_LIMIT ? "warn" : "" }, `Export size ${exactSize === undefined ? "≈ " : ""}${fmt(size)}${size > SOFT_LIMIT ? " — large! Phones may struggle; try smaller pictures." : ""}`));
   };
 
@@ -379,10 +400,10 @@ export async function start(root: HTMLElement): Promise<void> {
       btn("↶", "Undo (Ctrl+Z)", () => { hist = undo(hist); changed(); }, { disabled: hist.past.length === 0 }),
       btn("↷", "Redo (Ctrl+Shift+Z)", () => { hist = redo(hist); changed(); }, { disabled: hist.future.length === 0 }),
       h("span", { class: "sep" }),
-      btn("T Text", "Add text", () => addObject("text"), { disabled: mode !== "edit" }),
-      btn("▭ Button", "Add button", () => addObject("button"), { disabled: mode !== "edit" }),
-      btn("🖼 Image", "Add image", () => imageInput.click(), { disabled: mode !== "edit" }),
-      btn("✎ Draw", "Draw a picture or background", () => void ctx.draw(), { disabled: mode !== "edit" }),
+      btn(icon("T", "Text"), "Add text", () => addObject("text"), { disabled: mode !== "edit" }),
+      btn(icon("▭", "Button"), "Add button", () => addObject("button"), { disabled: mode !== "edit" }),
+      btn(icon("🖼", "Image"), "Add image", () => imageInput.click(), { disabled: mode !== "edit" }),
+      btn(icon("✎", "Draw"), "Draw a picture or background", () => void ctx.draw(), { disabled: mode !== "edit" }),
       h("span", { class: "sep" }),
       modeBtn("edit", "Edit"), modeBtn("map", "Map"), modeBtn("play", "▶ Play"),
       btn("▦ Stacks", "Play an example stack", gallery, { class: "tool stacks" }),

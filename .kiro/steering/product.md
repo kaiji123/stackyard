@@ -18,6 +18,8 @@ that runs offline in any browser, forever. The exported file is also the save fi
 2. Choose-your-path Ghost Story
 3. Tutorial: How to Carve a Pumpkin
 
+Also shipped as examples: The Midnight Train (adventure) and The Halloween Bestiary (wiki).
+
 ## Non-goals (do not build)
 - A scripting language. Actions are a no-code list chosen from dropdowns.
 - Accounts, cloud sync, collaboration, marketplaces, AI generation.

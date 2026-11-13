@@ -99,3 +99,29 @@ test("draw with a finger on a phone", async ({ page }) => {
   await expect(dlg).toHaveCount(0);
   await expect(page.locator(".sy-stage.edit img.sy-crisp").last()).toBeVisible();
 });
+
+test("an exported file asks to turn the phone sideways in portrait, and the hint clears the card", async ({ page, browser }, info) => {
+  await skipWelcome(page);
+  await page.goto("/");
+  const [download] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: /self-contained/ }).tap()]);
+  const file = info.outputPath("hint.html");
+  await download.saveAs(file);
+  const hint = (p: import("@playwright/test").Page) => p.locator(".sy-root").evaluate((el) => {
+    const st = getComputedStyle(el, "::after");
+    return { content: st.content, top: parseFloat(st.top), lineHeight: parseFloat(st.lineHeight) };
+  });
+
+  for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 844 }]) {
+    const { ctx, page: p } = await openOffline(browser, file, { viewport, hasTouch: true, isMobile: true });
+    const h = await hint(p);
+    expect(h.content).toContain("Turn your phone sideways");
+    // Up to three lines of hint at the narrowest phone still end above the card.
+    const card = (await p.locator(".sy-stage").boundingBox())!;
+    expect(h.top + 3 * h.lineHeight).toBeLessThan(card.y);
+    await p.screenshot({ path: `test-results/shots/portrait-hint-${info.project.name}-${viewport.width}.png` });
+    await ctx.close();
+  }
+  const { ctx, page: p } = await openOffline(browser, file, { viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true });
+  expect((await hint(p)).content).toBe("none"); // sideways already: no hint
+  await ctx.close();
+});

@@ -8,7 +8,7 @@ src/core     pure TS, no DOM: types, validation, ids, commands (undo), engine, g
 src/editor   editor UI (vanilla TS)
 src/player   tiny runtime that renders a stack and runs actions via src/core/engine
 src/export   single-file HTML builder + importer
-templates    JSON stacks for the 3 templates
+templates    JSON stacks for the 5 example stacks
 tests        Vitest unit + fast-check property tests (tests/core mirrors src/core)
 .kiro        specs, hooks, steering (committed; never gitignore)
 ```

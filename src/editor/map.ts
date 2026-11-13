@@ -5,6 +5,8 @@ import type { Ctx } from "./ctx";
 import { h, s } from "./dom";
 
 const NW = 150, NH = 56, GX = 90, GY = 40, PAD = 32;
+/** A step with more cards than this splits into side-by-side columns, so big stacks stay wide, not tall. */
+const MAX_ROWS = 7;
 
 /** Node graph of cards and the links between them. Unreachable cards are red, dead ends amber. */
 export function renderMap(ctx: Ctx): HTMLElement {
@@ -22,17 +24,23 @@ export function renderMap(ctx: Ctx): HTMLElement {
   const maxDepth = Math.max(0, ...depth.values());
   for (const c of stack.cards) if (!depth.has(c.id)) depth.set(c.id, maxDepth + 1);
 
-  const rows = new Map<number, number>();
-  const pos = new Map<CardId, { x: number; y: number }>();
+  // Cards per step, in stack order; each step takes as many columns as it needs at MAX_ROWS per column.
+  const steps = new Map<number, CardId[]>();
   for (const c of stack.cards) {
     const d = depth.get(c.id) ?? 0;
-    const r = rows.get(d) ?? 0;
-    rows.set(d, r + 1);
-    pos.set(c.id, { x: PAD + d * (NW + GX), y: PAD + r * (NH + GY) });
+    steps.set(d, [...(steps.get(d) ?? []), c.id]);
   }
-  const cols = Math.max(...depth.values()) + 1;
-  const width = PAD * 2 + cols * NW + (cols - 1) * GX;
-  const height = PAD * 2 + Math.max(...rows.values()) * (NH + GY);
+  const pos = new Map<CardId, { x: number; y: number }>();
+  let col = 0, maxRows = 1;
+  for (const d of [...steps.keys()].sort((a, b) => a - b)) {
+    const ids = steps.get(d) ?? [];
+    const rowsHere = Math.min(MAX_ROWS, ids.length);
+    maxRows = Math.max(maxRows, rowsHere);
+    ids.forEach((id, i) => pos.set(id, { x: PAD + (col + Math.floor(i / MAX_ROWS)) * (NW + GX), y: PAD + (i % MAX_ROWS) * (NH + GY) }));
+    col += Math.ceil(ids.length / MAX_ROWS);
+  }
+  const width = PAD * 2 + col * NW + (col - 1) * GX;
+  const height = PAD * 2 + maxRows * (NH + GY);
 
   const svg = s("svg", { width, height, viewBox: `0 0 ${width} ${height}`, role: "img", "aria-label": "Stack map" },
     s("defs", null, s("marker", { id: "arrow", viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: "auto-start-reverse" },
@@ -46,9 +54,16 @@ export function renderMap(ctx: Ctx): HTMLElement {
       const d = back
         ? `M${a.x + NW / 2},${a.y + NH} C${a.x + NW / 2},${a.y + NH + 60} ${b.x + NW / 2},${b.y - 60} ${b.x + NW / 2},${b.y}`
         : `M${x1},${y1} C${x1 + 50},${y1} ${x2 - 50},${y2} ${x2},${y2}`;
-      svg.append(s("path", { d, fill: "none", stroke: "#b79cff", "stroke-width": 2, "marker-end": "url(#arrow)" }));
+      svg.append(s("path", { d, class: "edge", "data-from": from, "data-to": to, fill: "none", stroke: "#b79cff", "stroke-width": 2, "marker-end": "url(#arrow)" }));
     }
   }
+  // Pointing at (or tabbing to) a card lights up its own links and fades the rest.
+  const focusOn = (id: CardId | null): void => {
+    svg.classList.toggle("focusing", id !== null);
+    for (const e of svg.querySelectorAll<SVGPathElement>("path.edge")) {
+      e.classList.toggle("hot", id !== null && (e.dataset["from"] === id || e.dataset["to"] === id));
+    }
+  };
   for (const [i, c] of stack.cards.entries()) {
     const p = pos.get(c.id);
     if (!p) continue;
@@ -57,7 +72,8 @@ export function renderMap(ctx: Ctx): HTMLElement {
     const name = c.name.length > 20 ? `${c.name.slice(0, 19)}…` : c.name;
     const node = s("g", { class: `${cls}${c.id === ctx.card().id ? " cur" : ""}`, tabindex: 0, role: "button", "aria-label": `Open card ${c.name}`,
       onclick: () => { ctx.selectCard(c.id); ctx.setMode("edit"); },
-      onkeydown: (e: Event) => { if ((e as KeyboardEvent).key === "Enter") { ctx.selectCard(c.id); ctx.setMode("edit"); } } },
+      onkeydown: (e: Event) => { if ((e as KeyboardEvent).key === "Enter") { ctx.selectCard(c.id); ctx.setMode("edit"); } },
+      onmouseenter: () => focusOn(c.id), onmouseleave: () => focusOn(null), onfocus: () => focusOn(c.id), onblur: () => focusOn(null) },
       s("rect", { x: p.x, y: p.y, width: NW, height: NH, rx: 0 }),
       s("text", { x: p.x + 10, y: p.y + 24 }, `${i + 1}. ${c.id === stack.start ? "★ " : ""}${name}`),
       s("text", { x: p.x + 10, y: p.y + 44, class: "sub" }, !seen.has(c.id) ? "unreachable" : dead ? "no way out" : `${c.objects.length} objects`));

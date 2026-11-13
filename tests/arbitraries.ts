@@ -194,3 +194,11 @@ export function resolveSeed(stack: Stack, s: CommandSeed, fresh: number): Comman
     default: return { type: "setActions", object: obj, actions: [] };
   }
 }
+
+/** A box somewhere on (or hanging off) the card, including odd sizes, for layout properties. */
+export const arbRect = fc.record({
+  x: fc.integer({ min: -100, max: CANVAS_W + 100 }),
+  y: fc.integer({ min: -100, max: CANVAS_H + 100 }),
+  w: fc.integer({ min: 0, max: CANVAS_W + 200 }),
+  h: fc.integer({ min: 0, max: CANVAS_H + 200 }),
+});

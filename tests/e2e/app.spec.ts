@@ -171,10 +171,14 @@ test("the editor warns when two texts overlap, and the warning clears when one i
   await page.goto("/");
   await chooseTemplate(page, "blank");
   await page.getByRole("button", { name: "Add text" }).click();
-  await page.getByRole("button", { name: "Add text" }).click(); // both land on the same spot
+  await page.getByRole("button", { name: "Add text" }).click(); // new objects find free room: no overlap yet
+  await expect(page.locator(".sy-stage.edit .sy-text")).toHaveCount(2);
+  await expect(page.locator(".sy-stage.edit .ed-overlap")).toHaveCount(0);
+  const y = page.getByRole("spinbutton", { name: "y" });
+  await y.fill("60"); // drag the second one up onto the first
+  await y.blur();
   await expect(page.locator(".sy-stage.edit .ed-overlap")).toHaveCount(2);
   await expect(page.locator(".issues")).toContainText("Texts overlap");
-  const y = page.getByRole("spinbutton", { name: "y" });
   await y.fill("400");
   await y.blur();
   await expect(page.locator(".sy-stage.edit .ed-overlap")).toHaveCount(0);
@@ -231,4 +235,64 @@ test("Restart goes back to the first card; Tab starts inside the game", async ({
   await expect(page.locator(".play-host .sy-btn", { hasText: "Step inside" })).toBeVisible();
   await pressTab(page, info.project.name);
   expect(await page.evaluate(() => document.activeElement?.closest(".play-overlay") !== null)).toBe(true);
+});
+
+test("the toolbar never needs sideways scrolling on laptop screens, even with Previous showing", async ({ browser }) => {
+  for (const width of [1024, 1280, 1366, 1400, 1440, 1550, 1600]) {
+    const ctx = await browser.newContext({ viewport: { width, height: 800 } });
+    const page = await ctx.newPage();
+    await skipWelcome(page);
+    await page.goto("/");
+    await chooseTemplate(page, "bestiary");
+    await expect(page.getByRole("button", { name: /Restore the stack/ })).toBeVisible();
+    const top = await page.locator(".top").evaluate((el) => ({ sw: el.scrollWidth, cw: el.clientWidth, h: el.getBoundingClientRect().height }));
+    expect(top.sw, `toolbar at ${width}px`).toBeLessThanOrEqual(top.cw);
+    if (width >= 1280) expect(top.h, `toolbar is one row at ${width}px`).toBeLessThan(60);
+    // Every toolbar control is fully on screen.
+    for (const b of await page.locator(".top button:visible, .top select:visible, .top input:visible").all()) {
+      const r = (await b.boundingBox())!;
+      expect(r.x + r.width, `${await b.getAttribute("aria-label")} at ${width}px`).toBeLessThanOrEqual(width);
+    }
+    await ctx.close();
+  }
+});
+
+test("new objects find free room instead of landing on each other", async ({ page }) => {
+  await page.goto("/");
+  await chooseTemplate(page, "blank");
+  for (const name of ["Add text", "Add button", "Add text", "Add button"]) await page.getByRole("button", { name }).click();
+  const boxes = await page.locator(".sy-stage.edit .sy-obj").evaluateAll((els) => els.map((e) => e.getBoundingClientRect().toJSON() as DOMRect));
+  expect(boxes).toHaveLength(4);
+  for (const [i, a] of boxes.entries()) for (const b of boxes.slice(i + 1)) {
+    expect(a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height).toBe(false);
+  }
+  await expect(page.locator(".issues")).not.toContainText("overlap");
+});
+
+test("pointing at a card on the map lights up its links; big stacks spread into columns", async ({ page }) => {
+  await page.goto("/");
+  await chooseTemplate(page, "bestiary");
+  await page.getByRole("button", { name: "Map", exact: true }).click();
+  const svg = page.locator(".map-scroll svg");
+  const size = await svg.evaluate((el) => ({ w: Number(el.getAttribute("width")), h: Number(el.getAttribute("height")) }));
+  expect(size.h).toBeLessThanOrEqual(32 * 2 + 7 * 96); // at most 7 cards per column
+  expect(size.w).toBeGreaterThan(size.h);
+  const node = page.locator("svg .node", { hasText: "A to Z" });
+  await node.hover();
+  await expect(svg).toHaveClass(/focusing/);
+  const hot = await page.locator("path.edge.hot").count();
+  expect(hot).toBeGreaterThan(10); // A to Z links to every creature
+  expect(hot).toBeLessThan(await page.locator("path.edge").count());
+  await page.mouse.move(2, 2);
+  await expect(svg).not.toHaveClass(/focusing/);
+});
+
+test("status messages clear themselves; the save state stays", async ({ page }) => {
+  await page.clock.install();
+  await page.goto("/");
+  await chooseTemplate(page, "blank");
+  await expect(page.locator(".status")).toContainText("Started");
+  await page.clock.fastForward(9000);
+  await expect(page.locator(".status")).not.toContainText("Started");
+  await expect(page.locator(".status")).toContainText(/Saved|Saving/);
 });

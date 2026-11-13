@@ -82,6 +82,8 @@ h3{font-family:var(--pix);font-size:12px;color:var(--acc);margin:10px 0 6px;text
 .node text{fill:#f1e9ff;font:16px "VT323",ui-monospace,Menlo,monospace}.node .sub{fill:#a99bc4;font-size:14px}
 .node.bad rect{fill:#4a1d29;stroke:#ff6b6b}.node.dead rect{stroke:#ff9d3c}.node.cur rect{stroke-width:5}
 .node:focus-visible rect{stroke:#ffb000;stroke-width:5}
+.map-scroll path.edge{transition:opacity .12s}
+.map-scroll svg.focusing path.edge{opacity:.12}.map-scroll svg.focusing path.edge.hot{opacity:1;stroke:#ff9d3c;stroke-width:3}
 .sy-stage.edit.sy-haunted{animation:none}
 .empty-hint{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
   color:#6b5a8a;pointer-events:none;font-size:22px}
@@ -115,6 +117,14 @@ kbd{font-family:var(--pix);font-size:11px;background:var(--panel2);border:2px so
   .status{font-size:14px}.status span:last-child{display:none}
   .work-map{padding:6px 8px}
 }
+/* Desktop toolbar on laptop widths: shed width step by step, then wrap onto a second row rather than scroll. */
+@media (min-width:901px){
+  .app{grid-template-rows:auto 1fr 26px}
+  .top{flex-wrap:wrap;overflow-x:visible;min-height:52px;padding:7px 10px;row-gap:7px}
+}
+@media (min-width:901px) and (max-width:1700px){.top select{width:150px}}
+@media (min-width:901px) and (max-width:1599px){.top .tool .lbl{display:none}}
+@media (min-width:901px) and (max-width:1480px){.logo{display:none}input.title{width:180px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .modal select{margin-top:2px}.links{margin:4px 0 10px;padding-left:20px}.impact{color:var(--hot)}
 .modal .field>span{font-size:16px}

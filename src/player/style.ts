@@ -35,5 +35,7 @@ export const PLAYER_CSS = `
 @keyframes sy-swing{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}@keyframes sy-spin{to{transform:rotate(360deg)}}
 @keyframes sy-flick{0%,100%{opacity:1}20%{opacity:.55}22%{opacity:1}61%{opacity:.7}63%{opacity:1}64%{opacity:.4}66%{opacity:1}}
 @media (prefers-reduced-motion:reduce){.sy-moving{animation:none!important}}
+@media (max-aspect-ratio:3/4) and (max-width:700px){.sy-root:not(.sy-embedded):after{content:"\\21BB  Turn your phone sideways for a bigger card";position:absolute;left:12px;right:140px;top:max(12px,env(safe-area-inset-top));
+  color:#a99bc4;font:18px/1.2 "VT323",ui-monospace,Menlo,monospace;pointer-events:none}}
 .sy-err{color:#fff;font:16px ui-monospace,Menlo,monospace;padding:24px;white-space:pre-wrap}
 `;

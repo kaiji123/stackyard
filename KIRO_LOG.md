@@ -209,6 +209,9 @@ Run the manual "Update write-up" hook to refresh it.
 
 - **Nov 12:** steering, scaffold, `/core` with properties 3, 4, 6, 8; player + export with properties 1, 2, 5, 7;
   editor, templates, stack map, doctor; Playwright e2e on Chromium.
+- **Nov 13 (round 13):** polish. New objects find free room (`freeSpot` in core, property-tested); the toolbar
+  fits laptop widths with no sideways scroll; exported files suggest turning a phone sideways; the map spreads big
+  stacks into columns and lights up a card's links on hover; status messages clear after 8 s. 185 unit, 246 e2e.
 - **Nov 13 (round 12):** 2:45 demo video in `demo/`: real app footage recorded by a scripted Playwright run
   (lossless DevTools screencast, then H.264), composed and rendered with HyperFrames. No music or voice.
 - **Nov 12 (round 11):** animated drawings (GIF) and no-code movement for any object (schema v4).

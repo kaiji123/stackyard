@@ -120,7 +120,13 @@ test("the doctor hints when dark text sits on a picture", async ({ page }) => {
   await blankStack(page);
   await page.locator(IMAGE_INPUT).setInputFiles("media/backgrounds/bg-gate.png");
   await expect(page.locator(".sy-stage.edit img.sy-obj")).toHaveCount(1);
-  await page.getByRole("button", { name: "Add text" }).click();
+  await page.getByRole("button", { name: "Add text" }).click(); // lands beside the picture
+  await expect(page.getByText("may be hard to read")).toHaveCount(0);
+  for (const [k, v] of [["x", "100"], ["y", "120"]] as const) {   // move it onto the picture
+    const f = page.getByRole("spinbutton", { name: k, exact: true });
+    await f.fill(v);
+    await f.blur();
+  }
   await expect(page.locator(".issues")).toContainText("may be hard to read");
   await page.getByLabel("text style").selectOption("panel");
   await expect(page.locator(".inspect")).not.toContainText("may be hard to read");
