@@ -9,6 +9,17 @@
 - [x] Text overlap and cut-off warnings (found a real overlap in our own template)
 - [x] Quick start, About (MIT), empty states
 - [x] Phone layout (tabs), coarse-pointer sizing; e2e on emulated iPhone 13 / Pixel 7
+- [x] Confirm before replacing (import, template, new); undoable replace; "Previous" backup in IndexedDB
+- [x] Delete-card dialog with link list, damage prediction and redirect (`retargetLinks`)
+- [x] App-owned modal replaces alert/confirm everywhere; Tab trap; Cancel focused for risky actions
+- [x] Real exported size in the size meter (debounced `buildHtml`), 10 MB warning uses it
+- [x] Upload policy: keep small PNG/GIF, PNG fallback, crisp flag (schema v3 + migration); unit + e2e tests incl. byte-identical GIF
+- [x] Text styles (dark / light / panel); doctor hint for dark text on pictures
+- [x] Templates rebuilt with the pixel art (backgrounds, sprites, pumpkin steps), lazily loaded
+- [x] Longer examples: escape room 9 cards (4 locks), ghost story 10 cards (5 endings), tutorial 12 cards (with quiz)
+- [x] "Play a stack" gallery: play without replacing, edit a copy, play yours; phone layout
+- [x] Drawing tool (`paint.ts` UI, pure `pixels.ts` with property tests, `replaceAsset` command); e2e on 3 engines and a phone
+- [ ] Per-card `background` asset instead of a full-card image object
 - [ ] Real-device pass (iOS Safari, Android Chrome), see docs/TESTING.md
 - [ ] Link mode: drag an arrow from a button to a card on the map
 - [ ] Drag-to-reorder cards in the strip (buttons exist today)

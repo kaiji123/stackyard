@@ -16,12 +16,14 @@
       "node",
       "vite/client"
     ],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true
   },
   "include": [
     "src",
     "tests",
     "templates",
-    "vite.player.config.ts"
+    "vite.player.config.ts",
+    "scripts/**/*.ts"
   ]
 }

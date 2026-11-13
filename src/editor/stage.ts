@@ -4,6 +4,7 @@ import type { StackObject } from "../core/types";
 import { CANVAS_H, CANVAS_W } from "../core/types";
 import { renderObject } from "../player/player";
 import type { Ctx } from "./ctx";
+import { candleMascot } from "./mascots";
 import { h } from "./dom";
 
 /** Screen px per logical px for the live stage. Module-level so drags survive re-renders. */
@@ -67,6 +68,7 @@ export function renderStage(ctx: Ctx): HTMLElement {
     const el = renderObject(stack, o);
     el.classList.add("ed-obj");
     if (!o.visible) el.classList.add("ed-hidden");
+    if (o.motion !== "none") { el.classList.add("ed-moves"); el.title = `Moves in Play mode: ${o.motion}`; }
     el.addEventListener("pointerdown", (e) => drag(ctx, e, o, null));
     stage.append(el);
   }
@@ -95,6 +97,7 @@ export function renderStage(ctx: Ctx): HTMLElement {
 
   const empty = ctx.card().objects.length === 0
     ? h("div", { class: "empty-hint" },
+      candleMascot(),
       h("p", { class: "big" }, "This card is empty"),
       h("p", null, "Add Text, a Button or an Image from the top bar."),
       h("p", null, "You can also paste or drop a picture here."))

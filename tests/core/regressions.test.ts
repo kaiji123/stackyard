@@ -4,10 +4,10 @@ import { reachable } from "../../src/core/graph";
 import type { Stack, StackObject } from "../../src/core/types";
 
 const btn = (id: string, over: Partial<StackObject> = {}): StackObject =>
-  ({ kind: "button", id, x: 0, y: 0, w: 16, h: 16, visible: true, label: "", actions: [], ...over }) as StackObject;
+  ({ kind: "button", id, x: 0, y: 0, w: 16, h: 16, visible: true, label: "", actions: [], motion: "none", ...over }) as StackObject;
 
 const stackOf = (n: number, objects: Record<string, StackObject[]> = {}): Stack => ({
-  schemaVersion: 2, skin: "plain", title: "t", start: "c1", assets: {},
+  schemaVersion: 4, skin: "plain", title: "t", start: "c1", assets: {},
   cards: Array.from({ length: n }, (_, i) => ({ id: `c${i + 1}`, name: "", objects: objects[`c${i + 1}`] ?? [] })),
 });
 

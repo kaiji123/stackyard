@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <!-- GSAP vendored from the HyperFrames CLI bundle: the video renders with no network. -->
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      /*
+        Stackyard demo, 2:45. Every timed element is a direct child of #root with absolute times.
+        Scene map (seconds):
+          0-15     hook: the exported escape room on a phone, offline
+          15-35    story: card-stack tools of 1987, lock-in, dug back up
+          35-100   build live (footage at 1.6x), play it, the stack map
+          100-122  export: one file on three screens, what is inside, re-import
+          122-149  Kiro: steering, specs, hooks, a property test that found a real bug
+          149-165  close: the gallery, two stacks, tagline
+        Fonts: Silkscreen and VT323 (SIL Open Font License). No music, no voice.
+      */
+      @font-face { font-family: "Silkscreen"; src: url("fonts/silkscreen-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Silkscreen"; src: url("fonts/silkscreen-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "VT323"; src: url("fonts/vt323-latin-400-normal.woff2") format("woff2"); }
+      :root {
+        --ink: #0d0814; --night: #1b1426; --panel: #241a35; --panel2: #2d2142; --violet: #6a4fa0;
+        --lilac: #b79cff; --white: #f1e9ff; --cream: #fff3c4; --yellow: #ffd66b; --orange: #ff9d3c;
+        --mint: #6be08f; --red: #ff6b6b; --stone: #7d7590;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; color: var(--white); font-family: "VT323", monospace; }
+      .clip { position: absolute; }
+      .full { inset: 0; width: 1920px; height: 1080px; }
+      .bg { background: radial-gradient(ellipse at 50% 40%, var(--panel2) 0%, var(--night) 55%, var(--ink) 100%); }
+      .px { font-family: "Silkscreen", monospace; letter-spacing: 0.04em; }
+      img.crisp { image-rendering: pixelated; }
+
+      /* Captions: one line in the band under the footage. */
+      .cap {
+        left: 0; width: 1920px; top: 984px; height: 96px; line-height: 96px; white-space: nowrap;
+        font-size: 46px; color: var(--cream); text-align: center; z-index: 50;
+      }
+      .cap b { color: var(--orange); font-weight: 400; }
+      .cap.top { top: 40px; height: 90px; }
+      .cap.mid { height: 120px; line-height: 120px; font-size: 54px; }
+      .kicker { font-size: 30px; color: var(--lilac); }
+
+      /* Footage. Desktop clips at 0.9 so the caption band fits underneath; pixel UI stays readable. */
+      video { display: block; background: var(--ink); }
+      .screen { left: 96px; top: 6px; width: 1728px; height: 972px; border: 3px solid var(--violet); z-index: 10; }
+      .band { left: 0; top: 978px; width: 1920px; height: 102px; background: var(--ink); border-top: 3px solid var(--violet); z-index: 5; }
+      .speed { right: 120px; top: 30px; z-index: 40; background: var(--ink); color: var(--yellow); border: 3px solid var(--yellow); font-size: 30px; padding: 6px 14px; }
+
+      /* Device shells: plain rounded slabs in our palette (no real-device or OS look). */
+      .shell { background: #2a2633; border: 6px solid #4a4458; border-radius: 34px; box-shadow: 0 30px 80px #000a; z-index: 8; }
+      .chip { z-index: 30; background: var(--ink); border: 3px solid var(--mint); color: var(--mint); font-size: 30px; padding: 8px 18px; }
+      .chip.orange { border-color: var(--orange); color: var(--orange); }
+      .chip.lilac { border-color: var(--lilac); color: var(--lilac); }
+
+      /* Story scene. */
+      .icard { width: 300px; height: 200px; background: var(--cream); border: 5px solid var(--ink);
+        background-image: repeating-linear-gradient(to bottom, transparent 0 34px, #9cc7d9 34px 36px);
+        box-shadow: 8px 8px 0 #0008; z-index: 12; color: var(--ink); font-size: 30px; padding: 40px 22px 0; line-height: 36px; }
+      .icard::before { content: ""; position: absolute; left: 44px; top: 0; bottom: 0; width: 3px; background: #e88; }
+      .grave { width: 220px; height: 280px; background: #4a4458; border: 6px solid var(--ink); border-radius: 110px 110px 0 0;
+        z-index: 11; display: flex; align-items: center; justify-content: center; font-family: "Silkscreen"; font-size: 34px; color: var(--ink); }
+      .ground { left: 0; top: 860px; width: 1920px; height: 220px; background: repeating-linear-gradient(90deg, #1d4a30 0 24px, #2f7a4a 24px 48px); border-top: 8px solid #6be08f44; z-index: 13; }
+      .big { font-size: 64px; left: 0; width: 1920px; text-align: center; z-index: 20; }
+      .moon { width: 160px; height: 160px; border-radius: 50%; background: var(--cream); box-shadow: 0 0 60px #fff3c466; left: 1580px; top: 120px; z-index: 6; }
+
+      /* Panels for the Kiro scene. */
+      .panel { background: var(--panel); border: 4px solid var(--violet); box-shadow: 10px 10px 0 #0009; z-index: 12; padding: 30px 36px; }
+      .panel h3 { font-family: "Silkscreen"; font-weight: 700; color: var(--lilac); font-size: 30px; letter-spacing: 0.08em; margin-bottom: 18px; }
+      .mono { font-size: 42px; line-height: 50px; white-space: pre; color: var(--white); }
+      .mono .ln { min-height: 50px; }
+      .mono .k { color: var(--lilac); } .mono .s { color: var(--yellow); } .mono .bad { color: var(--red); } .mono .ok { color: var(--mint); } .mono .dim { color: var(--stone); }
+      .title-xl { font-family: "Silkscreen"; font-weight: 700; font-size: 120px; color: var(--orange); letter-spacing: 0.08em; text-shadow: 8px 8px 0 var(--violet); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="165" data-width="1920" data-height="1080">
+
+      <!-- ============ 0-15 HOOK ============ -->
+      <div id="hook-bg" class="clip full bg" data-start="0" data-duration="15" data-track-index="0"></div>
+      <div id="hook-shell" class="clip shell" style="left: 249px; top: 196px; width: 1422px; height: 696px" data-start="0" data-duration="15" data-track-index="1"></div>
+      <video id="hook-video" class="clip" style="left: 285px; top: 232px; width: 1350px; height: 624px; z-index: 9; border-radius: 6px"
+        src="assets/phone.mp4" muted playsinline data-start="0" data-duration="12.46" data-track-index="2"></video>
+      <div id="hook-chip1" class="clip chip" style="left: 285px; top: 120px" data-start="0" data-duration="15" data-track-index="3">✈ OFFLINE · 0 network requests</div>
+      <div id="hook-chip2" class="clip chip orange" style="left: 830px; top: 120px" data-start="2.2" data-duration="12.8" data-track-index="4">haunted-house-escape-room.html</div>
+      <div id="hook-c1" class="clip cap mid" style="top: 920px" data-start="1.2" data-duration="5.2" data-track-index="5">This whole escape room is <b>one HTML file</b>.</div>
+      <div id="hook-c2" class="clip cap mid" style="top: 920px" data-start="6.6" data-duration="4" data-track-index="5">No app, no account, no internet. It just opens.</div>
+      <div id="hook-c3" class="clip cap mid" style="top: 920px" data-start="10.8" data-duration="4.2" data-track-index="5">And it was made <b>without writing code</b>.</div>
+
+      <!-- ============ 15-35 STORY ============ -->
+      <div id="story-bg" class="clip full bg" data-start="15" data-duration="20" data-track-index="0"></div>
+      <div id="story-moon" class="clip moon" data-start="15" data-duration="20" data-track-index="1"></div>
+      <div id="story-year" class="clip px big" style="top: 110px; font-size: 140px; color: var(--yellow); font-weight: 700" data-start="15.3" data-duration="6.4" data-track-index="2">1987</div>
+      <div id="card-a" class="clip icard" style="left: 430px; top: 420px" data-start="15.8" data-duration="7.8" data-track-index="3">a quiz</div>
+      <div id="card-b" class="clip icard" style="left: 810px; top: 380px" data-start="16.2" data-duration="7.4" data-track-index="4">a story</div>
+      <div id="card-c" class="clip icard" style="left: 1190px; top: 420px" data-start="16.6" data-duration="7" data-track-index="5">a game</div>
+      <div id="story-c1" class="clip cap" data-start="15.6" data-duration="6" data-track-index="6">Card-stack tools let <b>anyone</b> make software out of index cards.</div>
+      <div id="story-c2" class="clip cap" data-start="21.8" data-duration="6.4" data-track-index="6">Then the platforms moved on. The stacks were locked in, and died with them.</div>
+      <div id="ground" class="clip ground" data-start="21.8" data-duration="13.2" data-track-index="7"></div>
+      <div id="grave-a" class="clip grave" style="left: 470px; top: 600px" data-start="22.6" data-duration="5.6" data-track-index="8">RIP</div>
+      <div id="grave-b" class="clip grave" style="left: 850px; top: 580px" data-start="22.9" data-duration="5.3" data-track-index="9">RIP</div>
+      <div id="grave-c" class="clip grave" style="left: 1230px; top: 600px" data-start="23.2" data-duration="5" data-track-index="10">RIP</div>
+      <img id="story-ghost" class="clip crisp" src="art/ghost-float.gif" alt="" style="left: 1500px; top: 520px; width: 240px; height: 240px; z-index: 14" data-start="23.6" data-duration="4.6" data-track-index="11" />
+      <img id="banner" class="clip crisp" src="art/stackyard-banner.gif" alt="Stackyard" style="left: 320px; top: 300px; width: 1280px; height: 320px; z-index: 20" data-start="28.4" data-duration="6.6" data-track-index="12" />
+      <div id="story-c3" class="clip cap" data-start="28.4" data-duration="6.6" data-track-index="6"><span><b>Stackyard</b> digs them back up, and every stack you make is a file you keep.</span></div>
+      <div id="story-c3b" class="clip px kicker" style="left: 0; width: 1920px; text-align: center; top: 680px; z-index: 21; font-size: 30px" data-start="29.4" data-duration="5.6" data-track-index="13">DEAD SOFTWARE, DUG BACK UP</div>
+
+      <!-- ============ 35-100 BUILD LIVE ============ -->
+      <div id="build-bg" class="clip full bg" data-start="35" data-duration="65" data-track-index="0"></div>
+      <div id="build-band" class="clip band" data-start="35" data-duration="65" data-track-index="1"></div>
+      <video id="build-video" class="clip screen" src="assets/build.mp4" muted playsinline data-start="35" data-duration="43.4" data-track-index="2"></video>
+      <div id="build-speed" class="clip speed px" data-start="35" data-duration="43.4" data-track-index="3">1.6× SPEED</div>
+      <div id="b-c1" class="clip cap" data-start="35.3" data-duration="2.9" data-track-index="4">Start blank. Name the stack, pick the haunted look.</div>
+      <div id="b-c2" class="clip cap" data-start="38.2" data-duration="3.4" data-track-index="4">Type a line of story.</div>
+      <div id="b-c3" class="clip cap" data-start="41.6" data-duration="8.2" data-track-index="4">Draw a key, pixel by pixel, right on the card.</div>
+      <div id="b-c4" class="clip cap" data-start="49.8" data-duration="8.8" data-track-index="4">Add a second frame and it <b>glints</b>: saved as a tiny animated GIF.</div>
+      <div id="b-c5" class="clip cap" data-start="58.6" data-duration="2.9" data-track-index="4">Make it float. Clicking it <b>adds "key" to the inventory</b>.</div>
+      <div id="b-c6" class="clip cap" data-start="61.5" data-duration="4.2" data-track-index="4">A second card: the Exit.</div>
+      <div id="b-c7" class="clip cap" data-start="65.7" data-duration="6.4" data-track-index="4">A hidden message, "It's locked.", and a door button.</div>
+      <div id="b-c8" class="clip cap" data-start="72.1" data-duration="6.3" data-track-index="4"><span><b>If</b> has key → go to Exit, <b>else</b> show "It's locked." All dropdowns, no code.</span></div>
+
+      <video id="play-video" class="clip screen" src="assets/play-map.mp4" muted playsinline data-start="78.4" data-duration="15.4" data-track-index="2"></video>
+      <div id="p-c1" class="clip cap" data-start="78.4" data-duration="5.8" data-track-index="4">▶ Play. No key yet, so the door stays locked.</div>
+      <div id="p-c2" class="clip cap" data-start="84.2" data-duration="5.7" data-track-index="4">Pick up the key, try again: the door opens.</div>
+      <div id="p-c3" class="clip cap" data-start="89.9" data-duration="3.9" data-track-index="4">The stack map draws every link.</div>
+      <video id="map-video" class="clip screen" src="assets/map.mp4" muted playsinline data-start="93.8" data-media-start="1" data-duration="6.2" data-track-index="2"></video>
+      <div id="p-c4" class="clip cap" data-start="93.8" data-duration="6.2" data-track-index="4">On a 16-card stack, the <b>stack doctor</b> checks for dead ends and lost cards.</div>
+
+      <!-- ============ 100-122 EXPORT ============ -->
+      <div id="export-bg" class="clip full bg" data-start="100" data-duration="22" data-track-index="0"></div>
+      <div id="export-band" class="clip band" data-start="100" data-duration="3.4" data-track-index="1"></div>
+      <video id="export-video" class="clip screen" src="assets/export-click.mp4" muted playsinline data-start="100" data-duration="3.4" data-track-index="2"></video>
+      <div id="e-c1" class="clip cap" data-start="100" data-duration="3.4" data-track-index="4">Export HTML: one self-contained file.</div>
+
+      <div id="dev-desk" class="clip shell" style="left: 70px; top: 230px; width: 860px; height: 560px; border-radius: 18px" data-start="103.4" data-duration="7.6" data-track-index="1"></div>
+      <video id="dev-desk-v" class="clip" src="assets/file-desktop.mp4" muted playsinline style="left: 90px; top: 250px; width: 820px; height: 512.5px; z-index: 9" data-start="103.4" data-duration="7.03" data-track-index="2"></video>
+      <div id="dev-tab" class="clip shell" style="left: 990px; top: 170px; width: 470px; height: 668px" data-start="103.4" data-duration="7.6" data-track-index="3"></div>
+      <video id="dev-tab-v" class="clip" src="assets/file-tablet.mp4" muted playsinline style="left: 1012px; top: 192px; width: 426px; height: 613px; z-index: 9" data-start="103.4" data-duration="7.03" data-track-index="4"></video>
+      <div id="dev-ph" class="clip shell" style="left: 1520px; top: 230px; width: 330px; height: 670px" data-start="103.4" data-duration="7.6" data-track-index="5"></div>
+      <video id="dev-ph-v" class="clip" src="assets/file-phone.mp4" muted playsinline style="left: 1540px; top: 250px; width: 290px; height: 627.6px; z-index: 9" data-start="103.4" data-duration="7.03" data-track-index="6"></video>
+      <div id="dev-chip" class="clip chip" style="left: 70px; top: 110px" data-start="103.8" data-duration="7.2" data-track-index="7">✈ every screen OFFLINE · 0 network requests</div>
+      <div id="e-c2" class="clip cap" data-start="103.4" data-duration="7.6" data-track-index="8">The same file on a laptop, a tablet and a phone.</div>
+
+      <div id="inside" class="clip panel" style="left: 310px; top: 190px; width: 1300px; height: 560px" data-start="111" data-duration="7" data-hold data-track-index="1">
+        <h3>INSIDE THE-MIDNIGHT-TRAIN.HTML</h3>
+        <div class="mono"><div class="ln"><span class="k">&lt;script&gt;</span>  the player, <span class="s">3.5 KB</span>, no libraries</div><div class="ln"><span class="k">&lt;script&gt;</span>  your stack, as JSON</div><div class="ln"><span class="k">data:</span>      pictures and fonts, inlined</div><div class="ln"><span class="k">CSP</span>        default-src 'none'</div><div class="ln"></div><div class="ln"><span class="ok">✓</span> no network  <span class="ok">✓</span> no install</div></div>
+      </div>
+      <div id="e-c3" class="clip cap" data-start="111" data-duration="7" data-track-index="8">Everything it needs is inside, behind a strict security policy.</div>
+      <div id="reimport-band" class="clip band" data-start="118" data-duration="4" data-track-index="1"></div>
+      <video id="reimport-video" class="clip screen" src="assets/reimport.mp4" muted playsinline data-start="118" data-media-start="1.1" data-duration="4" data-track-index="2"></video>
+      <div id="e-c4" class="clip cap" data-start="118" data-duration="4" data-track-index="8">Import it back to keep editing. <b>The file is the save file.</b></div>
+
+      <!-- ============ 122-149 KIRO ============ -->
+      <div id="kiro-bg" class="clip full bg" data-start="122" data-duration="27" data-track-index="0"></div>
+      <div id="kiro-title" class="clip px" style="left: 120px; top: 70px; font-size: 54px; font-weight: 700; color: var(--orange); z-index: 20" data-start="122" data-duration="27" data-track-index="1">BUILT WITH KIRO</div>
+      <div id="kiro-tree" class="clip panel" style="left: 100px; top: 170px; width: 800px; height: 680px" data-start="122.4" data-duration="26.6" data-track-index="2" data-hold>
+        <h3>.KIRO/</h3>
+        <div class="mono"><div class="ln"><span class="k">steering/</span>   <span class="dim">rules every change follows</span></div><div class="ln">  product.md  structure.md</div><div class="ln">  tech.md     testing.md  design.md</div><div class="ln"><span class="k">specs/</span>      <span class="dim">requirements → design → tasks</span></div><div class="ln">  stack-data-model  action-engine</div><div class="ln">  html-export-import  card-editor</div><div class="ln">  stack-map-and-doctor</div><div class="ln"><span class="k">hooks/</span>      <span class="dim">6, run on save</span></div><div class="ln">  core-tests-on-save</div><div class="ln">  player-size-budget  ...</div></div>
+      </div>
+      <div id="kiro-rules" class="clip panel" style="left: 960px; top: 170px; width: 880px; height: 340px" data-start="124.6" data-duration="5.4" data-hold data-track-index="3">
+        <h3>STEERING: TECH.MD</h3>
+        <div class="mono"><div class="ln">Player: zero dependencies, &lt; 30 KB</div><div class="ln">Never eval, never innerHTML with user text</div><div class="ln">Export: no network, strict CSP</div></div>
+      </div>
+      <div id="k-c1" class="clip cap" data-start="122.4" data-duration="7.6" data-track-index="9">Steering files hold the rules. Specs drove the core: data model, actions, export.</div>
+      <div id="kiro-hook" class="clip panel" style="left: 960px; top: 170px; width: 880px; height: 340px" data-start="130" data-duration="19" data-track-index="4" data-hold>
+        <h3>HOOK: CORE TESTS ON SAVE</h3>
+        <div class="mono"><div class="ln"><span class="k">when</span>  file saved  <span class="s">src/core/**</span></div><div class="ln"><span class="k">then</span>  run the property tests;</div><div class="ln">      report the shrunk counterexample,</div><div class="ln">      add it as a regression test, fix it</div></div>
+      </div>
+      <div id="k-c2" class="clip cap" data-start="130" data-duration="4.5" data-track-index="9">A hook runs the fast-check property tests every time core code is saved.</div>
+      <div id="kiro-fail" class="clip panel" style="left: 960px; top: 560px; width: 880px; height: 390px; border-color: var(--red)" data-start="134.5" data-duration="6.5" data-track-index="5" data-hold>
+        <h3 style="color: var(--red)">✗ PROPERTY TEST FAILED</h3>
+        <div class="mono"><div class="ln">"any title exports safely"</div><div class="ln"><span class="dim">shrunk to</span>  title: <span class="s">"\u0000\u0007"</span></div><div class="ln"><span class="dim">read back</span>  &lt;title&gt; <span class="bad">"\ufffd\u0007"</span></div><div class="ln"><span class="dim">cause</span>      HTML parsers rewrite NUL</div></div>
+      </div>
+      <div id="k-c3" class="clip cap" data-start="134.5" data-duration="6.5" data-track-index="9">It found a real bug: one invisible character in a title broke the exported page.</div>
+      <div id="kiro-pass" class="clip panel" style="left: 960px; top: 560px; width: 880px; height: 390px; border-color: var(--mint)" data-start="141" data-duration="8" data-track-index="6" data-hold>
+        <h3 style="color: var(--mint)">✓ FIXED + REGRESSION TEST</h3>
+        <div class="mono"><div class="ln">strip control characters</div><div class="ln">  from &lt;title&gt;</div><div class="ln"><span class="ok">179</span> unit + property tests pass</div><div class="ln"><span class="ok">232</span> end-to-end runs, 5 browsers</div></div>
+      </div>
+      <div id="k-c4" class="clip cap" data-start="141" data-duration="8" data-track-index="9">Fixed, locked in with a test, and checked in five browsers and phone sizes.</div>
+
+      <!-- ============ 149-165 CLOSE ============ -->
+      <div id="close-bg" class="clip full bg" data-start="149" data-duration="16" data-track-index="0"></div>
+      <div id="close-band" class="clip band" data-start="149" data-duration="11" data-track-index="1"></div>
+      <video id="gallery-video" class="clip screen" src="assets/gallery.mp4" muted playsinline data-start="149" data-media-start="1.4" data-duration="4.8" data-track-index="2"></video>
+      <div id="c-c1" class="clip cap" data-start="149" data-duration="4.8" data-track-index="3">Five example stacks to play or remix, with search.</div>
+      <video id="bestiary-video" class="clip screen" src="assets/gallery.mp4" muted playsinline data-start="153.8" data-media-start="10.4" data-duration="3.4" data-track-index="2"></video>
+      <video id="train-video" class="clip screen" src="assets/train.mp4" muted playsinline data-start="157.2" data-media-start="4.2" data-duration="2.8" data-track-index="2"></video>
+      <div id="c-c2" class="clip cap" data-start="153.8" data-duration="6.2" data-track-index="3">A creature wiki, a ghost train, a lesson, a story, an escape room.</div>
+      <div id="close-logo" class="clip title-xl" style="left: 0; width: 1920px; text-align: center; top: 300px; z-index: 20" data-start="160" data-duration="5" data-track-index="4">STACKYARD</div>
+      <div id="close-tag" class="clip" style="left: 0; width: 1920px; text-align: center; top: 500px; font-size: 58px; color: var(--cream); z-index: 20" data-start="160.4" data-duration="4.6" data-track-index="5">Stack index cards. Link them.<br />Share one file that runs forever.</div>
+      <img id="close-ghost" class="clip crisp" src="art/ghost-float.gif" alt="" style="left: 1500px; top: 560px; width: 200px; height: 200px; z-index: 19" data-start="160" data-duration="5" data-track-index="7" />
+      <img id="close-candle" class="clip crisp" src="art/candle-flicker-transparent.gif" alt="" style="left: 220px; top: 560px; width: 200px; height: 200px; z-index: 19" data-start="160" data-duration="5" data-track-index="8" />
+      <div id="close-url" class="clip px" style="left: 0; width: 1920px; text-align: center; top: 760px; font-size: 30px; color: var(--lilac); z-index: 20" data-start="161" data-duration="4" data-track-index="6">GITHUB.COM/KAIJI123/STACKYARD · MIT · MADE FOR KIROWEEN</div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const pop = (sel, at, from = { opacity: 0, y: 24 }) => tl.from(sel, { ...from, duration: 0.35, ease: "power2.out" }, at);
+
+      // Captions and chips: a short rise on entry.
+      document.querySelectorAll(".cap, .chip, .speed").forEach((el) => pop(el, Number(el.dataset.start)));
+
+      // Hook: the phone settles in.
+      tl.from("#hook-shell", { scale: 0.96, duration: 0.6, ease: "power3.out" }, 0);
+
+      // Story: the year drops in, cards deal out, then sink into the ground as graves rise.
+      tl.from("#story-year", { y: -80, opacity: 0, duration: 0.6, ease: "steps(6)" }, 15.3);
+      [["#card-a", -14, 15.8], ["#card-b", 4, 16.2], ["#card-c", 12, 16.6]].forEach(([sel, rot, at]) => {
+        tl.fromTo(sel, { y: 500, rotation: 0, opacity: 0 }, { y: 0, rotation: rot, opacity: 1, duration: 0.7, ease: "back.out(1.6)" }, at);
+        tl.to(sel, { y: -14, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, at + 1.2); // a slow bob while the line reads
+        tl.to(sel, { y: 520, rotation: rot * 2, filter: "grayscale(1) brightness(0.5)", duration: 1.4, ease: "power2.in" }, 22);
+      });
+      tl.to("#story-year", { opacity: 0, duration: 0.5 }, 21.2);
+      tl.from("#ground", { y: 220, duration: 0.6, ease: "power2.out" }, 21.8);
+      ["#grave-a", "#grave-b", "#grave-c"].forEach((sel, i) => tl.from(sel, { y: 320, duration: 0.8, ease: "steps(8)" }, 22.6 + i * 0.3));
+      tl.from("#story-ghost", { x: 260, opacity: 0, duration: 1.2, ease: "power1.out" }, 23.6);
+      tl.to(["#grave-a", "#grave-b", "#grave-c", "#ground", "#story-ghost"], { opacity: 0.25, duration: 0.6 }, 28);
+      tl.fromTo("#banner", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "back.out(1.4)" }, 28.4);
+      pop("#story-c3b", 29.4);
+      tl.to("#banner", { scale: 1.05, duration: 5.4, ease: "sine.inOut" }, 29.4);
+      tl.to("#story-moon", { y: 40, x: -60, duration: 20, ease: "none" }, 15);
+
+      // Footage cuts in with a quick fade.
+      document.querySelectorAll("video.screen").forEach((el) => tl.from(el, { opacity: 0, duration: 0.25 }, Number(el.dataset.start)));
+
+      // Export: devices slide up one after another; the inside panel and Kiro panels pop.
+      ["#dev-desk", "#dev-tab", "#dev-ph"].forEach((sel, i) => {
+        tl.from([sel, sel + "-v"], { y: 140, opacity: 0, duration: 0.5, ease: "power3.out" }, 103.4 + i * 0.2);
+      });
+      ["#inside", "#kiro-tree", "#kiro-rules", "#kiro-hook", "#kiro-fail", "#kiro-pass"].forEach((sel) => {
+        tl.from(sel, { scale: 0.94, opacity: 0, duration: 0.4, ease: "back.out(1.6)" }, Number(document.querySelector(sel).dataset.start));
+      });
+      ["#inside", "#kiro-tree", "#kiro-rules", "#kiro-hook", "#kiro-fail", "#kiro-pass"].forEach((sel) => {
+        tl.from(`${sel} .ln`, { opacity: 0, x: -16, duration: 0.25, stagger: 0.35 }, Number(document.querySelector(sel).dataset.start) + 0.3);
+      });
+      tl.fromTo("#kiro-fail", { x: 0 }, { x: 10, duration: 0.06, repeat: 5, yoyo: true, ease: "none" }, 135);
+
+      // Close: footage dims under the logo.
+      tl.from("#close-logo", { y: -60, opacity: 0, duration: 0.6, ease: "steps(6)" }, 160);
+      pop("#close-tag", 160.4);
+      pop("#close-url", 161);
+      tl.fromTo("#close-ghost", { x: 120, y: 0, opacity: 0 }, { x: -60, y: -30, opacity: 1, duration: 4.6, ease: "sine.out" }, 160.2);
+      tl.from("#close-candle", { opacity: 0, y: 30, duration: 0.8 }, 160.4);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -101,7 +101,7 @@ describe("engine", () => {
 
   it("if-branches follow flags and items", () => {
     const stack: Stack = {
-      schemaVersion: 2, skin: "plain", title: "t", start: "c1", assets: {},
+      schemaVersion: 4, skin: "plain", title: "t", start: "c1", assets: {},
       cards: [
         { id: "c1", name: "a", objects: [] },
         { id: "c2", name: "b", objects: [] },

@@ -1,0 +1,4444 @@
+{
+  "schemaVersion": 4,
+  "title": "The Halloween Bestiary",
+  "skin": "plain",
+  "start": "cover",
+  "cards": [
+    {
+      "id": "cover",
+      "name": "The Halloween Bestiary",
+      "objects": [
+        {
+          "kind": "image",
+          "id": "cover_bg",
+          "asset": "b_cover",
+          "alt": "A candlelit library: shelves of old books, a skull, a sleeping owl, and a great book open on a lectern",
+          "crisp": true,
+          "x": 0,
+          "y": 0,
+          "w": 800,
+          "h": 600,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "image",
+          "id": "cover_candle_l",
+          "asset": "gif_candle",
+          "alt": "A candle flickering beside the book (animated)",
+          "crisp": true,
+          "x": 196,
+          "y": 248,
+          "w": 64,
+          "h": 64,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "image",
+          "id": "cover_candle_r",
+          "asset": "gif_candle",
+          "alt": "A candle flickering beside the book (animated)",
+          "crisp": true,
+          "x": 540,
+          "y": 248,
+          "w": 64,
+          "h": 64,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "cover_t",
+          "x": 24,
+          "y": 16,
+          "w": 520,
+          "h": 52,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "The Halloween Bestiary",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "light"
+        },
+        {
+          "kind": "text",
+          "id": "cover_b",
+          "x": 24,
+          "y": 444,
+          "w": 752,
+          "h": 76,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A field guide to the creatures of Halloween: where they come from, what they want, and which of them are real.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "button",
+          "id": "cover_open",
+          "x": 24,
+          "y": 534,
+          "w": 280,
+          "h": 56,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Open the book",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "cover_az",
+          "x": 320,
+          "y": 534,
+          "w": 240,
+          "h": 56,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "az"
+            }
+          ],
+          "label": "A to Z",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "contents",
+      "name": "Contents",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "contents_t",
+          "x": 72,
+          "y": 40,
+          "w": 660,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Contents",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "contents_b",
+          "x": 72,
+          "y": 104,
+          "w": 660,
+          "h": 40,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "17 creatures in 4 chapters. Click a picture to open a chapter.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "contents_spirits_img",
+          "asset": "b_ghost",
+          "alt": "Chapter: Spirits",
+          "crisp": true,
+          "x": 72,
+          "y": 164,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spirits"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "contents_spirits_name",
+          "x": 56,
+          "y": 298,
+          "w": 160,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spirits"
+            }
+          ],
+          "motion": "none",
+          "text": "Spirits",
+          "fontSize": 22,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "contents_spirits_n",
+          "x": 56,
+          "y": 352,
+          "w": 160,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "5 creatures",
+          "fontSize": 20,
+          "bold": false,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "contents_undead_img",
+          "asset": "b_vampire",
+          "alt": "Chapter: The Undead",
+          "crisp": true,
+          "x": 240,
+          "y": 164,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "undead"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "contents_undead_name",
+          "x": 224,
+          "y": 298,
+          "w": 160,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "undead"
+            }
+          ],
+          "motion": "none",
+          "text": "The Undead",
+          "fontSize": 22,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "contents_undead_n",
+          "x": 224,
+          "y": 352,
+          "w": 160,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "4 creatures",
+          "fontSize": 20,
+          "bold": false,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "contents_magic_img",
+          "asset": "b_witch",
+          "alt": "Chapter: Magic Folk",
+          "crisp": true,
+          "x": 408,
+          "y": 164,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "magic"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "contents_magic_name",
+          "x": 392,
+          "y": 298,
+          "w": 160,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "magic"
+            }
+          ],
+          "motion": "none",
+          "text": "Magic Folk",
+          "fontSize": 22,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "contents_magic_n",
+          "x": 392,
+          "y": 352,
+          "w": 160,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "4 creatures",
+          "fontSize": 20,
+          "bold": false,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "contents_animals_img",
+          "asset": "b_black_cat",
+          "alt": "Chapter: Real Animals",
+          "crisp": true,
+          "x": 576,
+          "y": 164,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "animals"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "contents_animals_name",
+          "x": 560,
+          "y": 298,
+          "w": 160,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "animals"
+            }
+          ],
+          "motion": "none",
+          "text": "Real Animals",
+          "fontSize": 22,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "contents_animals_n",
+          "x": 560,
+          "y": 352,
+          "w": 160,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "4 creatures",
+          "fontSize": 20,
+          "bold": false,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "contents_az",
+          "x": 72,
+          "y": 470,
+          "w": 240,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "az"
+            }
+          ],
+          "label": "A to Z",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "contents_cover",
+          "x": 328,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "cover"
+            }
+          ],
+          "label": "Close the book",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "az",
+      "name": "A to Z",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "az_t",
+          "x": 72,
+          "y": 30,
+          "w": 660,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A to Z",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_banshee",
+          "x": 72,
+          "y": 104,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "banshee"
+            }
+          ],
+          "motion": "none",
+          "text": "» Banshee",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_bat",
+          "x": 72,
+          "y": 160,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "bat"
+            }
+          ],
+          "motion": "none",
+          "text": "» Bat",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_cat",
+          "x": 72,
+          "y": 216,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "cat"
+            }
+          ],
+          "motion": "none",
+          "text": "» Black Cat",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_ghost",
+          "x": 72,
+          "y": 272,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "ghost"
+            }
+          ],
+          "motion": "none",
+          "text": "» Ghost",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_goblin",
+          "x": 72,
+          "y": 328,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "goblin"
+            }
+          ],
+          "motion": "none",
+          "text": "» Goblin",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_reaper",
+          "x": 72,
+          "y": 384,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "reaper"
+            }
+          ],
+          "motion": "none",
+          "text": "» The Grim Reaper",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_kitsune",
+          "x": 300,
+          "y": 104,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "kitsune"
+            }
+          ],
+          "motion": "none",
+          "text": "» Kitsune",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_mummy",
+          "x": 300,
+          "y": 160,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "mummy"
+            }
+          ],
+          "motion": "none",
+          "text": "» Mummy",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_owl",
+          "x": 300,
+          "y": 216,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "owl"
+            }
+          ],
+          "motion": "none",
+          "text": "» Owl",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_skeleton",
+          "x": 300,
+          "y": 272,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "skeleton"
+            }
+          ],
+          "motion": "none",
+          "text": "» Skeleton",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_spider",
+          "x": 300,
+          "y": 328,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spider"
+            }
+          ],
+          "motion": "none",
+          "text": "» Spider",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_jack",
+          "x": 300,
+          "y": 384,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "jack"
+            }
+          ],
+          "motion": "none",
+          "text": "» Stingy Jack",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_vampire",
+          "x": 528,
+          "y": 104,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "vampire"
+            }
+          ],
+          "motion": "none",
+          "text": "» Vampire",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_werewolf",
+          "x": 528,
+          "y": 160,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "werewolf"
+            }
+          ],
+          "motion": "none",
+          "text": "» Werewolf",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_wisp",
+          "x": 528,
+          "y": 216,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "wisp"
+            }
+          ],
+          "motion": "none",
+          "text": "» Will-o'-the-wisp",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_witch",
+          "x": 528,
+          "y": 272,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "witch"
+            }
+          ],
+          "motion": "none",
+          "text": "» Witch",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "az_zombie",
+          "x": 528,
+          "y": 328,
+          "w": 220,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "zombie"
+            }
+          ],
+          "motion": "none",
+          "text": "» Zombie",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "az_home",
+          "x": 72,
+          "y": 470,
+          "w": 240,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "« Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "spirits",
+      "name": "Spirits",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "spirits_t",
+          "x": 72,
+          "y": 40,
+          "w": 660,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Spirits",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "spirits_b",
+          "x": 72,
+          "y": 104,
+          "w": 660,
+          "h": 60,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Ghosts, wailing women, wandering lights and Death himself: creatures you can see through, or barely see at all.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "spirits_ghost_img",
+          "asset": "b_ghost",
+          "alt": "Ghost: open the article",
+          "crisp": true,
+          "x": 76,
+          "y": 176,
+          "w": 120,
+          "h": 120,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "ghost"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "spirits_ghost_name",
+          "x": 72,
+          "y": 310,
+          "w": 128,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "ghost"
+            }
+          ],
+          "motion": "none",
+          "text": "Ghost",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "spirits_banshee_img",
+          "asset": "b_banshee",
+          "alt": "Banshee: open the article",
+          "crisp": true,
+          "x": 216,
+          "y": 176,
+          "w": 120,
+          "h": 120,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "banshee"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "spirits_banshee_name",
+          "x": 212,
+          "y": 310,
+          "w": 128,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "banshee"
+            }
+          ],
+          "motion": "none",
+          "text": "Banshee",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "spirits_reaper_img",
+          "asset": "b_reaper",
+          "alt": "The Grim Reaper: open the article",
+          "crisp": true,
+          "x": 356,
+          "y": 176,
+          "w": 120,
+          "h": 120,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "reaper"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "spirits_reaper_name",
+          "x": 352,
+          "y": 310,
+          "w": 128,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "reaper"
+            }
+          ],
+          "motion": "none",
+          "text": "The Grim Reaper",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "spirits_wisp_img",
+          "asset": "b_wisp",
+          "alt": "Will-o'-the-wisp: open the article",
+          "crisp": true,
+          "x": 496,
+          "y": 176,
+          "w": 120,
+          "h": 120,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "wisp"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "spirits_wisp_name",
+          "x": 492,
+          "y": 310,
+          "w": 128,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "wisp"
+            }
+          ],
+          "motion": "none",
+          "text": "Will-o'-the-wisp",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "spirits_jack_img",
+          "asset": "b_jack",
+          "alt": "Stingy Jack: open the article",
+          "crisp": true,
+          "x": 636,
+          "y": 176,
+          "w": 120,
+          "h": 120,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "jack"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "spirits_jack_name",
+          "x": 632,
+          "y": 310,
+          "w": 128,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "jack"
+            }
+          ],
+          "motion": "none",
+          "text": "Stingy Jack",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "spirits_home",
+          "x": 72,
+          "y": 470,
+          "w": 240,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "« Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "undead",
+      "name": "The Undead",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "undead_t",
+          "x": 72,
+          "y": 40,
+          "w": 660,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "The Undead",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "undead_b",
+          "x": 72,
+          "y": 104,
+          "w": 660,
+          "h": 60,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Things that were alive once, and did not stay politely buried.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "undead_vampire_img",
+          "asset": "b_vampire",
+          "alt": "Vampire: open the article",
+          "crisp": true,
+          "x": 86,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "vampire"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "undead_vampire_name",
+          "x": 72,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "vampire"
+            }
+          ],
+          "motion": "none",
+          "text": "Vampire",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "undead_zombie_img",
+          "asset": "b_zombie",
+          "alt": "Zombie: open the article",
+          "crisp": true,
+          "x": 254,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "zombie"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "undead_zombie_name",
+          "x": 240,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "zombie"
+            }
+          ],
+          "motion": "none",
+          "text": "Zombie",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "undead_mummy_img",
+          "asset": "b_mummy",
+          "alt": "Mummy: open the article",
+          "crisp": true,
+          "x": 422,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "mummy"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "undead_mummy_name",
+          "x": 408,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "mummy"
+            }
+          ],
+          "motion": "none",
+          "text": "Mummy",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "undead_skeleton_img",
+          "asset": "b_skeleton",
+          "alt": "Skeleton: open the article",
+          "crisp": true,
+          "x": 590,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "skeleton"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "undead_skeleton_name",
+          "x": 576,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "skeleton"
+            }
+          ],
+          "motion": "none",
+          "text": "Skeleton",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "undead_home",
+          "x": 72,
+          "y": 470,
+          "w": 240,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "« Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "magic",
+      "name": "Magic Folk",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "magic_t",
+          "x": 72,
+          "y": 40,
+          "w": 660,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Magic Folk",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "magic_b",
+          "x": 72,
+          "y": 104,
+          "w": 660,
+          "h": 60,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Witches, shape-shifters and tricksters: creatures who change things, including themselves.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "magic_witch_img",
+          "asset": "b_witch",
+          "alt": "Witch: open the article",
+          "crisp": true,
+          "x": 86,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "witch"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "magic_witch_name",
+          "x": 72,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "witch"
+            }
+          ],
+          "motion": "none",
+          "text": "Witch",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "magic_werewolf_img",
+          "asset": "b_werewolf",
+          "alt": "Werewolf: open the article",
+          "crisp": true,
+          "x": 254,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "werewolf"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "magic_werewolf_name",
+          "x": 240,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "werewolf"
+            }
+          ],
+          "motion": "none",
+          "text": "Werewolf",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "magic_goblin_img",
+          "asset": "b_goblin",
+          "alt": "Goblin: open the article",
+          "crisp": true,
+          "x": 422,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "goblin"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "magic_goblin_name",
+          "x": 408,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "goblin"
+            }
+          ],
+          "motion": "none",
+          "text": "Goblin",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "magic_kitsune_img",
+          "asset": "b_kitsune",
+          "alt": "Kitsune: open the article",
+          "crisp": true,
+          "x": 590,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "kitsune"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "magic_kitsune_name",
+          "x": 576,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "kitsune"
+            }
+          ],
+          "motion": "none",
+          "text": "Kitsune",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "magic_home",
+          "x": 72,
+          "y": 470,
+          "w": 240,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "« Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "animals",
+      "name": "Real Animals",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "animals_t",
+          "x": 72,
+          "y": 40,
+          "w": 660,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Real Animals",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "animals_b",
+          "x": 72,
+          "y": 104,
+          "w": 660,
+          "h": 60,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Not monsters at all. Real animals that Halloween borrowed, and why.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "animals_cat_img",
+          "asset": "b_black_cat",
+          "alt": "Black Cat: open the article",
+          "crisp": true,
+          "x": 86,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "cat"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "animals_cat_name",
+          "x": 72,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "cat"
+            }
+          ],
+          "motion": "none",
+          "text": "Black Cat",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "animals_bat_img",
+          "asset": "b_bat",
+          "alt": "Bat: open the article",
+          "crisp": true,
+          "x": 254,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "bat"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "animals_bat_name",
+          "x": 240,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "bat"
+            }
+          ],
+          "motion": "none",
+          "text": "Bat",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "animals_spider_img",
+          "asset": "b_spider",
+          "alt": "Spider: open the article",
+          "crisp": true,
+          "x": 422,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spider"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "animals_spider_name",
+          "x": 408,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spider"
+            }
+          ],
+          "motion": "none",
+          "text": "Spider",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "animals_owl_img",
+          "asset": "b_owl",
+          "alt": "Owl: open the article",
+          "crisp": true,
+          "x": 590,
+          "y": 176,
+          "w": 128,
+          "h": 128,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "owl"
+            }
+          ],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "animals_owl_name",
+          "x": 576,
+          "y": 310,
+          "w": 156,
+          "h": 52,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "owl"
+            }
+          ],
+          "motion": "none",
+          "text": "Owl",
+          "fontSize": 20,
+          "bold": true,
+          "align": "center",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "animals_home",
+          "x": 72,
+          "y": 470,
+          "w": 240,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "« Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "ghost",
+      "name": "Ghost",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "ghost_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "SPIRITS · 1 of 5",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "ghost_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Ghost",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "ghost_img",
+          "asset": "b_ghost",
+          "alt": "A round white ghost with dark eyes and an open mouth",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "float"
+        },
+        {
+          "kind": "text",
+          "id": "ghost_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "The spirit of someone who has died, said to stay near the places they knew. Almost every culture in the world has ghost stories.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "ghost_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: everywhere, in stories thousands of years old\nLook for: cold spots, footsteps, a figure in white\nThey want: to finish something left undone\nTrue or not: no proof, but the stories are real",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "ghost_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "banshee"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Banshee",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "ghost_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spirits"
+            }
+          ],
+          "label": "« Spirits",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "ghost_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "banshee"
+            }
+          ],
+          "label": "Next: Banshee",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "ghost_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "banshee",
+      "name": "Banshee",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "banshee_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "SPIRITS · 2 of 5",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "banshee_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Banshee",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "banshee_img",
+          "asset": "b_banshee",
+          "alt": "A pale woman with long grey hair, crying out",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "float"
+        },
+        {
+          "kind": "text",
+          "id": "banshee_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "In Irish folklore, a woman of the fairy world whose wailing at night warns a family that one of them will soon die.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "banshee_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: Ireland (Irish bean sí, 'woman of the fairy mound')\nListen for: a keening cry outside the house at night\nShe is: a warning, never the cause\nReal: keening was a real Irish song of mourning",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "banshee_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "ghost"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Ghost",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "banshee_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spirits"
+            }
+          ],
+          "label": "« Spirits",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "banshee_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "reaper"
+            }
+          ],
+          "label": "Next: Grim Reaper",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "banshee_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "reaper",
+      "name": "The Grim Reaper",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "reaper_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "SPIRITS · 3 of 5",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "reaper_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "The Grim Reaper",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "reaper_img",
+          "asset": "b_reaper",
+          "alt": "A hooded figure with glowing eyes, a scythe and an hourglass",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "float"
+        },
+        {
+          "kind": "text",
+          "id": "reaper_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Death itself, pictured as a hooded skeleton with a scythe who gathers souls the way a farmer harvests wheat.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "reaper_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: European art, common from the 1300s\nCarries: a scythe, and often an hourglass\nWhy a scythe: death 'harvests' people like grain\nIn stories: clever heroes try to beat him at games",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "reaper_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "skeleton"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Skeleton",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "reaper_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spirits"
+            }
+          ],
+          "label": "« Spirits",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "reaper_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "wisp"
+            }
+          ],
+          "label": "Next: The Wisp",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "reaper_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "wisp",
+      "name": "Will-o'-the-wisp",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "wisp_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "SPIRITS · 4 of 5",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "wisp_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Will-o'-the-wisp",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "wisp_img",
+          "asset": "b_wisp",
+          "alt": "A floating ball of green light (animated)",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "wisp_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A ghostly light that floats over marshes at night and leads travellers off the path. Every folk tale agrees: never follow it.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "wisp_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Also called: ignis fatuus, Latin for 'foolish fire'\nLook for: a flickering light over boggy ground\nScience says: maybe gas from rotting plants, burning\nSee it in: The Lantern Road and The Haunted House",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "wisp_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "jack"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Stingy Jack",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "wisp_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spirits"
+            }
+          ],
+          "label": "« Spirits",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "wisp_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "jack"
+            }
+          ],
+          "label": "Next: Stingy Jack",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "wisp_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "jack",
+      "name": "Stingy Jack",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "jack_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "SPIRITS · 5 of 5",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "jack_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Stingy Jack",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "jack_img",
+          "asset": "b_jack",
+          "alt": "A sly man in a black hat holding up a glowing carved turnip",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "jack_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Jack tricked the Devil, so when he died he could enter neither heaven nor hell. He wanders still, lighting his way with a coal in a turnip.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "jack_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: an old Irish folk tale\nFirst lanterns: carved turnips and potatoes\nPumpkins: Irish families found them in America\nHis name: gave us the word jack-o'-lantern",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "jack_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "wisp"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Will-o'-the-wisp",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "jack_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spirits"
+            }
+          ],
+          "label": "« Spirits",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "jack_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "ghost"
+            }
+          ],
+          "label": "Next: Ghost",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "jack_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "vampire",
+      "name": "Vampire",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "vampire_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "THE UNDEAD · 1 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "vampire_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Vampire",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "vampire_img",
+          "asset": "b_vampire",
+          "alt": "A pale man in a high red-collared cape with red eyes and fangs",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "vampire_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A corpse that rises at night to drink the blood of the living. The tales come from Eastern Europe; Count Dracula is from an 1897 novel.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "vampire_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: Slavic and Balkan folklore\nWeak against: garlic, a wooden stake, running water\nSunlight: only deadly since a film of 1922\nReal: vampire bats exist, and they are tiny",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "vampire_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "bat"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Bat",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "vampire_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "undead"
+            }
+          ],
+          "label": "« The Undead",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "vampire_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "zombie"
+            }
+          ],
+          "label": "Next: Zombie",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "vampire_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "zombie",
+      "name": "Zombie",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "zombie_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "THE UNDEAD · 2 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "zombie_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Zombie",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "zombie_img",
+          "asset": "b_zombie",
+          "alt": "A green-skinned zombie in a torn grey shirt, arms out",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "zombie_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A dead body that walks again, without a mind of its own. The word comes from Haitian folklore; the hungry film zombie came much later.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "zombie_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: Haiti (zonbi), from older West African beliefs\nFilm zombie: from Night of the Living Dead, 1968\nMoves: slowly... unless it is a newer film\nReal: a fungus turns some ants into 'zombie ants'",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "zombie_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "mummy"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Mummy",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "zombie_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "undead"
+            }
+          ],
+          "label": "« The Undead",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "zombie_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "mummy"
+            }
+          ],
+          "label": "Next: Mummy",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "zombie_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "mummy",
+      "name": "Mummy",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "mummy_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "THE UNDEAD · 3 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "mummy_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Mummy",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "mummy_img",
+          "asset": "b_mummy",
+          "alt": "A figure wrapped in linen bandages with glowing eyes and a gold scarab",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "mummy_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A body preserved after death. Ancient Egyptians dried the body with salt and wrapped it in linen, so the soul would always have a home.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "mummy_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: Ancient Egypt, over 4,000 years ago\nMade with: natron salt, oils, and lots of linen\nThe curse: newspapers spread it after 1922\nReal: the organs were kept in four special jars",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "mummy_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "skeleton"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Skeleton",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "mummy_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "undead"
+            }
+          ],
+          "label": "« The Undead",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "mummy_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "skeleton"
+            }
+          ],
+          "label": "Next: Skeleton",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "mummy_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "skeleton",
+      "name": "Skeleton",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "skeleton_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "THE UNDEAD · 4 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "skeleton_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Skeleton",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "skeleton_img",
+          "asset": "b_skeleton",
+          "alt": "A smiling skeleton waving, with a marigold flower",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "skeleton_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "The bones inside every one of us. At Halloween and on Mexico's Day of the Dead, skeletons remind us of the dead, often with a smile.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "skeleton_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Bones: an adult has 206; a baby has about 300\nStrongest: the thigh bone, called the femur\nDay of the Dead: Mexico, 1 and 2 November\nReal: your skeleton is alive and always renewing",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "skeleton_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "reaper"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: The Grim Reaper",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "skeleton_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "undead"
+            }
+          ],
+          "label": "« The Undead",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "skeleton_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "vampire"
+            }
+          ],
+          "label": "Next: Vampire",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "skeleton_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "witch",
+      "name": "Witch",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "witch_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "MAGIC FOLK · 1 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "witch_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Witch",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "witch_img",
+          "asset": "b_witch",
+          "alt": "A green-faced witch with orange hair, a crooked hat and a broom",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "witch_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "In old stories, a person who uses magic, often with a cat, a cauldron and a broom. In real history, innocent people were accused of it.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "witch_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: folklore all over the world\nTools: cauldron, broomstick, book of spells\nCompanion: a 'familiar', often a black cat\nHistory: thousands were unfairly tried, 1450–1750",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "witch_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "cat"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Black Cat",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "witch_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "magic"
+            }
+          ],
+          "label": "« Magic Folk",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "witch_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "werewolf"
+            }
+          ],
+          "label": "Next: Werewolf",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "witch_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "werewolf",
+      "name": "Werewolf",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "werewolf_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "MAGIC FOLK · 2 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "werewolf_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Werewolf",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "werewolf_img",
+          "asset": "b_werewolf",
+          "alt": "A shaggy brown wolf-man with yellow eyes and fangs",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "werewolf_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A person who turns into a wolf, usually at the full moon. The idea is ancient: a Greek myth tells of a king turned into a wolf.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "werewolf_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: ancient Greece (King Lycaon) and across Europe\nThe word: 'were' is Old English for 'man'\nWeak against: silver, in later stories\nScience word: lycanthropy, 'wolf-person'",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "werewolf_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "kitsune"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Kitsune",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "werewolf_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "magic"
+            }
+          ],
+          "label": "« Magic Folk",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "werewolf_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "goblin"
+            }
+          ],
+          "label": "Next: Goblin",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "werewolf_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "goblin",
+      "name": "Goblin",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "goblin_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "MAGIC FOLK · 3 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "goblin_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Goblin",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "goblin_img",
+          "asset": "b_goblin",
+          "alt": "A small green goblin with big ears and a stolen gold coin",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "goblin_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A small, mischievous creature of European folklore that lives in caves and old houses, stealing food and playing tricks.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "goblin_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: medieval European folklore\nLikes: shiny things, tricks, other people's dinner\nCousins: hobgoblins, kobolds, brownies\nThe word: maybe from Greek kobalos, 'rogue'",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "goblin_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "witch"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Witch",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "goblin_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "magic"
+            }
+          ],
+          "label": "« Magic Folk",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "goblin_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "kitsune"
+            }
+          ],
+          "label": "Next: Kitsune",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "goblin_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "kitsune",
+      "name": "Kitsune",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "kitsune_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "MAGIC FOLK · 4 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "kitsune_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Kitsune",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "kitsune_img",
+          "asset": "b_kitsune",
+          "alt": "A fox spirit with nine white-tipped tails fanned out behind her",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "pulse"
+        },
+        {
+          "kind": "text",
+          "id": "kitsune_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A fox spirit from Japanese folklore. It grows a new tail every hundred years, and can take human form to help or to trick people.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "kitsune_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "From: Japan; China and Korea have fox spirits too\nTails: up to nine; more tails, more wisdom and power\nServes: Inari, the Shinto spirit of rice\nIn stories: its shadow gives it away",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "kitsune_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "werewolf"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Werewolf",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "kitsune_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "magic"
+            }
+          ],
+          "label": "« Magic Folk",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "kitsune_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "witch"
+            }
+          ],
+          "label": "Next: Witch",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "kitsune_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "cat",
+      "name": "Black Cat",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "cat_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "REAL ANIMALS · 1 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "cat_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Black Cat",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "cat_img",
+          "asset": "b_black_cat",
+          "alt": "A black cat with yellow eyes and a collar with a bell",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "cat_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A real cat, of course. In parts of Europe and America a black cat crossing your path is bad luck; in Britain and Japan it can be good luck.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "cat_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Real: yes, many breeds can be black\nUnlucky: an old idea linked to witch stories\nLucky: in Scotland, a black cat at your door\nSailors: kept black cats on board for luck",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "cat_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "witch"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Witch",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "cat_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "animals"
+            }
+          ],
+          "label": "« Real Animals",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "cat_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "bat"
+            }
+          ],
+          "label": "Next: Bat",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "cat_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "bat",
+      "name": "Bat",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "bat_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "REAL ANIMALS · 2 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "bat_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Bat",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "bat_img",
+          "asset": "b_bat",
+          "alt": "A brown bat with purple wings spread",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "bob"
+        },
+        {
+          "kind": "text",
+          "id": "bat_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "The only mammal that can truly fly. Most bats eat insects or fruit; only three kinds out of more than 1,400 drink blood.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "bat_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Real: yes, about a fifth of all mammal species\nFinds its way by: sound echoes (echolocation)\nVampire bats: three kinds, in the Americas\nHelpers: bats eat pests and spread seeds",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "bat_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "vampire"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Vampire",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "bat_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "animals"
+            }
+          ],
+          "label": "« Real Animals",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "bat_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "spider"
+            }
+          ],
+          "label": "Next: Spider",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "bat_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "spider",
+      "name": "Spider",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "spider_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "REAL ANIMALS · 3 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "spider_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Spider",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "spider_img",
+          "asset": "b_spider",
+          "alt": "A black spider with red markings hanging from a thread",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "swing"
+        },
+        {
+          "kind": "text",
+          "id": "spider_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Not an insect: spiders have eight legs and are arachnids. Almost all are harmless to people, and they eat a lot of pests.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "spider_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Real: yes, about 50,000 known species\nLegs: eight, and most have eight eyes\nSilk: stronger than steel of the same weight\nFear of spiders: arachnophobia",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "spider_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "owl"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Owl",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "spider_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "animals"
+            }
+          ],
+          "label": "« Real Animals",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "spider_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "owl"
+            }
+          ],
+          "label": "Next: Owl",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "spider_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    },
+    {
+      "id": "owl",
+      "name": "Owl",
+      "objects": [
+        {
+          "kind": "text",
+          "id": "owl_ch",
+          "x": 72,
+          "y": 24,
+          "w": 400,
+          "h": 30,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "REAL ANIMALS · 4 of 4",
+          "fontSize": 20,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "owl_t",
+          "x": 72,
+          "y": 54,
+          "w": 420,
+          "h": 56,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Owl",
+          "fontSize": 40,
+          "bold": true,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "image",
+          "id": "owl_img",
+          "asset": "b_owl",
+          "alt": "A brown owl with big orange eyes on a branch",
+          "crisp": true,
+          "x": 528,
+          "y": 32,
+          "w": 224,
+          "h": 224,
+          "visible": true,
+          "actions": [],
+          "motion": "none"
+        },
+        {
+          "kind": "text",
+          "id": "owl_b",
+          "x": 72,
+          "y": 120,
+          "w": 430,
+          "h": 150,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "A night hunter that flies almost silently. In ancient Greece the owl meant wisdom; in other places it was a sign of bad news.",
+          "fontSize": 24,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "text",
+          "id": "owl_facts",
+          "x": 72,
+          "y": 276,
+          "w": 680,
+          "h": 128,
+          "visible": true,
+          "actions": [],
+          "motion": "none",
+          "text": "Real: yes, about 250 species\nHead: turns about 270 degrees\nSilent flight: soft, fringed feathers\nIn myth: the owl of Athena, goddess of wisdom",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "panel"
+        },
+        {
+          "kind": "text",
+          "id": "owl_see",
+          "x": 72,
+          "y": 414,
+          "w": 420,
+          "h": 44,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "bat"
+            }
+          ],
+          "motion": "none",
+          "text": "» See also: Bat",
+          "fontSize": 22,
+          "bold": false,
+          "align": "left",
+          "tone": "dark"
+        },
+        {
+          "kind": "button",
+          "id": "owl_back",
+          "x": 72,
+          "y": 470,
+          "w": 220,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "animals"
+            }
+          ],
+          "label": "« Real Animals",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "owl_next",
+          "x": 308,
+          "y": 470,
+          "w": 280,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "cat"
+            }
+          ],
+          "label": "Next: Black Cat",
+          "motion": "none"
+        },
+        {
+          "kind": "button",
+          "id": "owl_home",
+          "x": 604,
+          "y": 470,
+          "w": 164,
+          "h": 60,
+          "visible": true,
+          "actions": [
+            {
+              "type": "goto",
+              "card": "contents"
+            }
+          ],
+          "label": "Contents",
+          "motion": "none"
+        }
+      ]
+    }
+  ],
+  "assets": {
+    "b_cover": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAyAAAAJYCAYAAACadoJwAAAyUElEQVR42u3doa5kx3aA4QuHDDsyGMv0aJQBNjAaKSwmDUaGwaZDjM1N/Fyj0DA/QqTAKA9wAq+6HJ81q1dV7aq9P/CjctnHu7t319fS6v7H2zdPL5IkSZI0o3+4CJIkSZIARJIkSRKASJIkSdIwgPzrv7y7K/sf+Pbp+S777bd/n/1e//bbb7/7h/3229/79Q8g9ttvv9e//fbb7/5hv/32A4j99tvvAGG//fa7f7j+9tsPIB4A++13A3H97LfffvcP++23fxxAJEmSJMm3YEmSJEkCEEmSJEkCEEmSJEnHAyQaEonWoyEV69at77vu/mDdunX3B+vWrfceUgcQ69atO2BYt27d/cG6desAYt26dQcM69atuz9Yt24dQFxg69YdMNwfrFu37v5g3br1xwFiEEaSJEmSb8GSJEmSBCCSJEmSBCCSJEmS9geIITLr1g2ZGjK1bt26+4N169a/tuj1DyDWrVt3wLBu3br7g3Xr1gHEunXrDhjWrVt3f7Bu3TqAeACsW3fAcH+wbt26+4N16wAyDiCzq/4P22+//fbbb7/98/dHBw7Xz377z7t/+2/B8gSw33777bfffgCx3377AQRA7Lfffvvtt99+ALHffvsBxH777bfffvvtBxD77bd/I4AYIrNu3bohU+tXHJJ8fv/zXdl194dz3x+ivv/tdtdu/39/fPh4V+9196e9n9+fvnm+K7sOINatW3fAsO4NFkDcHwAEQKwDiHXr1h0wrFsHEPcHAAEQ6wDigGHdunUAsQ4gAAIgAAIgADIOIKsNoRvysd+Q1t/33e2HuwyZ5vbffvz1Ls/fa+2PQOH62V8Bx+j//ufbh7uy+yMwjN7v+Xft8wuA2G8/gAAIgAAIgNgPIABiP4B4AtjvBQwgAGI/gNgPIABiP4AAiP32AwiAeP4CiOsHIAACIM4v8wBiyNT6a+vVG/LVh0AjUFTXrz5kGoEjWvf633v95c/Pd/VeP/r5awh97edP9b8fgWP310d0fth9yP/sz++qHwDEOoAACIAAiDdYAAEQAAEQ90cAsQ4gAAIgAGIdQAAEQAAEQADEA2gdQAAEQKwDCIAACIAACICMA8jsqj984gl3LDii9So4ovXq3zf6hrf7gWj1A8Xu1zc6cIw+kFRf/6vfv1b/wGN3MK9+f4j68su7u3Z7f9j9hwePvv9WvwTg6Pvz6B8ePP23YAEIgAAIgAAIgAAIgAAIgAAIgACIdQBxQAYQAAEQAAEQAAEQAAEQQAAQAHHAABAAARAAARAAAZCNAHL0EFkVHEBy7gNftD4aHNU3rGjdEPrYIf3qga76w1zR+u7gWB0koz/wOPr+agi9tl4Fx+gvYRn9+h8Nkuh8Vr2+o8+P1fvz6iAZff0ABCAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABECsAwiAAAiAAAiAAAiAAAiAjAPIakPoUdUfRjn6QGcIfeyBYDR4VgdHdYju6CHTo8ERrY9+w159SL56/41eH4bQjx1Cr77+ovvD6qCrfuBVff6NPtAeDY4qSEYfmEefH6pD4D/dfr8r+++v7j/9t2ABCIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACICcCCDRDaV6IBv9hBp94Ise0Op69e+rPj7VIb3df3hw9A1p9POz+oZWHTKNGn39qwe60Y//2YfQdwdHtD769Vv9koTo+TMaHFWQjH7/Gj2EPvr+UP3A9egPVFZ/fx49hF4FR3V99JB59PoHEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABkHEAmd3qQ0TAsfYQ+miQrD6EPvrAHt1Qov3R9b36EPruIFl9iH53cETr1edP9fGL7g+jv+Tj6Pe/o4fQjwbH7kPoo8Fx9A83V8/fp/8WLAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABkI0AUh0iq16Q1YbQo6L/v6iz7W9vGG3ZN/yo7H8/C4627BtWVO/nX7ve3gCzN8z28c7eH6rPv+r/f3tAyx7o2rJvyFHR9c8+fu2BJyq7P/v6yT7/R//9o+8/ve+/2edv9b9fvf+0r/+o6PrPfv+Knq/Z53/1+Zd9/Vf//6v3r3a9PY9lwZF9/47+e9nzY/X9M7s/+ntXH0KvggVAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAHgfIakPo1SEZPzxoCP3KQ+jVITlD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AAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAHAeQqw2h9x4CNYQOIEcCpPqGdXWAzD4w9/73G0IHEAA5D0DOPoTe+/k5ewh99g8PHv2BetUPAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgADIOILOrgqQ6ZDT6Aes9JAUgAGII3RC6HyIEEAABEADJnZ+y56/Vh9B3G1IHEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABkMcBEg2JXG0IvXeG0AEEQAAEQAAEQAAEQM49hB4VgSN6/LLgGP2Bevt4AgiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAMg8gKw2hB51tiH00UNSAAIgAAIgAAIgAAIgZwPI6C/52W0IfbUhcwABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAA5DiBXG0LvPaRuCB1AAARAAARAAARAAOTcQ+i9wbH6EHrVDwACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAAyDiCzq4JktyH06pAUgAAIgAAIgAAIgAAIgMz9kp/VhtB3G1IHEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABkMcBEg2JXG0IvXeG0AEEQAAEQAAEQAAEQM49hB4VgSN6/FYbQm8fTwABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEACZB5DVhtCjzjaEPnpICkAABEAABEAABEAA5GwAGf0lP7sNoa82ZA4gAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgxwEkGkKPhlDOti5dqewBwzWT3B/cH3TFrnY+rvoBQABEcsCQ5P4gAQiAAIjkgCHJ/UECEAABEMkBwwFDkvuDBCDjADK76g8j7rYeVd0vSZJ0tUafv3Zbr56/T/8tWAACIJIkSQACIAACIJIkSQACIAACIJIkSQKQjQBytQO/A70kSZKA6DjwAIgXhSRJkgAEQABEkiRJAAIgACJJkiQByOMAWW0IPerbp+e7zr4eVd0vvVb2BumaSe4P7g+a0ejz027r1fPz7AAEQCQHDEnuDwIQAAEQAAEQOWBIcn+QAARAAARA5IDhgCHJ/UEAAiDjABINmQCB5IDhgCG5P7g/CIiucz6u+gFAAERywJDk/iABCIAAiOSAIcn9QQIQAAEQyQHDAUOS+4MEIOMAYsh87yHzdv8fHz52zU3HAWPnA0b7+vh8+/BqnhPnPjB8d/shlfsDgOjxXv73y13tenT/jfYbUl97SB1AAARABCAAAiAA4v4gAAEQAAEQAJEDBoAIQNwfBCAAAiAAAiAA4oABIAIQAAEQAQiAPA6QaEgkWv/+t9tdvS9Y+wTMrl99yLw3OAAkd8P66fb7q/X+77Wvx7bVDxhZEGSL3uAA5FplwQEgtfuD61m7H3755d2r7QaOqPb+m92/2uMXvb+dDUQAAiAAAiAAAiACEAABEAABEAABEAABEAABEAEIgLieAAIgAAIgAAIgAAIgAAIgAAIgAAIgADIOIKsNoWcfsN4gifr0zfNdqw+pv/z5eWi737B738AjcPQGSASO2QAZDYjeANnt+f6XN9n2bxy8Hj3+R/992Q9Qdrv/Ve9vve93ZwdIe71vP/5aKvvfn/14jr5fZc9bvfe312v2gbz3B+a7nd8BBEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAAZB5AogNGe0PufUGjf3+0HvX8/ue7InC0jb7hjR4ir5Yduh59IK++IWcf/7bZB5jR/73sAaMKhPDAqUNLA0SHthpAdvtAqwqOKkCOBnH1PFIdIu+9fzTYep9fo/NWtJ79kpzsetUPAAIgAAIgACIAARAAARAAARAAARAAARAAcYgEEAEIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgADIOIDsNmQerUfgqD5hqkPm2Sfc0VXBET3Bsz8MVh0qzYKjbfUh9CwYyyCw/1T7uw+hu/6n3p8dQo/er6uNBkBU9v+v+gFa9XpVzwfhB04ROJrrl90fnd9m//Bf9PdVwRGth0P7xQ/0t/8WLAABEAABEPsBxH4AARAAARAAARAAARAAcQADEACxH0AABEAABEAABEAABEDsBxD7AQRAAARANgJINCQSrUcHnOgGE61XwZEFRfbAmX3CpYdwi40GSO+/NwuOtuoQevXvnw2uLECyf59BXhlCV6/nS3Q/6w2OKkB6D6Fn/97s+1fv65V9/1vth2ejqu+/Udnzaxaw1Q/Eq0Po1R9GBBAAARAAARABiAAEQAAEQAAEQAAEQABEACIAARAAARAAARAAARAAkQMlgAhAAARAAORxgKw2hD56SD37w4PZ9erfV/0hwN2H0KsAqAJk9hB69QaXBUh4DbNDqMX19g16tX//7d/+/dRlr2/3IfRm/ezX9z//479SHf367L0++ktEsge46H7ZGyCj389W+wBzNiCifz4a2q9+YF79QH30kHn1hwVP/y1YAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgJwLI7kPoETiyIImG0FcfGl8dIEcPoc8GSPX50nsIPTtkWj6kRW/a0T9f/fdFB0iDxIbQC7WgaN9fsuvLASt5PY4eQs/eL68+hL46QLKNBtvoD6Sz66OH0Kt+ABAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAAZBxANltyHy3IfS21YbMAeRcQ+jtf/8vP4SUHTKNSu4fPvQ5+O8/+/7uQ+gnv37ZofNwKH3z69feb2YDJHugBJC9AdKen9rrFb2/7jaEvtuQOoAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIA8DpBoSORqQ+jZA2c75FN9wRhCB5CRAImef6sN8UY/JBj+0GD1v3/2HyJcbAj9bNc3AkR1fbei+48h9HMBpP33HT10ngVItez5tfrD07OH0KvgARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAAZDHAbLaEProIfXVhtCrQ+ZHD6kDyMkBEgyhnv6AHg3hXmy9+xD6yde9Pl4fQgeQawEkWwSKaMg8qvcH5kcPoa82ZA4gAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgDlgAAiAAAiAAAiAAchxArjaEHoHDEDqA7ASQ3YbOtXajh9B1rWaDBED2Akj1esweQh/9gfRqQ+hVPwAIgAAIgEgAIgABEAABEAABEAABEAARgAhAAARAAARAAARAAARABCAAIgABEAABkHEA2W3IfLch9AggRw+ZA8jFARINmZ58/+V/iHD0EPrJr/fVXz/RfgABkJHXIxpSz4Ji9SH03YbUAQRAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAORxgERDIlcbQs8eOA2hA8iVh9Avf0A3hG4I3evDEDqAGEL/f8qeX6s/PD17CL0KHgABEAABEAcsAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQBywAARCvDwABEAABkMcBstoQ+ugh9dWG0KtD5kcPqQPIWgDJgjccMrVufeQQuvVLr2fvVwACIJkh8+yQ+u5D6KsNmQMIgAAIgACIdQCxDiAAAiAAAiAAAiAAAiDWAcQ6gAAIgAAIgAAIgAAIgDggWQcQ6wACIAACIMcB5GpD6BE4DKEDyM4AMRhsiLgyRDx6CN2Q9rUDEADZeQh99AfSqw2hV/0AIAACIAAiAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAGQcQDZbch8t/Wo6n6pBJBgiPT0B/RoyLZ4/Xbb330I/eTX7/KATV4/92j1bPT5a7f16vn79N+CBSAAIgABEAABEACRAARAAARABCAAAiAAAiAAIgABEAABEAlAAARAAARAJADZCCDRkMjV1qWdGg4QaeIQugyhZ/IeoJ2qnj93O18DCIAIQABEACIAkQAEQABEAhABiAQgAhAAARAJQCQAEYBIADIOIKsNoVd/2ORqIAIq4CgBJBoSvfj65YfsRw+hN+tXv75XX6/e37xHONCf+UBfPfBX95/+W7AABEAEIAACIAACIAAiAAEQAAEQAQiAAAiAAAiACEAABEAABEAABEAABEAABEC8RwAIgJwIINEf/O3T811nX5eObPoPEfqhNRlC9/qY9Pqo3t+8R+jIrnY+rvoBQABEAOKABSAAAiAAIgEIgACIBCAAAiAAAiAAIgABEACRAMQBC0AAxOsDQCQAGQeQ2QENEKkjOKIh0Cj77R85hO762w8kOggEVwNF9fx9+m/BAhAAEYDYDyD22w8gAhAAARAAEYDYDyAAYj+ACEAABEAARAACIPYDiP0AAiACkI0AUv3hk6Mv6B8fPt6VXfci7fsC/+n2+6u5ZnsPncsQuiF0zQpAdObzUtunb55fLfrndwMPgHhRAAiASAAiAJEABEAABEAEIAIQAQiACEAABEAEIAAiAAEQAYgEII8DZLUh9KgqOLIgyf59X355d9fZh9QjcABI7vGrvuFW2+1+oLXvx1Km0fcz71eGzFceEq+CY7UhcwABEAABEAARgAhAvF8BCIAACIAAiABEACIBiAAEQAAEQAAEQCQAEYB4jwIQADkOIKOH0NsXfHa9/aGj7Hr272+BEXX2G8BffmgqyE2z75C5dGQtQFwTrVwWINEHjNnaf9/z+59Tec/cG0S9z6+9z7e9wRL5AUAABEAARAIQAQiACEAABEAABEAkAJEABEAABEAABEAABEAkABGAAIgAZBxAZhdd0KOH0Hs/IVYfMr/6EHr2DagKOIcEAYg0puwHZlVwtGXB0VYdqr/a0H3v81f2hwRnr1ebPaQOIAACIAAiAYgABEAABEAABEAABEAkAJEABEAABEAABEAABEAkABGAAAiAAMjjAImGRKL16hB5db03OKJmD51lb0jZH2aq3lBXu8H1vkGP/tIBhwIBiLTmUHoWLKPrDY7e78+9f1iy/fd9d/vh1UafL1oAZItAUd3frn//2+2u2esAAiAAAiASgEgAAiAAAiAAAiAAAiACEAlAAARAAARAAARAAEQCEAEIgAAIgIwDyGpD6FFHD6FHwMgCpAqU7Au+91DdagDpfUPOvkH0vgG39QZsW3tDaz+AiGpvSFHV6xs9fu3rvXfV51f2+rZdHSDV65d9vEd/gLDaD8dG16N6vbMHsNmvz9WG0EcDp/oBZe/XQwSO0V/yM/uHA0cPoUf//dkBCIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAAyDiAREPo1Qt+9BB6VPuEz74gVxtiO3oobrU32N4/RDX6wHU2gIweqhwNkOrzC0AA5LWh296vh+hA1wYgawFk9P2y+v939Hnk6CH01X6YsDpEXgVL5AcAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAGQeQ2Y0GR7QeDTn1HkLPDpm369k3OEPoY2/I2RsmgIz9UgBD6ACyE0BGHzABBEBG/vDi7CH06IcIew+p7w6OqOr+7b8FC0AABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAAZCOAREMi0Xp1iPzoIfTRQ8mjD4wAshZADKFfawh9NjgApC9AsiAZDZDRQ7oAAiAj/39XA8jsIfTqkHrvIffqEHp1HUAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEDGAWS1IfSosw2h9x5SBxAAARAAAZA9AWIIHUAA5OsB0nvIfPch9NWGzAEEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQADkOICcfQg9ekK364bQAQRAAOSqAInAMRskAAIgAGIIfZUh9N1+mHD0kHnkBwABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAAZB5DZjQbHakPo2SFzAAEQAAGQVYbQjw5AAARAAOTvANJ7SH13cKw2pA4gAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgjwMkGhK52hB6lCF0AAEQAAEQAAEQAAEQQ+iZIlD0HnIfPYReBQuAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAPA6Q1YbQo842hN57SB1AAARA1gFI7wMygIwFSHRgBhAAAZB1ANJ7yHz3IfTVhswBBEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAA5DiAXG0IPVo3hA4gAAIgAAIgAAIgAGIIfecfJhw9ZB75AUAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEDGAWR2o8Gx2hB6dsgcQAAEQAAEQAAEQAAEQF4HSO8h9d3BsdqQOoAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIA8DpBoSCRab58wu69LevyA55rNPSC7vq6v+4O0R9Xz527nawABEMkBwwHZ9XV93R8kAAEQAJEcMFw/B2TX1/1BAhAAARBJDhgOyK6v6+v+IAHIOICsNoRe/WGTs61HVfdL2jcHYM8B6aqNPj/ttl49P88OQABEEoAAiCQAARAAARAAkQQgACIJQAAEQABEEoAAiCQAAZBxALnagd+BXhKAAIgkXRk0o8EDIAAiCUAARJIABEAARJIABEAkAQiAAIgkAQiASBKAPA4QTxpJkiRJswIQSZIkSQAiSZIkCUAkSZIkCUAkSZIkAYgkSZIkAYgkSZIkAJEkSZIEIJIkSZIEIJIkSZIARJIkSZIARJIkSRKASJIkSQIQSZIkSQIQSZIkSQAiSZIkSa8B5O2bpxdJkiRJmhGASJIkSQIQSZIkSQAiSZIkSY8DxCCMJEmSJN+CJUmSJAlAJEmSJAlAJEmSJAGIJEmSJAGIJEmSJACRJEmSBCCSJEmSBCCSJEmSAESSJEmSAESSJEkSgEiSJEkCEEmSJEkCEEmSJEkAIkmSJEkAIkmSJAlAJEmSJAGIJEmSJAGIJEmSJACRJEmSpK8ByNs3Ty+SJEmSNCMAkSRJkgQgkiRJkgBEkiRJkh4HiEEYSZIkSb4FS5IkSRKASJIkSRKASJIkSQIQSZIkSQIQSZIkSQAiSZIkCUAkSZIkCUAkSZIkAYgkSZIkAYgkSZIkAJEkSZIEIJIkSZIEIJIkSZIARJIkSZIARJIkSRKASJIkSQIQSZIkSQIQSZIkSQAiSZIkSV8DkLdvnl4kSZIkaUYAIkmSJAlAJEmSJAGIJEmSJD0OEIMwkiRJknwLliRJkiQAkSRJkiQAkSRJkgQgkiRJkgQgkiRJkgBEkiRJEoBIkiRJEoBIkiRJAhBJkiRJAhBJkiRJACJJkiQJQCRJkiQJQCRJkiQBiCRJkiQBiCRJkiQAkSRJkgQgkiRJkgQgkiRJkgBEkiRJkr4GIG/fPL1IkiRJ0owARJIkSRKASJIkSQIQSZIkSXocIAZhJEmSJPkWLEmSJEkAIkmSJEkAIkmSJAlAJEmSJAlAJEmSJAGIJEmSJACRJEmSJACRJEmSBCCSJEmSBCCSJEmSAESSJEkSgEiSJEkSgEiSJEkCEEmSJEkCEEmSJEkAIkmSJAlAJEmSJAlAJEmSJAGIJEmSJH0NQN6+eXqRJEmSpBkBiCRJkiQAkSRJkgQgkiRJkvQ4QAzCSJIkSfItWJIkSZIARJIkSZIARJIkSRKASJIkSRKASJIkSQIQSZIkSQAiSZIkSQAiSZIkCUAkSZIkCUAkSZIkAYgkSZIkAJEkSZIkAJEkSZIEIJIkSZIEIJIkSZIARJIkSRKASJIkSRKASJIkSQIQSZIkSfoagLx98/QiSZIkSTMCEEmSJEkAIkmSJAlAJEmSJOlxgBiEkSRJkuRbsCRJkiQBiCRJkiQBiCRJkiQAkSRJkiQAkSRJkgQgkiRJkgBEkiRJkgBEkiRJEoBIkiRJEoBIkiRJAhBJkiRJACJJkiRJACJJkiQJQCRJkiQJQCRJkiQBiCRJkiQAkSRJkiQAkSRJkgQgkiRJkvQV/R/v4uyYxfIcBgAAAABJRU5ErkJggg=="
+    },
+    "b_wisp": {
+      "mime": "image/gif",
+      "data": "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"
+    },
+    "b_ghost": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAFSklEQVR42u3dsa0qMRCGUUISMkqhCqqhIPqgA1K6QCKkgqUDW2Ix65k5n/THb/FbnwhddjtJkiRJkiRJkiRJkiSl6LA/Lq05IQkAkgAgCQCSACAJAJIAIAkAkn53AUfv/Vqa2/r5vCECAAAkAABAAgAAJAAAQAIAACQAAEACAACkSBe4dwGrDyACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAoH9ecJc0NiDecAEAABIAACABAAASAAAgAQAAAgAAACAAAAAAcsENEAKAAUAAMAAIAAYAAcAAIAAYAAQAA4AAYACQC26AEAAMAAKAAUAAMAAIAAYAAcAAIAAYAAQAA4AAYAAQAAwAAoABQAAwAAgABgABwAAgABgABAADgAvugtv6Pe7P5gABAAMAAABgAAAAAAwAAACAAQAAADAACAAGAAHAACAAGAAEAAOAAGAAEAAMAAKAAUAAMAAIAAYAAcAAoJgA9J5v7aL/QY3ZPz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgFgC9f/92XZqLfkGyf34AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAL/rMtOqfv3eBRw8QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAEAADEAWDrzwcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwwxiVPv9oAGY/XwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+PUFjX4Bej9sMfsFrL7e/x8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQDIPoXUda+IGsX/Ys61f//yv9BEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKPZFkugX/Hy6NJcdiNE/DOIv8gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIBkT1H8aI/sMb0f9/Rv8wCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyBeRMgEx++cHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQec4XAAAwAAAAAAYAAADAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAALA8AwAADAAAAIABAAAAMAAAAAAGAAAAwAAAAAAYAAAAAAMAAABgAAAAAAwAAACAAQAAADAAAAAABgAAAMAAAAAAGAAAAAADAAAAYAAAAAAMAAAAgAEAAAAwAAgABgABwAAgABgABAADgABgABAADAACgAFAADAACAAGAAAAwAAAAAAYAAAAAAMAAABgAACAl9wAAAAzAADADAAAMAMAAAwAAACAAQAAADAAAAAABgAAAMAAAAAAGAAAAAADAAAAYAAAAAAMAAAAgAEAAAAwAAAAEN/N89V+PjcUAJ4PAAKA5wOAAOD5ACAAeD4ACACeDwACgOcDgADg+QAgXxSyPAMEAAwAAACAAQAAADAAAAAABgAAAMAAIAAYAAQAA4D+C8TWm/0FdX4uOAAA4PwAAAAAOD8AAAAAzg8AAACA8wMAAADg/AAAAAA4PwAAAADODwCK80Wl2V9g5ycAAMD5CQAAcH4CAACcnwAAAOcnAADA+QkAAHB+AgAAnJ8yATF6zq/2+ckL7PwAIC+w8wOAvMDODwDyAjs/AMgL7PwAIC+w8wOAvMDOL935fQCymC2s3VwoXwAAAABJRU5ErkJggg=="
+    },
+    "b_banshee": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAFg0lEQVR42u3dsXECMRRFUUISZ/TlPiB26B5cAAFd0AGpu2DGoSsQHUgwfz/Sas+dUSpjwzvRjtntJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSVO1jfyi14y8kAUASACQBQBIAJAFAEgAkAUDS+wYaPf9/pXqyf753WAKAJABIAoAkAEgAAIAEAABIAACAZKDzHIAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgEYa+PfXj9PxAEIAAAAABAAAAEAAAAAABAAAAEAAAIAEAABIAACA9MrAAbBuAAAhAAAAAAIAAAAgAAAAAAIAAAAgAABAAAAAAAQAAABABuwA5FkgAAMABwAAAIADAAAAwAEAAADgAAAAAHAAIAA4ABAAHABo2YEfPy/V0xuA7C/GyP5ikdFfX+8HiaKfPwsHAAAAIAAAAAACAAAAIAAAAAACAAAAAAAAAAAAAAAAAAAAgGUf9LmeS/VEBw6A3NcXBaL1/mf//hYOAAAAQAAAAAAEAAAAQAAAAAAEAAAAAAAAAAAAAAAAAADAgz6vPWgRHXj2g0Ct15c9kOyT/ftlv39RIDwoBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2wLAAQAAAOAAAAAAcAAAAAA4AAAAABwAAAAADgAAAAAHAAAAgAMAAABgK//QAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAtIHp/McjoQMz+xR69B+6LQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4L0PCmV/gFrn93YPndkBaP3+vd+/1vGgDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAvA6B+QKADZJzrQ7DP6+2vgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAA0FwCjD3z2AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2CYA13OpnugHuHV/OZ1WfbL/Pv5hCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA8A3B+7HwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBQAAAGCgAAAAAAwUAAAAgIECAAAAMFAAAAAABgoAAADAQAEAAAAYKAAAAAADBQAAAGCgAAAAAAwUAAAAgIECAAAAMFAAAAAABgoAAx/7ix0MFACAAICBAgAAADBQAAAAAAYKAAAAwEABAAAAGCgAAAAAAwUAAABgoAAAgAd9DHCM+z0oBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwIAAABgQAAAAAAMCAAAAIABAQAAADAgAAAAAAYKAAAAwEABAAAAGCgAAAAAAwUAAABgoAAAAAAMFAAAAICBAgAAADBQAAAAAAYKAAAAwP0AAAAA3A8AAADA/QAAAADcDwAAAMD9AAAAANwPAAAAwP0AAAAA3A8AAADA/QAAAADcDwAAAMD9AAAAANwPAAAAwP0AMPDnjgEBABAAMCAAAAAABgQAAADAgAAAAAAYEAAAAAADAgAAAGBAAAAAAAwIAAAAgAEBAAAAMFAAAAAABgoAAADAQAEAAAAYKAAAAAADBQAAAOB+AAAAAO4HwAoBeAADxvIhwq7wbAAAAABJRU5ErkJggg=="
+    },
+    "b_reaper": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAFeUlEQVR42u3dIVIrQRSG0UgMLmqwFAaNi0RlBejY0UjWAAuA3WQNaGxkVjDsoKeS6c7c7j5/1aepgrlHdb232ZiZmZmZmZmZmZmZmZmZmZlZlj1sn6ae8wUYAABgBgAAmAEAAGYAAIAZAABgBgAAmAEAAGYtHfDH+1fXAdAAAAAAGAAAAAADAAAAYAAAAAAMAAAAgAEAAAAwAAAAABbpwFs/wN6Bmut73CUb98/JAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAYAAAAAOvroc75NC2q9EMWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABqeqiz9ACjH/DaAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAgAEAAACwSwBwgCoZAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAgFhCl/wCOpGxrfz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAgAAAAMBE6nF4SdY7EAAwAAAAAAYAAADAAAAAABgAAAAAAwAAAAAAAAAAAAAAAAAA4MBveaC1Fx0IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAN34O0AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAANc0/n0mK32gpX8+AAwAAACAAQAAADAAAAAABgAAAMAAAAAAGAAAAAADAAAAYJEAKH1gS4v+86MDAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAQyEMgD4EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAgAHAfwwCAAMAAABgAAAAAAwAAACAAQAAADAAAAAABgAAAMAAAAAAAKBtAPavb6EDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAnAHp/KFT73wcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABw2wO/v9smq/0DLA1M778fAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAANRO59OUDAAAEAAAAAABAAAAEAAAAAABAAAAEAAAAAABAAAAEAAAEAsA1d3cgZYOAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAACQ98ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAABAAABAPQd+PAyr5sgAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAyAfA9DuumiPru7nvEwAAEAAAAAABAAAAEAAAAAABAAAAEAAAAAABAAAAEAAAkBmAn106AAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAANDOQ6CFQDgCAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAPyDIOojAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAADAZQAcD8Oq+cgFAABIAACABAAASAAAgAQAAAgAAACAAAAAAAgAAMgHgI9MAACABAAASAAAgAQAAEgAAIAEAABIAACABAAASAAAgAQAAEgAAIAEAABIAACABAAASAAAgAQABy7lDAAAEAAAAAABAAAAEAAAAAABAAAAEAAAIAEAABIAACABAAASAAAgAQAAEgAAIAEAABIAACABAAASAK7cP7Oau5OQUBaaAAAAAElFTkSuQmCC"
+    },
+    "b_jack": {
+      "mime": "image/png",
+      "data": "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"
+    },
+    "b_vampire": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAFiklEQVR42u3dMW4iQRCGUUInZMgJOQk34BA+GAdzyi2QCDnBEJLNBK2e6q56n/SHu4LZqRdZ3sNBkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJu3b8OS0t8wQlAEgCgCQASAKAJABIAoAkAEia58ABIQEAABIAACABAAASAAAgAQAAEgAAIAEAAFKdAweEBAAASAAAgAQAAEgAAIAEAABIAACABAAASHUOHBASAAAgAQAAEgAAIAEAABIAACABAAASAADgBa/0AkQf2OP/2TRAuA9fEAAAcB++IAAA4D58QQAAwH34ggAAgPvwBQEAAPcBAAAAwH0AAAAAqHUfW1/gfr2tbvYHMPoBj77sQKS/DwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADV7iP9A6h+wKMD4v0GAAAA4P0GAAAA4P0GAAAA4P0GAAAA4P0GAAAA4P32gAAAAO+3BwQAAHi/x3pArQ+w9wMGwNwAtL4/vd9fAADAAAAAABgAAAAAAwAAAGAAAAAAAAAAAAAAAAAAAAAAAABA7PsP0ArA1ud7v5bVbf351gMb/fNFH7ADBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAXED0PrDWZf980Z/fgQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABAAAA0FwARL/AFnvgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgCMEAAAAYAAAAAAMAADIBYT/+GPu/xjEgQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQC4Aei/6AP5+L6EbHYDec4EAAAAABAAAAEAAAAAABAAAAEAAAAAABAAAAEAAAAAAlAuAaEDer2V1o//9ox84AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAyIFn+kGj6gcOCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAmYDwjAAAAAAYAAADAAAAAABgAAAAAAwAAAGAAAAAADAAAAIABAADfnU+Xrtv6hR291/v7AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABw4AL67X29NAwAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAD/rst+wA+EEhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCUAon9hCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgHgNG/HwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMCBAwAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB26AAAAADAAAAIABAAAAMAAAAAAGAAAAwAAAAAAYAAAAAAMAAABgAAAAAAwAAACAAQAAADAAAAAABgAAAMAAAAAAGAAAAAADgAMHgPmFIQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgiAAAAAAYAAAAAAMAAABgAAAAAAwAAACAAQAAADAAAAAABgAAAMAAAAAAGAAAAAADAAAAYAAAAAAMAPMA4MANEIWBAIABAAAAMAAAAAAGAAAAwAAAAAAYAAAAAAMAAABgAAAAAAwAAACAAQAAADAAAAAABgAAAMAAAAAAGAAAAAADAAAAYACIAuADrDdjeUh8174AAAAASUVORK5CYII="
+    },
+    "b_zombie": {
+      "mime": "image/png",
+      "data": "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"
+    },
+    "b_mummy": {
+      "mime": "image/png",
+      "data": "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"
+    },
+    "b_skeleton": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAFdUlEQVR42u3dvU0rQRSAUYckZPRBA1RAK3RAE1RAO6S0QIRESAWLRAGbeMb373zSDa23D8890Wh9uUiSJEmSJEmSJEmSJOm/+7uH42yi//3ocUIEAABIAACABAAASAAAgAQAAEgAAIAEAABIlRb88fX5dHYv2O/PkXoAIgAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAADKtODH+9PWyb7A2QFxggUAAEgAAIAEAABIAACABAAASAAAgAQAAMiC33LBAQEIAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAANAcICwxIAQAAwABwABAADAAEAAMAAQAAwABwABAADAAUB0gLCEABAADAAHAAEAAMAAQAAwABAADAAHAAEAAMABQngWPPqDXjucHhADg+QEgAHh+AAgAnh8AAoDnBwAALJDnBwAALJDnBwAALJDnBwAA1h3A3Quye8GqPz8ABAAAAEAAAAAABAAAAEAAAAAABAAAAAAAAAAAAAAAAAAAAACZAHj5ejud7ABEPz8ABAAAAEAAAAAABAAAAEAAAAAABAAAAAAAAAAAAAAAAAAAAAAuArkIdCsAdv99bDgAAAAAAQAAABAAAAAAAQAAABAAAAAAAAAAAAAAAAAAAAAA+GENz79ugfzwCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAML0WQAAAMAAAAAAMAAAAAAMAAAAAAMAAADAAAAAADAAAAAADAAAAIBMF3UAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEi0JTFnz3+fDDIAAwAAAAAAwAAAAAAwAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL3mfBbRgAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAA9ToA0z9f/YUeFhwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgADg8wAQAHweAAKAzwNAAPB5AAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAFjAmMn+fJ8f31fN9L+vBQcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgFwXMbr/cEU0AL5/ADgAAPD9A8ABAIDvHwAOAAB8/wBwAADg+weAAwAA378cAAD4/uUAAMD3r0kHIHq6//8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAs4CYfkB3XwSaDrANBAAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAAKBZF4n8MEjvi042DAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIBcJPJCkDpjQwAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIEF4IUueFIE64AAAACQAAkAAAAAkAAJAAAAABAAAAEAAAAADNWnAvBOl90QkQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAEiJUXTbwQJPbv54QLAACQAAAACQAAkAAAAAkAABAAAAAAAQAAAJBWHkAvBPHCDwEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAABQngXPfpGm+gtBvPBDAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAJQJiOgXXlS/qOMikAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAACoExDdXwhiwQUAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAlRY8ekGyvxDECz8EAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAYGl/KhaqDVRiF60AAAAASUVORK5CYII="
+    },
+    "b_witch": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAE5ElEQVR42u3csU0DQRCGUYdOyEipAQJCKriEPnwJMbWARFXugZAK1h3sYYbx7t6+X/pSZOtuXmRxOJgFdne8Lz3nCZkBwMwAYGYAMDMAmBkAzAwAZgYAMwc6Tp6wGQDMDABmBgAzA4AZAABgBgAAmAEAAGYO3IGbAQAAZgAAgBkAAGAGAACYAQAAZgAAgBkAAGDmwAFhBgAAmAEAAGYAAIAZAABgBgAAmAEAAGYAAICZAweAGQAAYAYAAJgBAABmjhgABgABwAAgABgABABz4AKAAUAAMAAIAAYAAcAAIAAYAABgBgAAmAEAAGYAECAMAAKAAQAAZgAAgBkAAGAGAACYAQAAZgAAgJkDBoAZAABgBgAAmAEAAAYAAcAAIAAYAAQAA4AAYHs/8NPr19CV8xpq9O8PCAMAAABgAAAAAAwAAACAAQAAADAAAMAAAAAAGAAAAAAb60CzG/0AZs8PlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYK4DlwABAAkAAJAAAAAJAACQAAAACQAAkAAAAAkAgJAcOAAkAABAAgAAJAAAQAIAACQAAEACAAAkANweiPL50rTH96Xaz3eptvX9tv5+dtmfv/Xzc+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAawCIvmCtAcj+/L0D4AIBAAAAGAAAAAADAAAAYAAAAAAMAAAAgAEAAAAwAAAAAAaAnnpYnqq1/nwAMAAAAAAGAAAAwAAAAAAYAAAAAAMAAAAAAAAAAAAAAAAAAAAAAPz+wKMBwAAAAAAYAAAAAAMAAABgAAAAAAwAAACAAQAAADAAAAAABoB5igICAAMAAABgAAAAAAwAAACAAQAAADAAAAAAAAAAAAAAAAAAAAAA6AmA5fktVPYPeVr/UGjr+wPAAAAAABgAAAAAAwAAAGAAAAAADAAAAAAAAAAAAAAAAAAAAAD2BEB20QPNrvXz+1jrAQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAAwAAAAAAYAAcAAIAAYAAQAA4AAYAAQAAwAAoABQAAwAAAAAAYAAPT3D0EAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARwwAAABAAAAAAAQAAABAAAAAAAQAAABAADAACAAGAAHAACAAGAAEAAMAAABgOUA4srmLHiggACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAoABQAAwBy5AXBsAvMQCAAAkAABAAgAAJAAAQAIAACQAAEACAACkcQAo57Xa7oEAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAkAAJAAAACpIwC2DjgaALzEAgAAJAAAQAIAACQAAEACAAAkAABAAoADl/4PCAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAC0HwCyDzwaACQAAEACAAAkAABAAgAAJAAAQAIAACQAAEACAAAkAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAADhwzRgAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAcuAAAIAAAAAvmQAAAAkAAJAAAAAJAACQAAAACQB/7AKbT8psY0q9VAAAAABJRU5ErkJggg=="
+    },
+    "b_werewolf": {
+      "mime": "image/png",
+      "data": "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"
+    },
+    "b_goblin": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAFIklEQVR42u3dvVFrMRSFUYckZAyBZ0gJSKABGnBAEaTuwPW5BvdAyFDApQMpOFfWkbS+mZ2+h3/Oiu7A4SBJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkqRUPT48baV5hyQASAKAJABIAoAkAEgCgCQASNrvAFvv6/m1uNb/v2+AAAAACQAAkAAAAAkAAJAAAAAJAACQAAAAaaYDrx3g7AOEAAAAAAgAAACAAAAAAAgAAACAAAAACQAAkAAAAAkAAJAAAAAJAACQAAAACQAAkAAAAAkAAJAAAAAJAACQAAAACQAAkAAAAAkAAJAAAAAJAACQAAAAqScQ75fT1AOAAAAAAAgAAACAAAAAAAgAAACAAAAACQAAkAAAAMmBrzNACAAAAIAAAAAACAAAAIAAAAAACAAAkAAAAAkAANBcB5L9C+DA1wZi9O8vAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAMBAAAAeAMBAAAAZDuQ6AcQXe3n227npst+oL1ff+/Pf/kHnQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4TiDZgzS1n6/1Fzw7EKu/fgcOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABzARH9grYGZnQAou+PAwcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEB4EMbrd+AAcABePwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAACAAJHxD2O8nD5CG/31O3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEpl84El0UgNZA+IUdAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAA5AEgOxAAEAAAAAABAAAAEAAAAAABAAAAEAAAIAAAAAACAAAAIACMBMDqD/oAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAC0JxCWe77BAgAAJAAAQAIAACQAAEACAAAkAABAAgAApHsC8vuzFTf6gzi11+fABQAAAEAAAAAABAAAAEAAAAAABAAAAEAAAAAABAAAAEAjHfjn2zH1agfc++cDgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAkAAJAAAAAJAPMMAAIAAAAgAAAAAAIAAAAgAAAAAAIAACQAAEACAAAkBw6IvYAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCEABAADgABgABAALA8A0W23c3H+sAkADAAAAIABAAAAMAAAAAAGAAAAwAAAAAAYAAAAAAMAAABg9wOgdsC9BwgAGAAAAAADAAAAYAAAAAAMAAAAgAFAADAACAAGAOUC4Pp9tI4LA/B3LQ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwhAAAAAAMAAAAgAEAAEs96OMI+y77gz6AAIABAAAAMAAAAAAGAAAAwAAAAAAYAAAAAAMAAABgAADAWABY7jlwAQAAABAAAAAAAQAAABAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgCMCAAAAYAAAAAAMAAAAgAEAAAAwAAAAAAYAAADA8q32+Ub/sEj033eBADAACAAGAAHAACAAGAAEAAOAAGAAEAAMAHLglgcIFwYAA4AAYAAQAAwAAoABQAAwAAgABgABwAAgANg4ALggABgABAADgABgABAADAACgAFAADAACAAGgMH6B4rjllb1OM8XAAAAAElFTkSuQmCC"
+    },
+    "b_kitsune": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAGKklEQVR42u3dsXEcOwyA4QuVOFOkFtyBx9UodSdKVIG7cSFOHbqCc+5gOTcQBAL8/hmGz0+HJb+Is3u7SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkHdaXp+f71TIf85ENbj7mIxvcfMxHNrj5mI9scPMxH9ng5iPZ4OYj2eDmI/XZwPef3y/X9ANgPgIAAMxHAACA+QgAADAfAQAA5iMAAAAAssEBAADZ4AAAgE7a4N0PwOm/XwAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAB0FgB//9wv1+4HJPuAr9ZqfoAQAAAAAAEAAAAQAAAAAAEAAAAQAAAgAQAAEgAAIHU6ANlATP99drAAAAAJAACQAAAACQAAkAAAAAkAAJAAAABpEgDTFwAEAAAAQAAAAAAEAAAAQAAAAAAEAABIAACABAAASB8JwNvXb5dr+kWc7AO8+u+j87fDBQAASAAAgAQAAEgAAIAEAAAIAAAAgAAAAADorAO++jDFagNmfxhk+sqePyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAACAAAAAAAgAj6zVBnXIYxd9os8HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAEAAAAAAtNcBjT7AKAC/Xl8uV/YLMU5/Ichq/tkAZO9PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwEeexB1wNQPSAVANS/fdlA1C9PwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4LQDnr1Wf390A1qxD6es5j99/wEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwDQAul90ccBnX5QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvC3gMiN0/bHE6ENMPePT5eSMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgNOaDkT0wyLdD3j0hR4OOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfO4B3X1Vb6DoAckGovrv737Rq3oBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMBHX8SJrtUGil4k2R2I6O+Pzif7/9/9gEd/f/b5CQMBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoB0A3Q949QHpDkT1v7/7C1mqV/b5AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAPgOqLQLs/gOkXYbq/EGX6Gn8TEAAOOQAAAAALAAAAgAUAAADAAgAAAGABAAAAAAAAAAAAAADg0wEARG8AVvP98fv9clV/OMQBLz7gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI4DIArE7qv7RZrsF0p0n0/3/XnbPQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADtAMi+COSlGADwfA6+CWiTAMDzAYAFAM8HABYAPB8AWADwfABgAQAAALAAAAAAWAAAQLv3/tsEex/w7Oc3/SJWeyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtAMg+4B3B2D3F45MB+D0F75kPz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8wCovgiUvaZvsO4ARIGo/jBN9/0PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4DwAqgecvbJ/PwBqAbC/DQgAALC/DQgAALC/DQgAALC/DQgAALC/DQgAALC/DQgAALC/DQgAALC/BQAASAAAgAQAAEgAAIAEAABIAACABAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAkAAAAAkAAJAAAAAJAACQAAAACQAA0H/9A5pfUZoDCgQjAAAAAElFTkSuQmCC"
+    },
+    "b_black_cat": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAFZUlEQVR42u3dsU0DQRRFUYckZI4gRSTEJIiQiAroYTtxD7TldpYOZoVm7f9m9lzphRYYz5xohU8nNXt5el9b8xeSACAJAJIAIAkAkgAgCQCSACBpnAv+fH5tDhCAFgAcQAAIAA4gAAQABxAAAoADCAABQAAQAAQAAUAA0DwAAALQAoADCAABwAEEgADgAAJAAHAAASAAOIAAEAAcQAAIAA4gAHQcANIPaPrPB7AAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAAaCQAeg9w79J/PgAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQPe84Je3j+aqAZl9vX9/QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABAAAAEABsngEAAAYAAADAAAAAABgAAAAAAwAAAGAAEAAMAAKAAUAAMAAIAAYAAcAAIAAYAAQAA4AAYAAQAAwAAoABQGMCABAACAAAAIAAAAAACAAAAIAAAAAACAAGAAHAACAAGAA0DxC9AKzXpbnHh3NzW69Pv2DV798FFwAAAAABAAAAEAAAAAABAAAAEAAAIAAAAAACAAAAIP0HiK0DeusLUA1E+vsHgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAkAAJAAAAC54Hs+6AOA7PcPCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAACAAAAAAAgAAPAgkAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAMq84L0A+GKQsb8YpHduGAAAAAABAAAAEAAAAAABAAAAEAAAAAABAAAAEAAAAADd94J/f/2ULv6CLktz6b9/9ecLCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAACAAAAAAOtaDQEcHpvr9exAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsOcAUPsgDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGCuC57+DyNu/SBS+tKBrQbIDQcAAAAgAAAAAAIAAAAgAAAAAAIAAAAAAAAAAAAAAAAAAKCsB4G6v7jj93PoVQMx+ucPCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAACAAAAAAygIm/UGc9bo0l/6g0OyfPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAACAAAAAAAgAR1r1BQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABcUgAAAAAGAAAAwAAAAAAYAAAAAAMAAABgAAAAAAwAAACAAQAAADAAAAAABgAAAMAAAAAX3AAAAAAYAAAAAAMAAAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAACY9/wAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAwCUDAAAAYAAAAAAMAAAAgAEAAAAwAAAAAAYAAADAAAAAABgAAAAAAwAAAGAAAAAADAAAAIABAAAAMAAAAACWAMDW611wABgAAAAAAwAAAGAAAAAADAAAAIABAAAAMAAAAAAGAAAAwHIAqP58XXAAGAAAAAADAAAAYAAAAAAMAAAAgAFAADAACAAGALngtt8Fq369GwgAA4AAYAAQAAwAAoABQAAwAAgABgABwAAgANg4QLhhADAACAAGAAHAACAAGAAEAAOAAGAAEAAMAAKAzfPFIgKAAUAAMAAIAAYAAcAAIAAYAAQAA4AAYAC4c3/mjmY1NVAXXgAAAABJRU5ErkJggg=="
+    },
+    "b_bat": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAEhUlEQVR42u3dIVbrUBCA4UoMDsUSwGLZQA37oIYlsb1KVhAcMhHDZGaS7zvnuvfoTZP51T3p5QIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8eXx4WiLLNwiD51MAQAAEAARAAEAABAAEQABAAAQABEAAYFwAtv7B58d3aAlI7Aa6vnMPaPZ8CoABcX0CIAAGxPUJgAAYENcnAAJgQFyfAAiAAXF9AiAABsT1CYAAGBDXd7wARC/g+va1uqoDUv0Abn3++8vz6uo+QGe/vur52Pr76ScBBcCACIAACIABEQABEAADIgACIAAGRAAEQAAMiAAIgAAIgAAIgAAIgACcLgDRFf2Cqg8qRQckOkDZK3v/0w/aRAc4fcAFQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAB2DkD3wFQP0PQ1/aBN9RIAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAARAAAdj7hQnVA9o9IGcPQPeDNt2fTwEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQgG4B6H4QJPsGnz0A3V8Yk/3DHN1/2EYABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAABEAAzheAaCCO/kKS7INCP/dldWUPcPTzp7+wY/yACoAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAADDtolH2Do3+/+iDOcrutru4Hhbo/HyZYAARAABAAARAABEAABAABEAABQAAEQAAQAAEQAARAAASAfQOR/cKG6gBED+pUHzSqvj8CIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACIAACMCsQWyv7hyWiA3K7vq6u7AHN/vzs7//wP8whAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAJwsAGvfkCyB2z6qj4olP18mFABEAABQAAEQAAQAAEQAARAAAQAARAAAUAABEAAEAABEAB6HQTK/nwBiA349OcDARAAAUAABEAAEAABEAAEQAAEAAEQAAFAAARAABAAARAAjhUgAagNAAiAAIAACAAIgACAAAgACIAAgAAIAAiAAMCeAZgeiOwXfnjCEAABAAEQABAAAQABEAAQAAEAARAAEAABAIEw4CAAAgACIAAgAAIAAiAAIAACAAIgACAAAgATA9H9/7vDIACAAAACAAgACIAAgAAIAAiAAIAA/N8ARpcAgAAIAAiAAIAACAAIgACAAAgACIAAgAAIAOw34PYPAmD/IAD2DwJg/yAA9g8CIAAgAAIAAiAAIAACAAIgAGCABAAMkACAARIAMEACAAIgACAAAgD7D5j9gwDYPwiA/YMA2D8IgP2DANg/CID9gwDYPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMNwvvG8byJj83/0AAAAASUVORK5CYII="
+    },
+    "b_spider": {
+      "mime": "image/png",
+      "data": "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"
+    },
+    "b_owl": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAFGUlEQVR42u3dvVFCQRSGYUISMiNKgBa0AVq5NdkNNdADoUMBa2yyN1iO+3Oeb+ZNr3PV80SMHg5mZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZjbUTsePUst3yAwAZgYAMwOAmQHAzABgZgAwMwCYOZD/+/qtbbdrteiv3/v74zfcAAAAMwAAwAwAADADAADMAAAAAwAAAGAAAAAALNeB9z6Qva8/e72/P4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAADAAAAIDlOnDlBsgFAUAAMAAIAAYAAcAAIAAYAAQAA4AAYAAQAAwAAoABQAAwAAgABgABwAAgABgABAADgABgABAADAAChAFAADAACAAGAAHAACAAGAAEAAOAAGAAEAAc+NgHXl730EY/oNnfHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACAAQAAALC5gGgFpPmX+Puz3uAHMvv7O3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAADAAAAAAFguIFp/AX+epdru1+98IKu/PwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAwAAAGBrHXjzAez8grZ+ECn6QLy/DwoBwAF4fwAAwAF4fwAAwAF4fwAAwAF4fwAAAAAAAAAAAAAAAAAAAAAAAADe9wcvVv8g0OzvDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAADAAAAAANhaAPjHILnfHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACAAQAAALC1Drz7gbR+kOexNTX7+0cHCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAMAAAAAAWC4ARi8agNUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAGAAAAAADAACgAFAADAACAAGAAHAACAAGAAEAAOAAGAAEAAMAAKAAUAAMAAIAAYAAQAAABAAAAAAAQAAABAAAAAAAcCBS4AAgAQAAEgAAIAEAABIAACABAAASAAAgAQAAEgOHAASAAAgAQAAEgAAIAEAAAIAAAAgAAAAAAIAAADwt/K6V/P82OcDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACABAAASAAAgAQAAEgAAIAEAABIAACAAAAAAAgAAAOCDPPk+KAQAADhQAAAAAA4UAAAAgAMFAAAA4EABAAAAOFAAGAAcKAAMAA4UAAYA+SCQAUAAMAAIAAYAAcAAIAAYAAQAA4AAAAAACAAA8I9BPB8AAACA5wMAAADwfAAAAACeDwAAAMDzAQAAAHg+AAAAAM8HAAAA4PkAAIAEAABIAACABAAASAAAgAQAAEgAAIAEAABIAACADwr5oBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOFAAAAIADBUA+APa+Adkrjy207oAFv5/focGB8UMAAAAAIAAAAAACAAAAIAAAAAACAAAAAAAAAAAAAAAAAKYDwB/kGPtAvJ8/SBIKBAAcCAAAAAAHAgAAAMCBAAAAAHAgAAAAABwIAAAgAAAAAAIAANIB8HU5S+oUACQAAEACAAAkAABAAgAAJAAAQAIAACQAAEACAAAkAABAAgAAJAAAQAIAACQAAEACAACkvAD4xyCS/wwEAAkAAJAAAAAJAACQAOAHIQFAEgAkTQPALztBg0IZAJQ+AAAAAElFTkSuQmCC"
+    },
+    "gif_candle": {
+      "mime": "image/gif",
+      "data": "R0lGODlh8ADwALMAAAAAAMRiGv/Wa/+dPP/zxPHp/w0IFLec/311kEpEWAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJDQAAACwAAAAA8ADwAAAE/xDISau9OOsauv/gRoHkJ05lekppuQIt+c50bd9xuObmznevH9D3uxmPSJswEBQ2i0TeU5qsWq8sZzQ35W5jXTB2TKYtwy206ptmr8vw+OXsdtVld92JLu/L+SKAG4IahBmGfolViHNae46BkIOSipVIjBaYHJSHnBialqGPUKNUpV6nYqltoq01oCiejaSRtJO2rrm3prW8u6i9wL+qusWduMe+hbKZzJvIxtEwziPUsdCzysnC0tKwWdjN4c/an9bd6NEC6+zt7t/p8fJy7vXt8PP5+kn2/fj7AAOu6Gfvn8CDCCkQrGcwocOAC9+de0gRYkR2DStqRHcR48SNIP85dhSQMaTJViNJfjzJEuXIki1j0nu5UqbNmR1h3txZJaVOnkBv+KwZ1MxEeEsGKF3KtKnTp0rV2Fn1JhixUEiPCoHKtetSqXioTrXKSlTWcdV+eF37FKweslWHlcWqFe01Hmzzfs3TQ2xYuGPp2gVXLlsOvXrd9gX8V25cS2cLi8OLmK1iD5eH+H0rWDI5bttiVLbMF3NpzYw5Q67rOS3l0V0zMzk9e/PizqDNDZ6mFnZs2rKDu4qc27Bo31yF2za9HDXuq8t2J0UOVXnq29FbxyEOPXQL6tWBi29e2yzr4pMPg3dq3XHg7Oj7cJ8L//h6pu3r0/f+uNL8/rq9dl//VONdx5yBzhU1xoD4KeigHAzu9eCEC0Y4AIUYXmHhhRl2eMSGHoZoA4gilrgCiSammAGKKrZIAYsuughjjCrOSKOJNt4oYo46eshjjxn+6OF/7/FXZIA5EKDkkkw26eSTSuZnZGP6AWjcfkh2lyWWV6YA5ZdgLinlllamp2WXR6JJ5ZSqsflBmHA+OaaabZKZpplc4lnmZ2fqWUKcgIpZoHtr2lkondi5eSChdSLqQaCBzunnoZM2WmmihlrKZ56beglpnJJ2eqeolJKqqWvxodqnqW9+CmeoqnIa656zjlprqbeeeleSroYJ666r5oqpowkqWmymw176aK9g/kpY/6rAyhotrdPaWi2u14LAbLODVmnts8Fmmyyri3qLLbgtbPuls7xphy61737bLrTxnjtvDOpCyS6R9vKra73/3ptuvk7ue164AI8rbLnGlsdoqwQzabB0B0ubMMPIYkxsABE3ObG7AsPLEjwdM/kTkHCQXLKSJ6NMhsort+wyFjCXLPPMVtTc8c04J6FzxDz3fMTPBActNA4TrcwyUUe/nLTSRjdt1G5KExC11OxWfTXW5L2gNdNcL/J0zGCHfcnYNpdtthFE57t1Uf5+UMDcdNdt99145623AXz37fffegcu+Mf0lhG3B4Inrvjefzfe9+KQF0A4woZXnELkmCfu+P/mmSc+ucWVU/xD56Tfvbnjpev9uchOi85D6rCf3jjseK8ub+sgL0F76bIDvnvdttuLe+G6/555734bT3fwAQ9PefHKQ47849Ezr/B2lpcQfeTT87299Rr7cXgH20vf/ffdNpzL+AGUv3j3BqDfdfqKsO++4vDLj6DD5jY/hv33E1z+qke/ja0veyQIoADPR8D5OdA8rsuBAgM3QOWB71gimqDeDsDBDnrwg2vLhwbz9sESejCE8xgh3kzIQhTKQ4V3Y6EJXRgPGNpNhiWkYTpsWDccglCH3eAh3Xx4QiBKQ4hzI2IHjXhEJCqRg0yMBhIL8MQDRNEYU6ziFYuRxSf/blEXXVTiF3MRRiKO0RVl9OEZH7iBKm6viuyjETzcGD04ItB/DprjE9/4xDjGSI9K5KMS/egiQBJRkEQkZIsM6UNE+lCRKmIkDh2JQ0imSJIypKQMLWkiTLJQkyzkZIk8aUJQmlCUIiJlCU1ZQlSGSJUfZOUHXTmkidBReXaMIOUmBEsPytKDtOxQLzv4yw4Gc223NJ4W1xiKZP5umcyshDN3B81oJmKatKumNfuATdhpc5tx6GbqvgnOMoizdOQs5xjOSbp0qvMK7OycO99ZhXhmbp70RII9MYfPfBphn5Hrpz9tAFDICXSgNCjo4g6K0BcoVHEMbegJ0lhJtW2T/6KbtKg1MRpKjUaTo6f0KDNB2kqRrpGkszTpGVEKTJWOkaXGdOkXYcrBtxmRpgewKRBxqlMd8lSmW/zpbgYqVJAR1Yl9BOoVcSrRKzC1qVV4KlSRINWpGqGqVrUBVrNKg61y9QVe/epEkSpGsdYgrGbVAFrTioG1stUCbn0rBeIqVwnQta53lWte37pXtvY1rX81a2DFOtivFparh81qYq262Kk2FqqPbWpkJTrZhlYWoZc9qhAj6leymrGuIsisP0WbT9LS07TvRK06VVtO1oLTtRf1rBpBuwHYblS2OBwoAnbL29769rfADa5wh0vc4hr3uMjlGnKXy9zmOve5ydLFGnSnS93qWte3yr2udrfLXeFmt7vgDa91vyve8po3ulI7r3rX613psve97yUvfOcrXvnS977btS9+90td/fL3v831L4AHbFwBE/jAwTUwghfMWxol4MEQjrCEJ0zhClv4whjOsIY3zOEOb3hCHg6xiEdM4hKb+MIgPrGKV8ziFos4xS6OsYxnvGIY0/jGOM6xhW2s4x77eMY8/rGQh1ziIBP5yEjOsJGTzOQmP3jJTo4ykaEs5Sr3mMpWzjKNsazlLreYy14Os4nBLOYyhzgXEQAAIfkECQwAAAAsAAAAAPAA8AAABP8QyEmrvTjrGrr/4EaB5CdOZSqsbOum5SnBpGzfeK5bdCj3ph+w4yq2hh0bMrBrOp+6pRI5HRqvUuEQyu16UVQtsAq8GrMn9HfNJvfcNDjMXFRv7O28fhRO90VLdC9/d4R7h214GYoYgYIsjBeRiJRPkxyGi0iPkJmNnpWhO5d8W2I9nCukYKairk6rM6A8m6mxALevupitgLO8Zba/pWO7xnIpyDGnNKkCt7nHutDDrMGc1L3S27TaGtnXj+Bv3OXA5H7emlbC6p/u5vHyAAP19vf4+fr18/3+xvsCCrT3r6BBRAMT6jvIsKEXhRAJOpxIEUfEiBUzasxwEeLGjyD/OyoESTKjyIQlUzo8OVClS4MsBb6c2S9mQJo4zdncl7OntJ0LfQp9BTTf0KOhiuJDqmdcHGYwbCi95zQq1GS7qmJNV+zEVHtal3FF9ypsjatiRXytZ9bH2KfTqsmC162r2rVtg7y1GpfuObi+/FJYOyCvB2Vn+9otJNga2Q2EDSdBm7isXFyXb0XOzLlxHslMKLu9+xU04tGuTIvWS3qq6r1bLXvGPFsz3s6Lv11m8zpwbo63a+N+LKo3498YNgtfjpyScd2zlTevS3zd9EPPrVdPHvw6se2Sdq/J/s77BOngqQM+np4pLCSE3cu/sST+/PvsadjHz189jP39BUgb/xAACshffWsZKCCCXykYIINTOdgfhEpJeCB8CVp4H4VFabghhg16KB+HQIk4IogRmsgUiTudyFx7360HnXkSEGDjjTjmqOOONpIX3osyahdkeTA6NuQFPCap5I0++hdbfnz5VuRcNA44JQBLZrljk39FCeWTM17JJQValsnkcEc6mdaXa4aZZpdgCumlBmaaOaaRc8oZJ5Fvxpgnn38iWaeWd1IpJpqBqlkZm4vSOWiWhVrZJ557/lhlpI9CimiliqLmZqJwtqmnqIByWkGmS0aq6qakWnolqkquCiSofppaa6udsrYBrEnKeimrjY4abKm4nsrrlsB6KqyyxA7r6v+khkIrKa0THIvsrLZSWuytzuZ62GrfwrZttdbm6Ouh2I4bLbXrZltjuTieK61KoMGLo4oF1Wuvjfj+o+++/frzr70B9zMwvAXPc3C5CcuzsLUNx/PwsRGbMzGvFZdzMawZc7Mxqh1v83GmIUsz8qMlH3PyoCkbs3KdKYNWwMw012zzzTjnrLMBPPfs8886By30abp+6m4iyX4g9NJM7/zz0z03LXUBRIcr5bzjJe3B1FwvDfXXXS9d9WTidoud1h2ErfbNX0O9ts5jh1Y2s86hHcDbeLf9NN44x+13VnbzvbbeQAte899zFx2KzIZ3TbjPjdOM+NXsIp0uCZFz/Xj/1JlPzijdiDCeedOb8zy650ara/mvQ4wudekGnA4u2ZQfzVvgrjMNu+yJW/254pWInnvQu3c+u9y1q3775SAM73XpvCdvNregn8280s4TD73xvdP+u+/F4Z59zsVHjvqywAs4vs4HtO/++/C3bND6OcNv//vyF0Q/zvf3n/8/+7tZ/+73P38E0GYDtF8B+3HAmiUwfguURwNp9kD8RTAeE5xZBd13QQxmcIPt66A5MlgAEB5AhOUgoQlRyA0VgpCF23DhBmEoDRlWkIbHsOEDcXg+DJhwdCaMlIuq9MPMBdFuIrpFESN3xOuBT0FKBCEQQShE90Rxg1PcYBVXdJkl/zauiayr0hCv5EXDgRFdYrRiF6VoRCoi0UNXrGAWK7hFpMTxgXN8YB2PcscE5jGBexxKHwf4xwEGUiiD7F8h+3dInyTyfou8XyN78kj7RdJ+kyxYGQW3Qh7qYpN866QnXQFKvIlylKEo5dtOiUpKqHJtrGzlIV6ptljKUg+0DJstb9mGXHZtl7xcgy+5BsxgemGYUyumMbmATKkpc5lPaGbTngnNJkiTadSspg6uubRsahMH3BSaN79pAx0CUjzVNKch0QlNdTKSnct0pyThaUx5YpKewbQn/KKRzg+6cTbf1Of7+NlOf2oRn7wUqPsIGk+D0hGht1Ro+xhaT4fqEf+ispToASiaT4ueE6Da1Cg51yDSkXqhpCblAkpT+oSVsrQJLn2pDmIqUxzQtKbl9OgAcQpTnfqPpzP1KQGBmoObElUDRj0qBpKqVAswtakUeCpUJSDVqVYVqldtalaVutWjdpWoXwVqWHk6VpyWtaZnlWlaX7pWlrY1pW81aVxHOldy1jWgQlXgVEVw15DmFYJ7RepfLRjYDPS1nxMcJ1cHy8HCGpaxIXTsUiF7Qsle4LAFTewLtYmAznr2s6ANrWhHS9rSmva0qE2talOm2ta69rWwje1qSybb2tr2trgFLWtzy9ve+pa0u/2tcIeL2+AS97jInW3Iksvc5gKXts6pjW50jSvd6hKXutbNbm+xq93u2pa73g3va8Er3vKilrzmTe9o0ave9npWRAmIr3znS9/62ve++M2vfvfL3/7697/9lQ+AB0zgAhv4wAjOr4ATzOAGO/jBBF4whCdM4Qo3WMIWzrCGN4xfDHP4wyCusIdDTOISH3jEJk6xiveL4hW7+MXxbTGMZ2xiGdP4xh+2MY53bGEd8/jHD/YxkIeMYCET+cgDNkYEAAAh+QQJDQAAACwAAAAA8ADwAAAE/xDISau9OOsauv/gRoHkJ05Cqq7sKZWwC8ClbN94rtOkzIculnDl+3mKxoBuyWzmkh2kUTasSn9XnnPL7U6gSheYWhVmaeeYd82+jcVQcpkIT6Zr7bwe8z71RXMtdVODWHuHh38bihqBdH5xhVqIlG2MGZcYjip3PZJolaFdmRekFpspnUCQdqKuTaYckSeoAqomn2qvuzixI7OAqLdHuXi8x8WerIS0wsmrIr7I09IvwBu1w1HPuNPefNca1QDZ3MTLht/qv63ok82b2mHuoOv2xwP5+vv8/f754+4JHIjjn8GD+gISXMgQA8KH/hQ2nNgQosWE4Shq3Djh4kWJHP9DevNoEaTIk7tIQjSJsmUllQ9ZupypByZCmTRzerF5EKfOn014GvQJtGhBoREzGl3aBmnSdkyjNnXKj6jUqxWoVlWK1cu4r1C07pNH1ty2XWChLgorNl9ZerqicUWUlpncJG3dmp131+5ataLqpuv7I++At4TfJa73SrDiv0YMI4Y8mPLjwHNlAcbEtu1kcZnZ+cW8GVzpUp3FfuZ82oLVJ6G/xLaGN+9q06NZ567kmLFlGpL33kbdOtHsGcfBBIdrbHHc389J7yY+3XVqrcOtFxddWXp33d9xF7YtvDxzZY2Tq6/t2bzz5tDhe78Mnr54Hsvfo4+/H/R2Pb1FVx//cOSdBw1/B/pXXVdb5MfggzUVCOGEbDhI4YVOWIjhhjloyOGHLngI4ogZiEjiiRSYiCKKKq5IYosugghjjBzOSCOGNt5IYY46QsgjhAHKN6CA99FAwJFIJqnkkkwemZ1mC3JnH3XhUTmldlHKlkSTXHaJ5JNS+qZglViSCaWZYRJppZFetrkkmFpmSZucyP03J5px4nknD272+aV7CHajX4JDClmkmmVeeSaffvYJ555iFtqfpIQeauiaiC7KZqNtPlonnUFOaqmomF6a6KacdulpqJWWSuqpmaZpqqYwpNopoGMqKuurtM66a6uw+pono7Zyuep6oCKr56fLglGs/6q4UipooOcMOm2ukY4KbK8kPGtstNpeK2211J5lLbnYxjosqt4meaydzOq6rrqQ0htvtq6C0C6T7yYLL6vihovuuB3s+ya4+Qac8MACm1suXw/LY7CS/TZ73E/jTJzkaz1acpzGSHLc8RoZg0yAyCOP8rHJKKe8Rckgt+wyLCvHfPHMlMCsscw471Dzzjf3vIfOE/MstBs/Fx300R7Da/LJSzNNctIGGy21gQpb8LTVV0fswtZRd/0y1ftyjRXAHhSg9tpst+3223DHbcDcdNdtd9x4512xvHmg3UHegAcut92E0y344QXsjS9dyvKA+OOAFy455IArbi8bfgdA+f/mbkteOOdxWy5s343TAPrpnhN++tui8zp06TCsznnqd8vOduvbvv4vFLZTTnvdva+Ne9bG7Z5E8I//bjjywzOcM+wlII+48nNL37zD8y3OLQjSH069AdYjHKzrAEJPQveCfx8+1s6Pn3v5xhuBfuDqMy/+9sTr7q/88+ddf/DXg1j27AWG/vmPeus7F/YIJsBQZM6AePtf7wJ4IwjG7QAYzKAGNyi2hlgQbhsMoQY7yJAPvk2EKCThQkzoNhSKUIUEYWHbXBhCGA5EhmyjIQdteA8crk2HI+ShPXyoNiBmUIhDJKIRMYjEdRCxAEs8QBPV8cQoTvEbVVziFb2RRSP/bnEaXQTiF5ERRh2O0VNRlF4UM3ejcaQReWs03/sw5MYlqnGJbKRRHY14RyPmMUZ7BGIfgfhHFwVSh4PUYSFXdEgaJpKGi0RRI134SBdG8kSTRGElUXhJEmVShJsUYSdH9MkQhjKEowRRKTd4yg2m8kOr1GArNfhKDsUyg7PMYC03dEsM5hKDu+zgG4NnxTPuYpi9K6YxXYFM2ylzmaFopuyeCU1KSHN11KzmIa55umxqUw/cBJ03v9mGcHJunORcgzk3h850dmGdlGunO7cAT8jJc55NqOfj7onPJegTcfzsZw7+ebiACvQGBBWcQQ8qgzJCMmzpdKglIUpOiXKS/6LftKgoMapNjaKSo9X0qCtBCk2R0pKkyzSpLlFqTJUCk6VndOkBzCZEmdKUhzaF6RhzCq+D8pROPlUiHnX6RZkydA1GPWoXkqrULTC1qU14KlSXINWp5qCqVr0BVrPaUKF6kas62CpYRSDWsWqgrGbFAFrTaoG1spUCbn2rBOIqV7q+1a5sxWta9WpWvo7Vr2AFLFcFm1XCWtWwU0UsVBXbVMYq1bFHhSxDJRtUHy40r14Vo1xPQFmBdrafn8VnaOc5WneWNqKZNeNmyZpaGq6WtZbV4mvP2loXzpa2sf1qPxHA29769rfADa5wh0vc4hr3uMhNbteSy9zmOve50NNV7tWiS93qWve6v10udrfL3e4OV7veDa94rwve8Zr3vNKVGnrXy97vTre98IVveeNL3/HOt7745e5988vf6u63vwB27n8DTODjDrjACBbugRPM4N7eKAEQjrCEJ0zhClv4whjOsIY3zOEOe5jDFPqwiEdM4hKb+MQYDjGKV8ziFrt4xCp+sYxnTGMWx7jGOM6xji984x37+Mc07jGQh0xkEwu5yEhOsoaPrOQmOxnCTH6ylIsc5Slb2cdVvrKWa5zlLXvZxV3+sphPHOYxm1nEx4gAACH5BAkMAAAALAAAAADwAPAAAAT/EMhJq7046xq6/+BGgeQnTmV6Smm5Ai35znRt33G45ubOd68f0Pe7GY9ImzAQFDaLRN5TmqxaryxnNDflbmNdMHZMpi3DLbTqm2avy/D45ex21WV33Yku78v5IoAbghqEGYZ+iVWIc1p7joGQg5KKlUiMFpgclIecGJqWoY9Qo1SlXqdiqW2irTWgKJ6NpJG0k7auubemtby7qL3Av6q6xZ24x76FspnMm8jG0TDOI9Sx0LPKycLS0rBZ2M3hz9qf1t3ocgLr7O3uanbp8vNl7vbt8Hj0+/xH9//59PQbSFDEv3sBexRcyJDCQXsJPTScyPDhuzwKKWrcZxEfRokb/0PO68gu4hCRKKWRXGeSScqXxVYKaAmzpiuZNG3qrITz48mdQOP0XPUmqNExQ4MRO8o0SdJhrJrC+TZtHIUBWLNq3cq1K1aqYM9VLZcorNUJXtOqzWqWrDi35LhVaisXw9q7XekuXXYWHNw/YqniHcw2sOG+Y+uWPfwXLeHBeqNCLTo5nqjIlDU8hsxY8VvPcffO7Sza7ua7mC1X1qdUsqXUrDecRk3a9bbS2UADRix4tlrYAlcH59t4au3MGXz/Pq6auO5rxcsAzyhbudfpIIk2v21bEfaf1a1z/e5Se2znuP2QfyE+L/Pz3JGbQ0xm/Yr2498Pj799fvT6+lGnGf9+Wtln3n7+PSeVBQRqteCDfTSYFYQUliEhVhVmeMWFA2joIRIcfiiiDSGOaOJ9F56oYngNrujiBSW+KCMAMc7oYo02qohjjibuyKOIPv7oYZBC+qVgYumF1t0FBDTp5JNQRillkwa2Jl9uSVbDW4DZiTDll2A6WaVwAvIHX4JZQnckVWG2KeWY6C35WZpG0omknEpeaYGbfIrJJXhx6plnf1jiqWV0bPbJJ5xmIliooIeu+Wd5XirqJqNoGqqmnZg+SuielrbZ6Zya1lnqnZBuemqioYI56qBnehorqamaWiuqn1bQapivRsrppDkdWCYGu7oKrE+UktmlsoA2Oqz/rI6CWuybxwq7bKC5+rpqtZVOG2Wvqt4Krq3ZhluuBN5Su+W6iHLLbLLYzqprulCOi6u82orrbrzRzkuvn+xKGrCdMC3x75PBFtmNwQc3mbDC0TDc8MMQFyPxwRRXnMvF/2ascSsc0+vxx6GEnO7IJI/2Q8MOI5uyxUKwTADKL6sXM8s017wbDzLnrLNxK+Ps8s+X3Tzx0ES/ZjTGSCft3dIdN/0xeQVUbfXVWGet9dZcG+D112CHzfXYZPtMLr5xUE322mxvHfbbYLctdwFm39vvzgLzMPfea8PtN99r100VgAO3APjhWfsNN+JcCy4W4e3+wPjkir89udaO0zeG/9qXA1652J1fnfl/m08auueff3261aMfCXneOay+d+qqy946waUXnoLsc9PuNe+3n/r6r5Lz3rbvBgAvNb/P2qx7CcYf77vy1jab6a3Db1t89GQjT72V59rdfB+cc9/19LYv7+y1Kkeut/lje59+9fCub/1iz5MAf/zorx489hDaH9cOQMACGvCATpuHALd2wAYaMIHyWKDWHEhBCKZDglmjoAMtiA4MYk2DDeRgNzx4NRAiUITRIKHVTPhAFBpDhVVjYQFd+EIYypCANCwGDAtwwwPkUBc77OEPcxHEGw7RFUWU4RFbkUQWLlEUTTThE9/1gh7yrof2ohBVrCg7LP/u60RbvOEVb5hFCIVRhmOUYRkfdEYWppGFa1xQG034RhPGUSpzBGEdQXjHpuRRg3vUYB+Z8kcKBpKCgzxKIR14SAcm0iiLbGAjG/jIoETygJM8YCWBckkDZtKAm9xJJwv4yQKGUiejJGApCXjKHHFxdUKcYiVeebpYyjIRtAydLW/Zh1x2bpe8jIMvLwfMYJZhmJMrpjHHgEzGKXOZV2gm4p4JzSpI83DUrCYSrgm4bGrTCNzkmze/aYNw7m2c5KSBOeeGznRWUYxdNKI7rbBOubVzniKIIh8fp019CpKf1fQnIgEKTYE6kqDLNCglEWpMhWqSocF0KCghykuJmpL/ore0KCsxKkuNHmBw/bQhGTk6RY+CNKAiVSNJn2jSlS6xpZpDqQrviU8NeLSmSbgpTo+g053eoKc+rQFQgzqDoRJ1BUY9aj5T6kSlFpWpUnTqC5IqVQxQtaoWuCpWKaDVrUqgq14F61bFilWyVtWsUkWrU9WqVLYe1a1EhWtQ5epTuu7UrjjFa031ik++ztOv7gRsOgVLTsJ+07Ahnak8vZoBxMqUhDRdK1RByFibTlaDlW3sZSuY2Qs4tqCb3WBnsxraEI62Ap/9GAJWy9rWuva1sI2tbGdL29ra9ra4rRlud8vb3vr2t7l9GXCHS9ziGte1uj2ucpfLXNkmt7nQvI2ucZ8r3epaN7gpu652t+tc4XL3u9+lLnjHK13xkve8yzUvetdLXPWy9729dS9852tb+dL3vrG1L373y9oZJeC/AA6wgAdM4AIb+MAITrCCF8zgBi+YQg6OsIQnTOEKW/jAEL6whjfM4Q5LOMMeDrGIR7xhEJP4xChOsYFNrOIWu3jELH6xjGdc4RjT+MY4TrCNc8zjHv93xz4OMo2BLOQit5jIRk4yiZGs5CZ3mMlOjrKFoSzlKkc4FxEAACH5BAkNAAAALAAAAADwAPAAAAT/EMhJq7046xq6/+BGgeQnTmV6Smm5Ai35znRt33G45ubOd68f0Pe7GY9ImzAQFDaLRN5TmqxaryxnNDflbmNdMHZMpi3DLbTqm2avy/D45ex21WV33Yku78v5IoAbghqEGYZ+iVWIc1p7joGQg5KKlUiMFpgclIecGJqWoY9Qo1SlXqdiqW2irTWgKJ6NpJG0k7auubemtby7qL3Av6q6xZ24x76FspnMm8jG0TDOI9Sx0LPKycLS0rBZ2M3hz9qf1t3o0QLr7O3u3+nx8nLu9e3w8/n6Sfb9+PsAA67oZ++fwIMIKRCsZzChw4AL3517SBFiRHYNK2pEdxHjxI0g/zl2FJAxpMlWI0l+PMkS5ciSLWPSe7lSps2ZHWHe3FklpU6eQG/4rBnUzER4SwYoXcq0qdOnStXYWfUmGLFQSI8Kgcq161KpeKhOtcpKVNZx1X54XfsUrB6yVYeVxaoV7TUebPN+zdNDbFi4Y+naBVcuWw69et32BfxXblxLZwuLw4uYrWIPl4f4fStYMjlu22JUtswXc2nNjDlDrus5LeXRXTMzOT178+LOoM0NnqYWdmzasoO7ipzbsGjfXIXbNr0cNe6ry3YnRQ5Veerb0VvHIQ49dAvq1YGLb17bLOvikw+Dd2rdceDs6Ptwnwv/+Hqm7evT9/640vz+ur12X/9U413HnIHOFTXGgPgp6KAcDO714IQLRjgAhRheYeGFGXZ4xIYehmgDiCKWuAKJJqaYAYoqtkgBiy66CGOMKs5Io4k23ihijjp6yGOPGf7o4X/v8VdkgDkQoOSSTDbp5JNK5mdkY/oBaNx+SHaXJZZXpgDll2AuKeWWVqanZZdHoknllKqx+UGYcD45ppptkpmmmVziWeZnZ+pZQpyAilmge2vaWSid2Ll5IKF1IupBoIHO6eehkzZaaaKGWspnnpt6CWmcknZ6p6iUkqqpa/Gh2qepb34KZ6iqchrrnrOOWmupt556V5KuhgnrrqvmiqmjCSpabKbDXvpor2D+Slj/qsDKGi2t09paLa7XgsBss4NWae2zwWabLKuLeostuC1s+6WzvGmHLrXvftsutPGeO28M6kLJLpH28qtrvf/em26+Tu57XrgAjytsucaWx2irBDNpsHQHS5sww8hiTGwAETc5sbsCw8sSPB0z+ROQcJBcspIno0yGyiu37DIWMJcs88xW1NzxzTgnoXPEPPd8xM8EBy00DhOtzDJRR7+ctNJGN23UbkoTELXU7FZ9NdbkvaA101wv8nTMYId9ydg2l222EUTnu3VR/n5QwNx012333XjnrbcBfPft9996By74x/SWEbcHgieu+N5/N9734pAXQDjChlecQuSYJ+74/+aZJz65xZVT/EPnpN+9ueOl6/25yE6LzkPqsJ/eOOx4ry5v6yAvQXvpsgO+e92224t74br/nnnvfhtPd/ABD0958cpDjvzj0TOv8HaWlxB95NPzvb31GvtxeAfbS9/99902nMv4AZS/ePcGoN91+oqw777i8MuPoMPmNj+G/fcTXP6qR7+NrS97JAigAM9HwPk50Dyuy4ECAzdA5YHvWCKaoN4OwMEOevCDa8uHBvP2wRJ6MITzGCHeTMhCFMpDhXdjoQldGA8Y2k2GJaRhOmxYNxyCUIfd4CHdfHhCIEpDiHMjYgeNeEQkKpGDTIwGEgvwxANE0RhTrOIVi5HFJ/9uURddVOIXcxFGIo7RFWX04RkfuIEqbq+K7KMRPNwYPTgi0H8OmuMT3/jEOMZIj0rkoxL96CJAElGQRCRkiwzpQ0T6UJEqYiQOHYlDSKZIkjKkpAwtaSJMslCTLORkiTxpQlCaUJQiImUJTVlCVIZIlR9k5QddOaSJ0FF5dowg5SYESw/K0oO07FAvO/jLDgZzbbc0nhbXGIpk/m6ZzKyEM3cHzWgmYpq0q6Y1+4BN2Glzm3HoZuq+Cc4yiLN05CznGM5JunSq8wrs7Jw731mFeGZunvREgj0xh898GmGfkeunP20AUMgJdKA0KOjiDorQFyhUcQxt6AnSWEm1bZP/opu0qDUxGkqNRpOjp/QoM0HaSpGukaSzNOkZUQpMlY6RpcZ06RdhysG3GZGmB7ApEHGqUx3yVKZb/OluBipUkBHViX0E6hVxKtErMLWpVXgqVJEg1akaoapWtQFWs0qDrXL1BV796kSRKkax1iCsZtUAWtOKgbWy1QJufSsF4ipXCdC1rneVa17fule29jWtfzVrYMU62K8WlquHzWpirbrYqTYWqo9tamQlOtmGVhahlz2qECPqV7Kasa4iyKw/RZtP0tLTtO9ErTpVW07WgtO1F/WsGkG7AdhuVLY4HCgCdsvb3vr2t8ANrnCHS9ziGve4yOUacpfL3OY697nJ0sUadKdL3epa17fKva52t8td4Wa3u+ANr3W/K97ymje6UjuvetfrXemy973vJS985yte+dL3vtu1L373S1398ve/zfUvgAdsXAET+MDBNTCCF8xbGiXgwRCOsIQnTOEKW/jCGM6whjfM4Q5veEIeDrGIR0ziEpv4wiA+sYpXzOIWizjFLo6xjGe8YhjT+MY4zrGFbazjHvt4xjz+sZCHXOIgE/nISM6wkZPM5CY/eMlOjjKRoSzlKveYylbOMo2xrOUut5jLXg6zicEs5jKHOBcRAAAh+QQJDAAAACwAAAAA8ADwAAAE/xDISau9OOsauv/gRoHkJ05lKqxs66blKcGkbN94rlt0KPemH7DjKraGHRsysGs6n7qlEjkdGq9S4RDK7XpRVC2wCrwasyf0d80m99w0OMxcVG/s7bx+FE73RUt0L393hHuHbXgZihiBgiyMF5GIlE+THIaLSI+QmY2elaE7l3xbYj2cK6RgpqKuTqszoDybqbEAt6+6mK2As7xltr+lY7vGcinIMac0qQK3uce60MOswZzUvdLbtNoa2deP4G/c5cDkft6aVsLqn+7m8fIAA/X29/j5+vXz/f7G+wIKtPevoEFEAxPqO8iwoReFEAk6nEgRR8SIFTNqzHAR4saPIP87KgRJMqPIhCVTOjw5UKVLgywFvpzZL2ZAmjjN2dyXs6e0nQt9Cn0FNN/Qo6GK4kOqZ1wcZjBsKL3nNCrUZLuqYk1X7MRUe1qXcUX3KmyNq2JFfK1n1sfYp9OqyYLXravatW2DvLUal+45uL78Ulg7IK8HZWf72i0k2BrZDYQNJ0GbuKxcXJdvRc7MuXEeyUwou737FTTi0a5Mi9ZLeqrqvVste8Y8WzPezou/XWbzOnBujrdr434sqjfj3xg2C1+OnJJx3bOVN69LfN30Q8+tV08e/Dqx7ZJ2r8n+zvsE6eCpAz6eniksJITdy7+xJP78++xp2MfPXz2M/f0FSBv/EAAKyF99axkoIIJfKRggg1M52B+ESkl4IHwJWngfhUVpuCGGDXooH4dAiTgiiBGayBSJO53IXHvfrQedeRIQYOONOOao4442khfeizJqF2R5MDo25AU8JqnkjT76F1t+fPlW5Fw0DjglAEtmuWOTf0UJ5ZMzXsklBVqWyeRwRzqZ1pdrhplml2AK6aUGZpo5ppFzyhknkW/GmCeffyJZp5Z3UikmmoGqWRmbi9I5aJaFWtknnnv+WGWkj0KKaKWKouZmonC2qaeogHJaQaZLRqrqpqRaeiWqSq4KJKh+mlprq52ytgGsScp6KauNjhpsqbieyuuWwHoqrLLEDuvq/6SGQisprRMci+ystlJa7K3O5nrYat/Ctm211ubo66HYjhsttetmW2O5OJ4rrUqgwYujigXVa6+N+P6j7779+vOvvQH3MzC8Bc9zcLkJy7OwtQ3H8/CxEZszMa8Vl3MxrBlzszGqHW/zcaYhSzPyoyUfc/KgKRuzcp0pg1bAzDTXbPPNOOesswE89+zzzzoHLfRpun7qbiLJfiD00kzv/PPTPTctdQFEhyvlvOMl7cHUXC8N9dddL131ZOJ2i53WHYSt9s1fQ722zmOHVjazzqEdwNt4t/003jjH7XdWdvO9tt5AC17z33MXHYrMhndNuM+N04z41ewinS4JkXP9eP/UmU/OKN2IMJ5505vzPLrnRqtr+a9DjC516QacDi7ZlB/NW+CuMw277Ilb/bnilYiee9C7dz673LWrfvvlIAzvdem8J282t6CfzbzSzhMPvfG90/6778Xhnn3OxUeO+rLACzi+zge07/778Lds0Po5w2//+/IXRD/O9/ef/z/7u1n/7vc/fwTQZgO0XwH7ccCaJTB+C5RHA2n2QPxFMB4TnFkF3XdBDGZwg+3roDkyWAAQHkCE5SChCVHIDRWCkIXbcOEGYSgNGVaQhsew4QNxeD4MmHB0JoyUi6r0w8wF0W4iukURI3fE64FPQUoEIRBBKET3RHGDU9xgFVd0mSX/Nq6JrKvSEK/kRcOBEV1itGIXpWhEKiLRQ1esYBYruEWkxPGBc3xgHY9yxwTmMYF7HEofB/jHAQZSKIPsXyH7d0ifJPJ+i7xfI3vySPtF0n6TLFgZBbdCHupik3zrpCddAUq8iXKUoSjl206JSkqocm2sbOUhXqm2WMpSD7QMmy1v2YZcdm2XvFyDL7kGzGB6YZhTK6YxuYBMqSlzmU9oZtOeCc0mSJNp1KymDq65tGxqEwfcFJo3v2kDHQJSPNU0pyHRCU11MpKdy3SnJOFpTHlikp7BtCf8opHOD7pxNt/U5/v42U5/ahGfvBSo+wgaT4PSEaG3VGj7GFpPh+oR/6KylOgBKJpPi54ToNrUKDnXINKReqGkJuUCSlP6hJWytAkufakOYipTHNC0puX06ABxClOd+o+nM/UpAYGag5sSVQNGPSoGkqpUCzC1qRR4KlQlINWpVhWqV21qVpW61aN2lahfBWpYeTpWnJa1pmeVaVpfulaWtjWlbzVpXEc6V3LWNaBCVeBURXDXkOYVgntF6l8tGNgM9LWfExwnVwfLwcIalrEhdOxSIXtCyV7gsAVN7Au1iYDOevazoA2taEdL2tKa9rSoTa1qU6ba1rr2tbCN7WpLJtva2va2uAUta3PL2976lrS7/a1wh4vb4BL3uMidbciSy9zmApe2zqmNbnSNK93qEpe61s1ub7Gr3e7alrveDe9rwSve8qKWvOZN72jRq972elZECYivfOdL3/ra9774za9+98vf/vr3v/2VD4AHTOACG/jACM6vgBPM4AY7+MEEXjCEJ0zhCjdYwhbOsIY3jF8Mc/jDIK6wh0NM4hIfeMQmTrGK94viFbv4xfFtMYxnbGIZ0/jGH7YxjndsYR3z+McP9jGQh4xgIRP5yAM2RgQAACH5BAkNAAAALAAAAADwAPAAAAT/EMhJq7046xq6/+BGgeQnTkKqruwplbALwKVs33iu06TMhy6WcOX7eYrGgG7JbOaSHaRRNqxKf1eec8vtTqBKF5haFWZp55h3zb6NxVBymQhPpmvtvB7zPvVFcy11U4NYe4eHfxuKGoF0fnGFWoiUbYwZlxiOKnc9kmiVoV2ZF6QWmymdQJB2oq5NphyRJ6gCqiafaq+7OLEjs4Cot0e5eLzHxZ6shLTCyasivsjT0i/AG7XDUc+409581xrVANncxMuG3+q/reiTzZvaYe6g6/bHA/n6+/z9/vnj7gkciOOfwYP6AhJcyBADwof+FDac2BCixYThKGrcOOHiRYkc/0N682gRpMiTu0hCNImyZSWVD1m6nKkHJkKZNHN6sXkQp86fTXga9Am0aEGhETMaXdoGadJ2TKM2dcqPqNSrFahWVYrVy7ivULTuk0fW3LZdYKEuCis2X1l6uqJxRZSWmdwkbd2anXfX7lq1ouqm6/sj74C3hN8lrvdKsOK/RgwjhjyY8uPAc2UBxsS27WRxmdn5xbwZXOlSncV+5nzagtUnob/EtoY372rTo1nnruSYsWUakvfeRt060ewZx8EEh2tscdzfz0nvJj7ddWqtw60XF11Zenfd33EXti28PHNljZOrr+3ZvPPm0OF7vwyevngey9+jj78f9HY9vUVXH/9w5J0HDX8H+lddV1vkx+CDNRUI4YRsOEjhhU5YiOGGOWjI4YcueAjiiBmISOKJFJiIIooqrkhiiy6CCGOMHM5II4Y23khhjjpCyCOEAco3oID30UDAkUgmqeSSTB6ZnWYLcmcfdeFROaV2UcqWRJNcdonkk1L6pmCVWJIJpZlhEmmlkV62uSSYWmZJm5zI/TcnmnHieScPbvb5pXsIdqNfgkMKWaSaZV55Jp9+9gnnnmIW2p+khB5q6JqILspmo20+WiedQU5qqaiYXproppx26WmolZZK6qmZpmmqpjCk2imgYyoq66u0zrprq7D6miejtnK56nqgIqvnp8uCUaz/qrhSKmig5ww6ba6RjgpsryQ8a2y02l4rbbXUnmUtudjGOiyq3iZ5rJ3M6rquupDSG2+2roLQLpPvJgsvq+KGi+64Hez7Jrj5BpzwwAKbWy5fD8tjsJL9NnvcT+NMnORrPVpynMZIctzxGhmDTIDII4/ysckop7xFySC37DIsK8d88cyUwKyxzDjvUPPON/e8h84T8yy0Gz8XHfTRHsNr8slLM01y0gYbLbWBClvwtNVXR+zC1lF3/TLV+3KNFcAeFKD22my37fbbcMdtwNx012133HjnXbG8eaDdQd6ABy633YTTLfjhBeyNL13K8oD444AXLjnkgCtuLxt+B0D5/+ZuS14453FbLmzfjdMA+umeE37626LzOnTpMKzOeep3y85269u+/i8UtlNOe929r4171sbtnkTwj/9uOPLDM5wz7CUgj7jyc0vfvMPzLc4tCNIfTr0B1iMcrOsAQk9C94J/Hz7Wzo+fe/nGG4F+4OozL/72xOvur/zz511/8NeDWPbsBYb++Y966zsX9ggmwFBkzoB4+1/vAngjCMbtABjMoAY3KLaGWBBuGwyhBjvIkA++TYQoJOFCTOg2FIpQhQRhYdtcGEIYDkSGbKMhB214DxyuTYcj5KE9fKg2IGZQiEMkohExiMR1ELEASzxAE9XxxChO8RtVXOIVvZFFI/9ucRpdBOIXkRFGHY7RU1GUXhQzd6NxpBF5azTf+zDkxiWqcYlspFEdjXhHI+YxRnsEYh+B+EcXBVKHg9RhIVd0SBomkoaLRFEjXfhIF0byRJNEYSVReEkSZVKEmxRhJ0f0yRCGMoSjBFEpN3jKDabyQ6vUYCs1+EoOxTKDs8xgLTd0SwzmEoO77OAbg2fFM+5imL0rpjFdgUzbKXOZoWim7J4JTUpIc3XUrOYhrnm6bGpTD9wEnTe/2YZwcm6c5FyDOTeHznR2YZ2Ua6c7twBPyMlznk2o5+Puic8l6BNx/OxnDv55uIAK9AYEFZxBDyqDMkIybOl0qCUhSk6JcpL/ot+0qCgxqk2NopKj1fSoK0EKTZHSkqTLNKkuUWpMlQKTpWd06QHMJkSZ0pSHNoXpGHMKr4PylE4+VSIedfpFmTJ0DUY9aheSqtQtMLWpTXgqVJcg1anmoKpWvQFWs9pQoXqRqzrYKlhFINaxaqCsZsUAWtNqgbWylQJufasE4ipXur7VrmzFa1r1ala+jtWvYAUsVwWbVcJa1bBTRSxUFdtUxirVsUeFLEMlG1QfLjSvXhWjXE9AWYF2tp+fxWdo5zlad5Y2opk142bJmloarpa1ltXia8/aWhfOlrax/Wo/EcDb3vr2t8ANrnCHS9ziGve4yE1u15LL3OY697nQ01Xu1aJL3epa97q/XS52t8vd7g5Xu94Nr3ivC97xmve80pUaetfL3u9Ot73whW9540vf8c63vvjl7n3zy9/q7re/AHbufwNM4OMOuMAIFu6BE8zg3t4oARCOsIQnTOEKW/jCGM6whjfM4Q57mMMU+rCIR0ziEpv4xBgOMYpXzOIWu3jEKn6xjGdMYxbHuMY4zrGOL3zjHfv4xzTuMZCHTGQTC7nISE6yho+s5CY7GcJMfrKUixzlKVvZx1W+spZrnOUte9nFXf6ymE8c5jGbWcTHiAAAIfkECQ0AAAAsAAAAAPAA8AAABP8QyEmrvTjrGrr/4EaB5CdOZXpKabkCLfnOdG3fcbjm5s53rx/Q97sZj0ibMBAUNotE3lOarFqvLGc0N+VuY10wdkymLcMttOqbZq/L8Pjl7HbVZXfdiS7vy/kigBuCGoQZhn6JVYhzWnuOgZCDkoqVSIwWmByUh5wYmpahj1CjVKVep2KpbaKtNaAono2kkbSTtq65t6a1vLuovcC/qrrFnbjHvoWymcybyMbRMM4j1LHQs8rJwtLSsFnYzeHP2p/W3ehyAuvs7e5qduny82Xu9u3wePT7/Ef3//n09BtIUMS/ewF7FFzIkMJBewk9NJzI8OG7PAopatxnER9GiRv/Q87ryC7iEJEopZFcZ5JJypfFVgpoCbOmK5k0beqshPPjyZ1A4/Rc9Sao0TFDgxE7yjRJ0mGsmsL5Nm0chQFYs2rdyrUrVqpgz1Utlyis1Qle06rNapasOLfkuFVqKxfD2rtd6S5ddhYc3D9iqeIdzDaw4b5j65Y9/Bct4cF6o0ItOjmeqMiUNTyGzFjxW89x987tLNru5ruYLVfWp1SypdSsN5xGTdr1ttLZQANGLHi2WtgCVwfn23hq7cwZfP8+rpq47mvFywDPKFu51+kgiTa/bVsR9p/VrXP97lJ7bOe4/ZB/IT4v8/PckZtDTGb9ivbj3w+Pv31+9Pr6UacZ/35a2Wfefv49J5UFBGq14IN9NJgVhBSWISFWFWZ4xYUDaOghEhx+KKINIY5o4n0XnqhieA2u6OIFJb4oIwAxzuhijTaqiGOOJu7Io4g+/uhhkEL6pWBi6YXW3QUENOnkk1BGKWWTBrYmX25JVsNbgNmJMOWXYDpZpXAC8gdfgllCdyRVYbYp5ZjoLflZmkbSiaScSl5pgZt8iskleHHqmWd/WOKpZXRs9sknnGYiWKigh675Z3leKuomo2gaqqadmD5K6J6WttnpnJrWWeqdkG56aqKhgjnqoGd6GiupqZpaK6qfVtBqmK9GyumkOR1YJga7ugqsT5SS2aWygDY6rP+sjoJa7JvHCrtsoLn6umq1lU4bZa+q3gqurdmGW64E3lK75bqIcstsstjOqmu6UI6Lq7zaiutuvNHOS6+f7EoasJ0wLfHvk8EW2Y3BBzeZsMLRMNzwwxAXI/HBFFecy8X/ZqxxKxzT6/HHoYSc7sgkj/ZDww4jm7LFQrBMAMovqxczyzTXvBsPMuess3Er4+zyz5fdPPHQRL9mNMZIJ+3d0h03/TF5BVRt9dVYZ6311lwb4PXXYIfN9dhk+0wuvnFQTfbabG8d9ttgty13AWbf2+/OAvMw995rw+0332vXTRWAA7cA+OFZ+w034lwLLhbh7f7A+OSKvz251o7TN4b/2pcDXrnYnV+d+X+bTxq6559/fbrVox8Jed45rL536qrL3jrBpReeguxz0+4177ef+vqvkvPetu8GAC81v8/arHsJxh/vu/LWNpvprcNvW3z0ZCNPvZXn2t18H5xz3/X0ti/v7LUqR663+WN7n3718K5v/WLPkwB//OivHjz2ENof1w5AwAIa8IBOm4cAt3bABhowgfJYoNYcSEEIpkOCWaOgAy2IDgxiTYMN5GA3PHg1ECJQhNEgodVM+EAUGkOFVWNhAV34QhjKkIA0LAYMC3DDA+RQFzvs4Q9zEcQbDtEVRZThEVuRRBYuURRNNOET3/WCHvKuh/aiEFWsKDss/+7rRFu84RVvmEUIhVGGY5RhGR90RhamkYVrXFAbTfhGE8ZRKnMEYR1BeMem5FGDe9RgH5nyRwoGkoKDPEohHXhIBybSKItsYCMb+MigRPKAkzxgJYFySQNm0oCb3EknC/jJAoZSJ6MkYCkJeMoccXF1QpxiJV55uljKMhG0DJ0tb9mHXHZul7yMgy8vB8xglmGYkyumMceATMYpc5lXaCbingnNKkjzcNSsJhKuCbhsatMI3OSbN79pg3DubZzkpIE554bOdFZRjF00ojutsE65tXOeIogiHx+nTX0Kkp/V9CciAQpNgTqSoMs0KCURakyFapKhwXQoKCHKS4makv+it7QoKzEqS40eYHD9tCEZOTpFj4I0oCJVI0mfaNKVLrGlmkOpCu+JTw14tKZJuClOj6DTnd6gpz6tAVCDOoOhEnUFRj1qPlPqRKUWlalSdOoLkipVDFC1qha4KlYpoNWtSqCrXgXrVsWKVbJW1axSRatT1apUth7VrUSFa1Dl6lO67tSuOMVrTfWKT77O06/uBGw6BUtOwn7TsCGdqTy9mgHEypSENF0rVEHIWJtOVoOVbexlK5jZCzi2oJvdYGezGtoQjrYCn/0YAlbL2ta69rWwja1sZ0vb2tr2tritGW53y9ve+va3uX0ZcIdL3OIa17W6Pa5yl8tc2Sa3udC8ja5xnyvd6lo3uCm7rna361zhcve736UueMcrXfGS97zLNS9610tc9bL3vb11L3zna1v50ve+sbUvfvfL2hkl4L8ADrCAB0zgAhv4wAhOsIIXzOAGL5hCDo6whCdM4Qpb+MAQvrCGN8zhDks4wx4OsYhHvGEQk/jEKE6xgU2s4ha7eMQsfrGMZ1zhGNP4xjhOsI1zzOMe/3fHPg4yjYEs5CK3mMhGTjKJkazkJneYyU6OsoWhLOUqRzgXEQAAOw=="
+    }
+  }
+}

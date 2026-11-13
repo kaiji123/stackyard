@@ -1,4 +1,6 @@
-import { h, type Child } from "./dom";
+import { modal } from "./dialogs";
+import { h } from "./dom";
+import { ghostMascot } from "./mascots";
 
 /** Set at build time (the Pages workflow passes the repository URL). Empty when unknown. */
 export const REPO_URL: string = (import.meta.env["VITE_REPO_URL"] as string | undefined) ?? "";
@@ -11,25 +13,9 @@ function markWelcomed(): void {
   try { localStorage.setItem(WELCOMED, "1"); } catch { /* storage can be blocked; harmless */ }
 }
 
-interface Action { readonly label: string; readonly primary?: boolean; readonly run?: () => void }
-
-/** Accessible modal built on <dialog>: focus trap, Esc to close, labelled by its heading. */
-function modal(title: string, body: readonly Child[], actions: readonly Action[]): void {
-  const dlg = h("dialog", { class: "modal", "aria-labelledby": "modal-title" });
-  const close = (): void => { dlg.close(); dlg.remove(); };
-  dlg.append(
-    h("h2", { id: "modal-title" }, title),
-    ...body.filter(Boolean) as Node[],
-    h("div", { class: "modal-actions" }, ...actions.map((a) =>
-      h("button", { class: a.primary ? "tool primary" : "tool", onclick: () => { close(); a.run?.(); } }, a.label))));
-  dlg.addEventListener("cancel", () => { dlg.remove(); });
-  document.body.append(dlg);
-  dlg.showModal();
-  dlg.querySelector<HTMLElement>(".primary, button")?.focus();
-}
-
 export function openAbout(showQuickStart: () => void): void {
   modal("About Stackyard", [
+    ghostMascot(),
     h("p", null, "Stack index cards. Link them. Share one file that runs forever."),
     h("p", null, "Stackyard is a no-code card-stack maker inspired by the classic 1987 card-stack tools. Anything you make exports as a single HTML file that works offline in any browser. That file is also your save file: import it here to keep editing."),
     h("h3", null, "License"),
@@ -45,8 +31,9 @@ export function openAbout(showQuickStart: () => void): void {
   ]);
 }
 
-export function openWelcome(opts: { blank: () => void; template: () => void }): void {
+export function openWelcome(opts: { blank: () => void; browse: () => void }): void {
   modal("Make your first card in 30 seconds", [
+    ghostMascot(),
     h("ol", { class: "steps" },
       h("li", null, h("b", null, "Add text. "), "Press ", h("kbd", null, "T Text"), " and type a title."),
       h("li", null, h("b", null, "Add a button. "), "Press ", h("kbd", null, "▭ Button"), ", then under “When clicked” pick “Go to card…”."),
@@ -54,7 +41,7 @@ export function openWelcome(opts: { blank: () => void; template: () => void }): 
     h("p", { class: "hint" }, "Your work is saved in this browser automatically."),
   ], [
     { label: "Start with a blank stack", primary: true, run: () => { markWelcomed(); opts.blank(); } },
-    { label: "Explore the Haunted House", run: () => { markWelcomed(); opts.template(); } },
+    { label: "Play an example stack", run: () => { markWelcomed(); opts.browse(); } },
     { label: "Skip", run: markWelcomed },
   ]);
 }

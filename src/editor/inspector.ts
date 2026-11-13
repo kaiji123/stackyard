@@ -1,6 +1,7 @@
 import { diagnose } from "../core/doctor";
 import type { ObjectPatch } from "../core/commands";
-import type { StackObject, TextAlign } from "../core/types";
+import type { Motion, StackObject, TextAlign, TextTone } from "../core/types";
+import { MOTIONS } from "../core/types";
 import { CANVAS_H, CANVAS_W } from "../core/types";
 import { actionEditor, namesDatalist } from "./actions";
 import type { Ctx } from "./ctx";
@@ -18,6 +19,11 @@ function num(ctx: Ctx, o: StackObject, key: "x" | "y" | "w" | "h" | "fontSize", 
   }));
 }
 
+const MOTION_LABELS: Readonly<Record<Motion, string>> = {
+  none: "Still", float: "Float (gently up and down)", bob: "Bob (quick little hops)", wiggle: "Wiggle",
+  pulse: "Pulse (grow and shrink)", swing: "Swing (like a lantern)", spin: "Spin", flicker: "Flicker (like a candle)",
+};
+
 function objectPanel(ctx: Ctx, o: StackObject): HTMLElement {
   const patch = (p: ObjectPatch): void => ctx.dispatch({ type: "updateObject", object: o.id, patch: p });
   const objs = ctx.card().objects;
@@ -30,11 +36,16 @@ function objectPanel(ctx: Ctx, o: StackObject): HTMLElement {
         num(ctx, o, "fontSize", 120),
         field("align", h("select", { value: o.align, onchange: (e: Event) => patch({ align: (e.target as HTMLSelectElement).value as TextAlign }) },
           h("option", { value: "left" }, "left"), h("option", { value: "center" }, "center"), h("option", { value: "right" }, "right")))),
+      field("text style", h("select", { value: o.tone, onchange: (e: Event) => patch({ tone: (e.target as HTMLSelectElement).value as TextTone }) },
+        h("option", { value: "dark" }, "Dark ink (on the card)"), h("option", { value: "light" }, "Light (on dark pictures)"), h("option", { value: "panel" }, "Light on a dark panel"))),
       h("label", { class: "check" }, h("input", { type: "checkbox", checked: o.bold, onchange: (e: Event) => patch({ bold: (e.target as HTMLInputElement).checked }) }), " bold"));
   } else if (o.kind === "button") {
     textBits.push(field("label", h("input", { type: "text", value: o.label, onchange: (e: Event) => patch({ label: (e.target as HTMLInputElement).value }) })));
   } else {
-    textBits.push(field("alt text", h("input", { type: "text", value: o.alt, placeholder: "describe the picture", onchange: (e: Event) => patch({ alt: (e.target as HTMLInputElement).value }) })));
+    textBits.push(
+      field("alt text", h("input", { type: "text", value: o.alt, placeholder: "describe the picture", onchange: (e: Event) => patch({ alt: (e.target as HTMLInputElement).value }) })),
+      h("label", { class: "check" }, h("input", { type: "checkbox", checked: o.crisp, onchange: (e: Event) => patch({ crisp: (e.target as HTMLInputElement).checked }) }), " crisp pixels (pixel art)"),
+      h("button", { class: "tool", onclick: () => void ctx.editDrawing(o.id) }, "✎ Edit drawing"));
   }
   const zb = (label: string, title: string, to: number): HTMLElement =>
     h("button", { class: "tool", title, "aria-label": title, onclick: () => ctx.dispatch({ type: "reorderObject", object: o.id, to }) }, label);
@@ -42,6 +53,8 @@ function objectPanel(ctx: Ctx, o: StackObject): HTMLElement {
     h("h3", null, `Selected ${o.kind}`),
     ...textBits,
     h("div", { class: "grid4" }, num(ctx, o, "x", CANVAS_W), num(ctx, o, "y", CANVAS_H), num(ctx, o, "w", CANVAS_W), num(ctx, o, "h", CANVAS_H)),
+    field("movement", h("select", { value: o.motion, onchange: (e: Event) => patch({ motion: (e.target as HTMLSelectElement).value as Motion }) },
+      ...MOTIONS.map((m) => h("option", { value: m }, MOTION_LABELS[m])))),
     h("label", { class: "check" }, h("input", { type: "checkbox", checked: o.visible, onchange: (e: Event) => patch({ visible: (e.target as HTMLInputElement).checked }) }), " visible at start"),
     h("div", { class: "row" },
       zb("⤒", "Bring to front", objs.length - 1), zb("↑", "Bring forward", z + 1), zb("↓", "Send backward", z - 1), zb("⤓", "Send to back", 0),

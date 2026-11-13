@@ -9,6 +9,41 @@ export type Migration = (doc: Rec) => Rec;
 export const MIGRATIONS: Readonly<Record<number, Migration>> = {
   // v1 -> v2: stacks gain a `skin`. Existing stacks keep their plain look.
   1: (doc) => ({ ...doc, skin: "plain" }),
+  // v2 -> v3: text objects gain a `tone` (dark ink, as before) and images a `crisp` flag (smooth, as before).
+  2: (doc) => ({
+    ...doc,
+    cards: Array.isArray(doc["cards"])
+      ? doc["cards"].map((c: unknown) => {
+        if (typeof c !== "object" || c === null || !Array.isArray((c as Rec)["objects"])) return c;
+        const card = c as Rec;
+        return {
+          ...card,
+          objects: (card["objects"] as unknown[]).map((o: unknown) => {
+            if (typeof o !== "object" || o === null) return o;
+            const obj = o as Rec;
+            if (obj["kind"] === "text") return { ...obj, tone: obj["tone"] ?? "dark" };
+            if (obj["kind"] === "image") return { ...obj, crisp: obj["crisp"] ?? false };
+            return obj;
+          }),
+        };
+      })
+      : doc["cards"],
+  }),
+  // v3 -> v4: every object gains a `motion`; old objects stay still.
+  3: (doc) => ({
+    ...doc,
+    cards: Array.isArray(doc["cards"])
+      ? doc["cards"].map((c: unknown) => {
+        if (typeof c !== "object" || c === null || !Array.isArray((c as Rec)["objects"])) return c;
+        const card = c as Rec;
+        return {
+          ...card,
+          objects: (card["objects"] as unknown[]).map((o: unknown) =>
+            typeof o === "object" && o !== null ? { ...(o as Rec), motion: (o as Rec)["motion"] ?? "none" } : o),
+        };
+      })
+      : doc["cards"],
+  }),
 };
 
 export type MigrateResult =

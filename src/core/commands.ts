@@ -1,7 +1,8 @@
+import { allActions } from "./graph";
 import { clampRect } from "./layout";
 import { nextId, usedIds } from "./ids";
 import type {
-  Action, Asset, AssetId, Card, CardId, ObjectId, SimpleAction, Skin, Stack, StackObject, TextAlign,
+  Action, Asset, AssetId, Card, CardId, Motion, ObjectId, SimpleAction, Skin, Stack, StackObject, TextAlign, TextTone,
 } from "./types";
 
 /** Editable fields of an object. Fields that do not apply to the object's kind are ignored. */
@@ -15,6 +16,9 @@ export interface ObjectPatch {
   readonly fontSize?: number;
   readonly bold?: boolean;
   readonly align?: TextAlign;
+  readonly tone?: TextTone;
+  readonly crisp?: boolean;
+  readonly motion?: Motion;
   readonly label?: string;
   readonly alt?: string;
 }
@@ -24,8 +28,10 @@ export type Command =
   | { readonly type: "setSkin"; readonly skin: Skin }
   | { readonly type: "setStart"; readonly card: CardId }
   | { readonly type: "addAsset"; readonly id: AssetId; readonly asset: Asset }
+  | { readonly type: "replaceAsset"; readonly id: AssetId; readonly asset: Asset }
   | { readonly type: "addCard"; readonly card: Card; readonly index: number }
   | { readonly type: "deleteCard"; readonly card: CardId }
+  | { readonly type: "retargetLinks"; readonly from: CardId; readonly to: CardId }
   | { readonly type: "renameCard"; readonly card: CardId; readonly name: string }
   | { readonly type: "moveCard"; readonly card: CardId; readonly to: number }
   | { readonly type: "duplicateCard"; readonly card: CardId; readonly newId: CardId; readonly objectIds: Readonly<Record<ObjectId, ObjectId>> }
@@ -65,12 +71,12 @@ function mapObject(stack: Stack, id: ObjectId, fn: (o: StackObject) => StackObje
 }
 
 function patchObject(o: StackObject, p: ObjectPatch): StackObject {
-  const g = { ...clampRect({ x: p.x ?? o.x, y: p.y ?? o.y, w: p.w ?? o.w, h: p.h ?? o.h }), visible: p.visible ?? o.visible };
+  const g = { ...clampRect({ x: p.x ?? o.x, y: p.y ?? o.y, w: p.w ?? o.w, h: p.h ?? o.h }), visible: p.visible ?? o.visible, motion: p.motion ?? o.motion };
   switch (o.kind) {
     case "text":
-      return { ...o, ...g, text: p.text ?? o.text, fontSize: p.fontSize ?? o.fontSize, bold: p.bold ?? o.bold, align: p.align ?? o.align };
+      return { ...o, ...g, text: p.text ?? o.text, fontSize: p.fontSize ?? o.fontSize, bold: p.bold ?? o.bold, align: p.align ?? o.align, tone: p.tone ?? o.tone };
     case "image":
-      return { ...o, ...g, alt: p.alt ?? o.alt };
+      return { ...o, ...g, alt: p.alt ?? o.alt, crisp: p.crisp ?? o.crisp };
     case "button":
       return { ...o, ...g, label: p.label ?? o.label };
   }
@@ -134,6 +140,12 @@ export function applyCommand(stack: Stack, cmd: Command): Stack {
       return Object.prototype.hasOwnProperty.call(stack.assets, cmd.id) || usedIds(stack).has(cmd.id)
         ? stack
         : { ...stack, assets: { ...stack.assets, [cmd.id]: cmd.asset } };
+    case "replaceAsset": {
+      // Redraw a picture in place (every image that uses it changes). Unknown ids and identical data are no-ops.
+      const old = Object.prototype.hasOwnProperty.call(stack.assets, cmd.id) ? stack.assets[cmd.id] : undefined;
+      if (!old || (old.mime === cmd.asset.mime && old.data === cmd.asset.data)) return stack;
+      return { ...stack, assets: { ...stack.assets, [cmd.id]: cmd.asset } };
+    }
     case "addCard": {
       const used = usedIds(stack);
       const ids = [cmd.card.id, ...cmd.card.objects.map((o) => o.id)];
@@ -152,6 +164,23 @@ export function applyCommand(stack: Stack, cmd: Command): Stack {
       return rewriteActions({ ...stack, cards, start }, (a) =>
         (a.type === "goto" && a.card === cmd.card) ||
         ((a.type === "show" || a.type === "hide") && gone.has(a.object)) ? null : a);
+    }
+    case "retargetLinks": {
+      // Point every "go to `from`" at `to`. Used before deleting `from`, so buttons keep working.
+      const ids = new Set(stack.cards.map((c) => c.id));
+      if (cmd.from === cmd.to || !ids.has(cmd.from) || !ids.has(cmd.to)) return stack;
+      if (![...allActions(stack)].some(({ action }) => action.type === "goto" && action.card === cmd.from)) return stack;
+      const fix = (a: SimpleAction): SimpleAction => (a.type === "goto" && a.card === cmd.from ? { ...a, card: cmd.to } : a);
+      return {
+        ...stack,
+        cards: stack.cards.map((c) => ({
+          ...c,
+          objects: c.objects.map((o) => ({
+            ...o,
+            actions: o.actions.map((a): Action => (a.type === "if" ? { ...a, then: a.then.map(fix), else: a.else.map(fix) } : fix(a))),
+          })),
+        })),
+      };
     }
     case "renameCard":
       return stack.cards.some((c) => c.id === cmd.card && c.name !== cmd.name)
@@ -218,6 +247,15 @@ export const newHistory = (present: Stack): History => ({ past: [], present, fut
 
 export function exec(h: History, cmd: Command): History {
   const next = applyCommand(h.present, cmd);
+  if (next === h.present) return h;
+  return { past: [...h.past, h.present].slice(-MAX_UNDO), present: next, future: [] };
+}
+
+/**
+ * Replace the whole stack (import, new from template) as ONE undo step, so the old work can always be
+ * brought back with undo. Returns the same history when the stack is identical.
+ */
+export function replaceStack(h: History, next: Stack): History {
   if (next === h.present) return h;
   return { past: [...h.past, h.present].slice(-MAX_UNDO), present: next, future: [] };
 }

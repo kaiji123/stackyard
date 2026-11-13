@@ -17,3 +17,10 @@ playwright-report/
 credentials*.json
 .npmrc
 .aws/
+
+# Demo video: recorded clips and renders are rebuilt by `npm run demo:record` / `demo:render`
+demo/.frames/
+demo/video/assets/*.mp4
+demo/video/assets/*.marks.json
+demo/video/out/
+demo/video/.hyperframes/

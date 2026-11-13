@@ -1,6 +1,6 @@
 /** Stackyard document model. Pure data, JSON-serializable, no DOM. */
 
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 4;
 export const CANVAS_W = 800;
 export const CANVAS_H = 600;
 
@@ -32,6 +32,13 @@ export interface IfAction {
 
 export type Action = SimpleAction | IfAction;
 
+/**
+ * A looping movement for any object, chosen from a list (no code). Played by CSS in the player, and
+ * switched off for people who prefer reduced motion. Added in schema v4.
+ */
+export const MOTIONS = ["none", "float", "bob", "wiggle", "pulse", "swing", "spin", "flicker"] as const;
+export type Motion = (typeof MOTIONS)[number];
+
 export interface ObjectBase {
   readonly id: ObjectId;
   readonly x: number;
@@ -42,9 +49,17 @@ export interface ObjectBase {
   readonly visible: boolean;
   /** Run when the object is clicked in play mode. */
   readonly actions: readonly Action[];
+  /** Looping movement in play mode ("none" for still). Added in schema v4. */
+  readonly motion: Motion;
 }
 
 export type TextAlign = "left" | "center" | "right";
+
+/**
+ * How text is drawn so it stays readable on any card. "dark" = ink on the index card, "light" = pale text
+ * with a shadow (for dark pictures), "panel" = pale text on a semi-opaque dark panel. Added in schema v3.
+ */
+export type TextTone = "dark" | "light" | "panel";
 
 export interface TextObject extends ObjectBase {
   readonly kind: "text";
@@ -52,12 +67,15 @@ export interface TextObject extends ObjectBase {
   readonly fontSize: number;
   readonly bold: boolean;
   readonly align: TextAlign;
+  readonly tone: TextTone;
 }
 
 export interface ImageObject extends ObjectBase {
   readonly kind: "image";
   readonly asset: AssetId;
   readonly alt: string;
+  /** Draw with hard pixel edges when scaled (pixel art). Added in schema v3. */
+  readonly crisp: boolean;
 }
 
 export interface ButtonObject extends ObjectBase {

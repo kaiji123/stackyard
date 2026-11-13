@@ -16,4 +16,8 @@ export interface Ctx {
   setMode(m: Mode): void;
   render(): void;
   addImageFile(f: Blob): Promise<void>;
+  /** Open the painter for a new drawing on the current card. */
+  draw(): Promise<void>;
+  /** Open the painter on an existing picture (redraws it in place). */
+  editDrawing(objectId: string): Promise<void>;
 }

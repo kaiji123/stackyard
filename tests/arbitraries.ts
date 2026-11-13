@@ -1,9 +1,9 @@
 import fc from "fast-check";
 import type { Command } from "../src/core/commands";
 import type {
-  Action, Cond, SimpleAction, Stack, StackObject, TextAlign,
+  Action, Cond, SimpleAction, Stack, StackObject, TextAlign, TextTone,
 } from "../src/core/types";
-import { CANVAS_H, CANVAS_W, SCHEMA_VERSION } from "../src/core/types";
+import { CANVAS_H, CANVAS_W, MOTIONS, SCHEMA_VERSION } from "../src/core/types";
 
 /** Strings that have broken (or would break) HTML export and renderers. */
 export const NASTY: readonly string[] = [
@@ -34,6 +34,7 @@ export const arbFlagName: fc.Arbitrary<string> = fc.oneof(
 );
 
 const arbAlign: fc.Arbitrary<TextAlign> = fc.constantFrom("left", "center", "right");
+const arbTone: fc.Arbitrary<TextTone> = fc.constantFrom("dark", "light", "panel");
 
 interface Ids {
   readonly cards: readonly string[];
@@ -92,15 +93,15 @@ const arbObject = (id: string, ids: Ids): fc.Arbitrary<StackObject> => {
     .map(({ w, h, fx, fy }) => ({
       w, h, x: Math.floor(fx * (CANVAS_W - w)), y: Math.floor(fy * (CANVAS_H - h)),
     }));
-  const base = fc.record({ id: fc.constant(id), visible: fc.boolean(), actions: arbActions(ids) });
+  const base = fc.record({ id: fc.constant(id), visible: fc.boolean(), actions: arbActions(ids), motion: fc.constantFrom(...MOTIONS) });
   return fc.oneof(
     fc.record({
       b: base, g: geom, text: arbText, fontSize: fc.integer({ min: 8, max: 72 }),
-      bold: fc.boolean(), align: arbAlign,
-    }).map(({ b, g, text, fontSize, bold, align }): StackObject =>
-      ({ kind: "text", ...b, ...g, text, fontSize, bold, align })),
-    fc.record({ b: base, g: geom, asset: fc.constantFrom("a0", "a1"), alt: arbText })
-      .map(({ b, g, asset, alt }): StackObject => ({ kind: "image", ...b, ...g, asset, alt })),
+      bold: fc.boolean(), align: arbAlign, tone: arbTone,
+    }).map(({ b, g, text, fontSize, bold, align, tone }): StackObject =>
+      ({ kind: "text", ...b, ...g, text, fontSize, bold, align, tone })),
+    fc.record({ b: base, g: geom, asset: fc.constantFrom("a0", "a1"), alt: arbText, crisp: fc.boolean() })
+      .map(({ b, g, asset, alt, crisp }): StackObject => ({ kind: "image", ...b, ...g, asset, alt, crisp })),
     fc.record({ b: base, g: geom, label: arbText })
       .map(({ b, g, label }): StackObject => ({ kind: "button", ...b, ...g, label })),
   );
@@ -168,7 +169,7 @@ export function resolveSeed(stack: Stack, s: CommandSeed, fresh: number): Comman
   // New objects only reference things that exist: an existing card, and themselves.
   const mk = (id: string): StackObject => ({
     kind: "button", id, x: s.a * 20, y: s.b * 20, w: 100, h: 40,
-    visible: true, label: s.text,
+    visible: true, label: s.text, motion: "none",
     actions: [{ type: "goto", card: pick(cards, s.b)?.id ?? "c1" }, { type: "show", object: id }],
   });
   const newObj = mk(`n${fresh}`);

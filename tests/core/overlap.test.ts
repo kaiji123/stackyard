@@ -7,11 +7,11 @@ import type { Stack, StackObject } from "../../src/core/types";
 import { arbStack } from "../arbitraries";
 
 const text = (id: string, y: number, over: Partial<StackObject> = {}): StackObject =>
-  ({ kind: "text", id, x: 10, y, w: 200, h: 50, visible: true, actions: [], text: id, fontSize: 20, bold: false, align: "left", ...over }) as StackObject;
+  ({ kind: "text", id, x: 10, y, w: 200, h: 50, visible: true, actions: [], motion: "none", text: id, fontSize: 20, bold: false, align: "left", ...over }) as StackObject;
 const btn = (id: string, actions: StackObject["actions"]): StackObject =>
-  ({ kind: "button", id, x: 600, y: 500, w: 100, h: 40, visible: true, actions, label: id }) as StackObject;
+  ({ kind: "button", id, x: 600, y: 500, w: 100, h: 40, visible: true, actions, motion: "none", label: id }) as StackObject;
 const one = (objects: StackObject[]): Stack => ({
-  schemaVersion: 2, skin: "plain", title: "t", start: "c1", assets: {}, cards: [{ id: "c1", name: "A", objects }],
+  schemaVersion: 4, skin: "plain", title: "t", start: "c1", assets: {}, cards: [{ id: "c1", name: "A", objects }],
 });
 
 describe("text overlap", () => {

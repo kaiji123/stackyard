@@ -32,15 +32,18 @@ export function renderObject(stack: Stack, o: StackObject, onClick?: () => void)
     const url = assetUrl(stack, o.asset);
     if (url) img.src = url;
     img.draggable = false;
+    if (o.crisp) img.classList.add("sy-crisp");
     el = img;
   } else {
     el = document.createElement("div");
-    el.className = "sy-obj sy-text";
+    el.className = `sy-obj sy-text sy-tone-${o.tone}`;
     el.textContent = o.text;
     el.style.fontSize = `${o.fontSize}px`;
     el.style.fontWeight = o.bold ? "bold" : "normal";
     el.style.textAlign = o.align;
+    el.tabIndex = -1; // never a Tab stop, even if the browser treats clipped boxes as scrollers
   }
+  if (o.motion !== "none") el.classList.add("sy-moving", `sy-m-${o.motion}`);
   el.style.left = `${o.x}px`;
   el.style.top = `${o.y}px`;
   el.style.width = `${o.w}px`;
@@ -72,8 +75,15 @@ export function mount(root: HTMLElement, stack: Stack, embedded = false): Mounte
   const stage = document.createElement("div");
   stage.className = "sy-stage";
   stage.setAttribute("role", "group");
+  stage.tabIndex = -1; // focus target after navigation; Tab itself skips it
+  host.tabIndex = -1;
   if (stack.skin === "haunted") stage.classList.add("sy-haunted");
-  host.append(stage);
+  // Screen readers hear the new card name after each navigation.
+  const live = document.createElement("div");
+  live.className = "sy-sr";
+  live.setAttribute("role", "status");
+  live.setAttribute("aria-live", "polite");
+  host.append(stage, live);
   root.replaceChildren(host);
 
   let state = initState(stack);
@@ -83,13 +93,23 @@ export function mount(root: HTMLElement, stack: Stack, embedded = false): Mounte
     stage.style.transform = `scale(${fitScale(r.width - 24, r.height - 24)})`;
   };
 
+  let shown: string | null = null; // card currently drawn
   const draw = (): void => {
     const card = findCard(stack, state.card);
     stage.setAttribute("aria-label", card ? card.name : "");
+    const moved = shown !== null && shown !== state.card;
+    shown = state.card;
     const prevFocus = document.activeElement instanceof HTMLElement ? document.activeElement.dataset["id"] : undefined;
     stage.replaceChildren(...visibleObjects(stack, state).map((o) =>
       renderObject(stack, o, () => { state = click(stack, state, o.id); draw(); })));
-    if (prevFocus) stage.querySelector<HTMLElement>(`[data-id="${CSS.escape(prevFocus)}"]`)?.focus();
+    if (moved) {
+      // New card: put keyboard focus inside it (first interactive object, else the card) and announce it.
+      live.textContent = "";
+      window.setTimeout(() => { live.textContent = card ? card.name : ""; }, 50);
+      (stage.querySelector<HTMLElement>(".sy-btn, .sy-click") ?? stage).focus({ preventScroll: true });
+    } else if (prevFocus) {
+      stage.querySelector<HTMLElement>(`[data-id="${CSS.escape(prevFocus)}"]`)?.focus({ preventScroll: true });
+    }
   };
 
   // Haunted skin: a fading ghost trail behind the pointer (skipped for reduced-motion users).

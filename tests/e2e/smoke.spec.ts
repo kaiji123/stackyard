@@ -2,20 +2,21 @@
 // offline, and checked. Run with WRITE_EXAMPLES=1 to refresh the files in /examples.
 import { expect, test } from "@playwright/test";
 import { copyFileSync, mkdirSync } from "node:fs";
-import { expectPixelFonts, openOffline, skipWelcome } from "./helpers";
+import { chooseTemplate, expectPixelFonts, openOffline, skipWelcome } from "./helpers";
 
 const TEMPLATES = [
   ["haunted-house", "Haunted House Escape Room"],
   ["ghost-story", "The Lantern Road"],
   ["pumpkin-tutorial", "How to Carve a Pumpkin"],
+  ["midnight-train", "The Midnight Train"],
+  ["bestiary", "The Halloween Bestiary"],
 ] as const;
 
 for (const [id, label] of TEMPLATES) {
   test(`export smoke: ${id}`, async ({ page, browser }, info) => {
     await skipWelcome(page);
-    page.on("dialog", (d) => void d.accept());
     await page.goto("/");
-    await page.getByLabel("New from template").selectOption(id);
+    await chooseTemplate(page, id);
     await expect(page.getByLabel("Stack title")).toHaveValue(label);
     const [download] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: /self-contained/ }).click()]);
     const file = info.outputPath(`${id}.html`);

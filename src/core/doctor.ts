@@ -1,4 +1,5 @@
 import { allActions, dangling, edges, reachable } from "./graph";
+import { intersects } from "./layout";
 import { liveTextOverlaps } from "./overlap";
 import type { CardId, Cond, ObjectId, Stack } from "./types";
 
@@ -6,7 +7,7 @@ export interface Issue {
   readonly severity: "error" | "warning" | "info";
   readonly code:
     | "unreachable-card" | "dangling-target" | "empty-button" | "flag-never-set"
-    | "item-never-added" | "dead-end" | "missing-asset" | "text-overlap";
+    | "item-never-added" | "dead-end" | "missing-asset" | "text-overlap" | "text-on-picture";
   readonly message: string;
   readonly card?: CardId;
   readonly object?: ObjectId;
@@ -28,6 +29,9 @@ export function diagnose(stack: Stack): readonly Issue[] {
     for (const o of c.objects) {
       if (o.kind === "button" && o.actions.length === 0) {
         issues.push({ severity: "warning", code: "empty-button", card: c.id, object: o.id, message: `Button "${o.label}" on "${name(c.id)}" does nothing.` });
+      }
+      if (o.kind === "text" && o.tone === "dark" && c.objects.some((p) => p.kind === "image" && p.visible && intersects(o, p))) {
+        issues.push({ severity: "info", code: "text-on-picture", card: c.id, object: o.id, message: `Dark text on "${name(c.id)}" sits on a picture and may be hard to read. Try the “light” or “panel” text style.` });
       }
       if (o.kind === "image" && !Object.prototype.hasOwnProperty.call(stack.assets, o.asset)) {
         issues.push({ severity: "error", code: "missing-asset", card: c.id, object: o.id, message: `An image on "${name(c.id)}" has no picture data.` });

@@ -1,6 +1,6 @@
 // Phone checks (emulated iPhone 13 and Pixel 7). Real-device runs are listed in docs/TESTING.md.
 import { expect, test } from "@playwright/test";
-import { errors, openOffline, skipWelcome } from "./helpers";
+import { errors, ESCAPE_LABELS, openOffline, skipWelcome } from "./helpers";
 
 test("editor is usable on a phone: select, edit and export without a side panel", async ({ page }, info) => {
   await skipWelcome(page);
@@ -38,8 +38,7 @@ test("play mode fills the phone screen and the escape room can be won by tapping
   const vw = page.viewportSize()?.width ?? 0;
   expect(box && box.x >= -1 && box.x + box.width <= vw + 1).toBe(true);
   const tap = (n: string): Promise<void> => page.locator(".play-host .sy-btn", { hasText: n }).tap();
-  await tap("Step inside"); await tap("Light lamp"); await tap("Study"); await tap("Open drawer");
-  await tap("Back to hall"); await tap("Cellar door"); await tap("Raise the lamp");
+  for (const label of ESCAPE_LABELS) await tap(label);
   await expect(page.locator(".play-host").getByText("You escaped!")).toBeVisible();
 });
 
@@ -57,12 +56,46 @@ test("exported file works offline on a phone in portrait and landscape", async (
     const b = await stage.boundingBox();
     expect(b && b.x >= -1 && b.y >= -1 && b.x + b.width <= viewport.width + 1 && b.y + b.height <= viewport.height + 1).toBe(true);
     const tap = (n: string): Promise<void> => p.locator(".sy-btn", { hasText: n }).tap();
-    await tap("Step inside"); await tap("Light lamp"); await tap("Study"); await tap("Open drawer");
-    await tap("Back to hall"); await tap("Cellar door"); await tap("Raise the lamp");
+    for (const label of ESCAPE_LABELS) await tap(label);
     await expect(p.getByText("You escaped!")).toBeVisible();
     await p.screenshot({ path: `test-results/shots/mobile-export-${info.project.name}-${viewport.width}.png` });
     expect(requests).toEqual([]);
     expect(errs).toEqual([]);
     await ctx.close();
   }
+});
+
+test("on a phone the example gallery fits and a stack plays by tapping", async ({ page }) => {
+  await skipWelcome(page);
+  await page.goto("/");
+  await page.getByRole("button", { name: "Play an example stack" }).tap();
+  const dlg = page.getByRole("dialog", { name: "Play a stack" });
+  await expect(dlg.locator(".tile[data-template]")).toHaveCount(5);
+  // On a phone the search box is there but does not grab focus (that would open the keyboard over the list).
+  await expect(dlg.getByRole("searchbox", { name: "Search stacks" })).toBeVisible();
+  await expect(dlg.getByRole("searchbox", { name: "Search stacks" })).not.toBeFocused();
+  const vw = page.viewportSize()?.width ?? 0;
+  for (const tile of await dlg.locator(".tile[data-template]").all()) {
+    const b = (await tile.boundingBox())!;
+    expect(b.x >= 0 && b.x + b.width <= vw + 1).toBe(true); // no sideways scrolling
+  }
+  await dlg.getByRole("button", { name: "Play Tutorial: How to Carve a Pumpkin" }).tap();
+  await expect(page.locator(".play-overlay .sy-btn", { hasText: "Next" })).toBeVisible();
+  await page.getByRole("button", { name: "Exit play mode" }).tap();
+  await expect(page.locator(".play-overlay")).toHaveCount(0);
+});
+
+test("draw with a finger on a phone", async ({ page }) => {
+  await skipWelcome(page);
+  await page.goto("/");
+  await page.getByRole("button", { name: "Draw a picture or background" }).tap();
+  const dlg = page.getByRole("dialog", { name: "Draw" });
+  const canvas = dlg.locator("canvas.paint-canvas");
+  const box = (await canvas.boundingBox())!;
+  const vw = page.viewportSize()?.width ?? 0;
+  expect(box.x >= 0 && box.x + box.width <= vw).toBe(true);                // fits the phone
+  await canvas.tap({ position: { x: box.width / 2, y: box.height / 2 } });
+  await dlg.getByRole("button", { name: "Add to card" }).tap();
+  await expect(dlg).toHaveCount(0);
+  await expect(page.locator(".sy-stage.edit img.sy-crisp").last()).toBeVisible();
 });

@@ -1,6 +1,6 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
-import { applyCommand, exec, newHistory, redo, undo, type History } from "../../src/core/commands";
+import { applyCommand, exec, newHistory, redo, replaceStack, undo, type History } from "../../src/core/commands";
 import { dangling } from "../../src/core/graph";
 import { usedIds } from "../../src/core/ids";
 import { validateStack } from "../../src/core/validate";
@@ -121,6 +121,63 @@ describe("commands", () => {
       for (const c of stack.cards) s = applyCommand(s, { type: "deleteCard", card: c.id });
       expect(s.cards).toHaveLength(1);
       expect(s.cards.some((c) => c.id === s.start)).toBe(true);
+    }));
+  });
+});
+
+describe("retargetLinks and replaceStack", () => {
+  it("redirecting then deleting a card leaves nothing dangling and keeps every link alive", () => {
+    fc.assert(fc.property(arbStack, fc.nat(), fc.nat(), (stack, a, b) => {
+      if (stack.cards.length < 2) return;
+      const from = stack.cards[a % stack.cards.length];
+      const to = stack.cards[b % stack.cards.length];
+      if (!from || !to || from.id === to.id) return;
+      const before = frozen(stack);
+      const moved = applyCommand(stack, { type: "retargetLinks", from: from.id, to: to.id });
+      expect(stack).toEqual(before); // pure
+      const gone = applyCommand(moved, { type: "deleteCard", card: from.id });
+      expect(dangling(gone)).toEqual([]);
+      // No action may still mention the deleted card after redirecting.
+      expect(JSON.stringify(moved.cards.flatMap((c) => c.objects.map((o) => o.actions))).includes(`"card":"${from.id}"`)).toBe(false);
+    }));
+  });
+
+  it("retargetLinks is a no-op for unknown ids, the same card, or when nothing links there", () => {
+    fc.assert(fc.property(arbStack, (stack) => {
+      const id = stack.cards[0]?.id ?? "c1";
+      expect(applyCommand(stack, { type: "retargetLinks", from: id, to: id })).toBe(stack);
+      expect(applyCommand(stack, { type: "retargetLinks", from: "nope", to: id })).toBe(stack);
+      expect(applyCommand(stack, { type: "retargetLinks", from: id, to: "nope" })).toBe(stack);
+    }));
+  });
+
+  it("replacing the stack can always be undone, and redone", () => {
+    fc.assert(fc.property(arbStack, arbStack, arbSeeds, (a, b, seeds) => {
+      const h = run(a, seeds);
+      const replaced = replaceStack(h, b);
+      expect(replaced.present).toBe(b);
+      const back = undo(replaced);
+      expect(back.present).toEqual(h.present); // the old work is recoverable
+      expect(back.past).toEqual(h.past);
+      expect(redo(back).present).toBe(b);
+      expect(replaceStack(h, h.present)).toBe(h);
+    }));
+  });
+});
+
+describe("replaceAsset (redrawing a picture)", () => {
+  const asset = fc.record({ mime: fc.constant("image/png"), data: fc.base64String({ minLength: 4, maxLength: 24 }) });
+  it("replaces only an existing picture, is undoable, and keeps the stack valid", () => {
+    fc.assert(fc.property(arbStack, asset, (stack, a) => {
+      const before = frozen(stack);
+      const h = exec(newHistory(stack), { type: "replaceAsset", id: "a0", asset: a });
+      expect(stack).toEqual(before); // pure
+      expect(h.present.assets["a0"]).toEqual(a.data === stack.assets["a0"]?.data ? stack.assets["a0"] : a);
+      expect(validateStack(h.present).ok).toBe(true);
+      expect(undo(h).present).toEqual(stack);
+      expect(Object.keys(h.present.assets).sort()).toEqual(Object.keys(stack.assets).sort()); // never adds one
+      expect(applyCommand(stack, { type: "replaceAsset", id: "nope", asset: a })).toBe(stack);
+      expect(applyCommand(stack, { type: "replaceAsset", id: "__proto__", asset: a })).toBe(stack);
     }));
   });
 });

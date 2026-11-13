@@ -13,6 +13,13 @@
 The emulated phones check layout and touch, but they are **not real devices**. Safari on iOS and Chrome on
 Android differ in file handling, fonts and viewport behaviour, so do the checklist below before shipping.
 
+### Keyboard notes
+
+- Safari on macOS does not Tab onto buttons or links unless "Press Tab to highlight each item" is on (or you use
+  Option+Tab). That is a browser default for every website, so the WebKit tests press Option+Tab.
+- Tab leaves the page after the last control and wraps around; that is normal. Inside the player only clickable
+  objects are tab stops, and focus moves into the new card after each navigation.
+
 ## Real-device checklist (manual)
 
 Use `examples/haunted-house.html`.
@@ -24,6 +31,8 @@ Use `examples/haunted-house.html`.
 - [ ] Fonts look pixelated (Silkscreen buttons, VT323 text), not plain monospace.
 - [ ] Haunted skin: flicker visible, ghost trail follows the finger or pointer.
 - [ ] No text overlaps or is cut off on any card.
+- [ ] Phone with an external keyboard or Switch/VoiceOver/TalkBack: Tab or swipe to a button, activate it, and the new card's name is announced.
+- [ ] Import a file over unsaved work: the confirm dialog appears; Cancel keeps the work; Replace then Undo brings it back.
 
 Record results (device, OS/browser version, pass/fail) here:
 

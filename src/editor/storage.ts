@@ -4,6 +4,7 @@ import { importStack } from "../export/import";
 const DB = "stackyard";
 const STORE = "kv";
 const KEY = "current";
+export const PREVIOUS = "previous";
 
 function open(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -15,22 +16,22 @@ function open(): Promise<IDBDatabase> {
 }
 
 /** Autosave target. Failures are non-fatal (private mode, quota): the caller shows a status. */
-export async function saveStack(stack: Stack): Promise<void> {
+export async function saveStack(stack: Stack, key: string = KEY): Promise<void> {
   const db = await open();
   await new Promise<void>((resolve, reject) => {
     const tx = db.transaction(STORE, "readwrite");
-    tx.objectStore(STORE).put(JSON.stringify(stack), KEY);
+    tx.objectStore(STORE).put(JSON.stringify(stack), key);
     tx.oncomplete = () => resolve();
     tx.onerror = () => reject(tx.error);
   });
   db.close();
 }
 
-export async function loadStack(): Promise<Stack | undefined> {
+export async function loadStack(key: string = KEY): Promise<Stack | undefined> {
   try {
     const db = await open();
     const text = await new Promise<unknown>((resolve, reject) => {
-      const req = db.transaction(STORE).objectStore(STORE).get(KEY);
+      const req = db.transaction(STORE).objectStore(STORE).get(key);
       req.onsuccess = () => resolve(req.result);
       req.onerror = () => reject(req.error);
     });

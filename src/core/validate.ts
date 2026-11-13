@@ -1,7 +1,7 @@
 import type {
-  Action, Asset, Card, Cond, SimpleAction, Stack, StackObject, TextAlign,
+  Action, Asset, Card, Cond, SimpleAction, Stack, StackObject, TextAlign, TextTone,
 } from "./types";
-import { SCHEMA_VERSION } from "./types";
+import { MOTIONS, SCHEMA_VERSION } from "./types";
 
 export type ValidationResult =
   | { readonly ok: true; readonly stack: Stack }
@@ -70,6 +70,7 @@ function actions(v: unknown, path: string, errs: string[]): v is readonly Action
 }
 
 const ALIGNS: readonly TextAlign[] = ["left", "center", "right"];
+const TONES: readonly TextTone[] = ["dark", "light", "panel"];
 
 function object(v: unknown, path: string, errs: string[]): v is StackObject {
   if (!isRec(v)) {
@@ -81,6 +82,7 @@ function object(v: unknown, path: string, errs: string[]): v is StackObject {
   if (!isStr(v["id"])) bad("id must be a string");
   for (const k of ["x", "y", "w", "h"]) if (!isNum(v[k])) bad(`${k} must be a finite number`);
   if (!isBool(v["visible"])) bad("visible must be a boolean");
+  if (!MOTIONS.some((m) => m === v["motion"])) bad(`motion must be one of ${MOTIONS.join(", ")}`);
   ok = actions(v["actions"], `${path}.actions`, errs) && ok;
   switch (v["kind"]) {
     case "text":
@@ -88,10 +90,12 @@ function object(v: unknown, path: string, errs: string[]): v is StackObject {
       if (!isNum(v["fontSize"])) bad("fontSize must be a number");
       if (!isBool(v["bold"])) bad("bold must be a boolean");
       if (!ALIGNS.some((a) => a === v["align"])) bad("align must be left|center|right");
+      if (!TONES.some((t) => t === v["tone"])) bad("tone must be dark|light|panel");
       break;
     case "image":
       if (!isStr(v["asset"])) bad("asset must be a string");
       if (!isStr(v["alt"])) bad("alt must be a string");
+      if (!isBool(v["crisp"])) bad("crisp must be a boolean");
       break;
     case "button":
       if (!isStr(v["label"])) bad("label must be a string");
